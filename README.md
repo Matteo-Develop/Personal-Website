@@ -84,10 +84,6 @@ The hero copy is deliberately evergreen — it names the degree and school
 and nothing that expires, so it doesn't need editing every time a role
 changes. Anything time-bound belongs in `data/experience.js`.
 
-Bracketed placeholders like `[Add dates]` or `[X] active subscribers` mark
-things that still need a real date or number. Fill them in or delete the
-line — don't leave a guess on the page.
-
 ## The two pages
 
 `index.html` is the professional record: experience, work, certifications,
@@ -119,12 +115,14 @@ python3 -m http.server 8000
 
 ## Deploying to GitHub Pages
 
-1. Push this repo to GitHub.
-2. **Settings → Pages**.
-3. **Source**: `Deploy from a branch` → your default branch, `/ (root)`.
-4. **Custom domain**: `matteo0001.com`. GitHub will keep the `CNAME` file
-   in sync with whatever you enter here.
-5. Once DNS resolves and GitHub issues the certificate, tick **Enforce
+1. **Settings → General → Default branch** must be `main`. Changing this
+   needs the confirmation dialog; it does not save until you accept it.
+2. **Settings → Pages → Source**: `Deploy from a branch`, branch `main`,
+   folder `/ (root)`. Pages keeps its own branch setting, so changing the
+   default branch does **not** repoint Pages on its own.
+3. **Custom domain**: `matteo0001.com`. GitHub rewrites the `CNAME` file to
+   match whatever you enter here.
+4. Once DNS resolves and GitHub issues the certificate, tick **Enforce
    HTTPS**.
 
 ## DNS (Cloudflare)
@@ -158,7 +156,7 @@ Two things worth getting right:
   Pages, you can switch to **Proxied** if you want Cloudflare in front of
   it; if you do, set SSL/TLS to **Full (strict)**.
 - If you ever change the domain, update `CNAME`, `config.site.url` in
-  `data/config.js`, the canonical and Open Graph URLs in `index.html`, and
+  `data/config.js`, the canonical and `og:url` values in `index.html`, and
   the URLs in `sitemap.xml` and `robots.txt`.
 
 ## Notes
@@ -167,9 +165,6 @@ Note on `about.operating`: those four roles and their figures came from a
 LinkedIn export taken before they were deleted from the profile. The
 website is now the only public place they appear, so there is no second
 copy to check the numbers against.
-  and swap the `[Link the deck or write-up here]` lines in
-  `data/projects.js` for real links.
-
 There is no photo anywhere in the current design — it's entirely
 type-driven, which is a deliberate choice and reads well for finance. If
 you want a headshot, that's a layout change, not a drop-in; say so and it
