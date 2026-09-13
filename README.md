@@ -170,11 +170,12 @@ Two things worth getting right:
 ## Notes
 
 Note on `about.operating`: those four roles and their figures (400+
-subscribers, a team of 10 against $100k/month, 6,000+ users, $10M+ in
-annual transactions, 70% ticket reduction) came from a LinkedIn export
-taken before those entries were deleted from the profile. The website is
-now the only public place they appear, so there is no second source to
-check them against.
+subscribers, a team of 15, $100k/month across two people, 6,000+ users,
+$10M+ in annual transactions, 70% ticket reduction) came from a LinkedIn
+export taken before those entries were deleted from the profile, with the
+team sizes corrected afterwards from memory. The website is now the only
+public place they appear, so there is no second source to check them
+against.
 
 Treat that as a hard boundary: these are **website narrative, not
 application fact**. They are fine here, telling his own story on his own

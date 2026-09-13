@@ -77,7 +77,7 @@ export const about = {
     { value: 400, suffix: "+", label: "Subscribers at peak" },
     { value: 95, suffix: "%", label: "Retention rate" },
     { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue" },
-    { value: 10, label: "People on the team" },
+    { value: 15, label: "Team I managed" },
     { value: 6000, suffix: "+", label: "Users supported" },
     { value: 70, suffix: "%", label: "Recurring tickets removed" },
   ],
@@ -91,6 +91,7 @@ export const about = {
       note: "A subscription research platform built from nothing: market analysis, alerts and trend forecasting for the release market described above.",
       metrics: [
         "400+ active subscribers at a 95% retention rate.",
+        "Managed a team of 15, spread across time zones, most of whom I never met in person.",
         "Owned customer acquisition, financial management and community end to end.",
       ],
     },
@@ -100,7 +101,7 @@ export const about = {
       dates: "Feb 2021 – Aug 2021",
       note: "Started on the support queue and moved into running operations two months later.",
       metrics: [
-        "Managed a team of 10 against $100,000 in monthly revenue, at a 95% customer satisfaction rate.",
+        "Two of us ran it, me and the owner, against $100,000 in monthly revenue at a 95% customer satisfaction rate.",
         "Resolved 85% of tickets inside 24 hours and wrote the procedures that cut response times by 60%.",
       ],
     },
@@ -108,7 +109,7 @@ export const about = {
       org: "A checkout-automation platform",
       role: "Technical Support Staff",
       dates: "Feb 2021 – Jul 2021",
-      note: "Release-day support, under a clock.",
+      note: "Release-day support, under a clock, at a four-person company.",
       metrics: [
         "Supported 5,000+ transactions, focused on system reliability and customer experience.",
         "Wrote onboarding materials that lifted adoption 25% and cut resolution times 24%.",
@@ -118,7 +119,7 @@ export const about = {
       org: "A high-volume checkout-automation platform",
       role: "Technical Support Staff",
       dates: "Aug 2020 – Feb 2021",
-      note: "Front-line and escalation support, at the largest scale I worked at.",
+      note: "Front-line and escalation support, at the largest scale I worked at. Seven people in the company, and support ran through me.",
       metrics: [
         "6,000+ users on a platform carrying $10M+ in annual transactions.",
         "Cut downtime 15% working with the developers, and wrote documentation that removed 70% of recurring tickets.",
