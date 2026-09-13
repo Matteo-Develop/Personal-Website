@@ -158,12 +158,13 @@ function initGreeting() {
   if (!slot) return;
 
   const hour = new Date().getHours();
+  // Trailing comma: the location line underneath finishes the sentence.
   const greeting =
     hour >= 5 && hour < 12
-      ? "Good morning."
+      ? "Good morning,"
       : hour >= 12 && hour < 18
-        ? "Good afternoon."
-        : "Good evening.";
+        ? "Good afternoon,"
+        : "Good evening,";
 
   slot.textContent = greeting;
 }

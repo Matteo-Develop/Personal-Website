@@ -54,7 +54,9 @@ sitemap.xml
   `prefers-reduced-motion`.
 - **The greeting** reads the *visitor's* own clock, not a server's: "Good
   morning" before noon, "Good afternoon" until 18:00, "Good evening" after.
-  Thresholds are in `initGreeting()` in `js/main.js`.
+  Thresholds are in `initGreeting()` in `js/main.js`. The location line
+  beneath it ("from Atlanta, Georgia") is static and is Matteo's, not the
+  visitor's; nothing on the site geolocates anyone.
 - **Market clocks** in the footer — New York, London, Singapore. Each
   `<time data-clock="America/New_York">` names its own IANA zone in
   `index.html`, so adding or swapping a city is a markup change, not a code

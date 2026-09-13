@@ -1007,3 +1007,10 @@ button {
 .topnav .nav-page::after { background: var(--accent); }
 
 .project-link { margin-top: 1.1rem; }
+
+/* The location is the second half of the greeting sentence, so it sits
+   under it at reduced scale rather than floating above as its own label. */
+.display-greet .from {
+  font-size: 0.46em;
+  color: var(--bone-dim);
+}
