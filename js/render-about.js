@@ -20,7 +20,7 @@ function renderChapters() {
     section.innerHTML = `
       <div class="shell band-grid">
         <div class="rail mono">
-          <p class="rail-label"><span class="idx">${String(i + 1).padStart(2, "0")}</span><span>${chapter.label}</span></p>
+          <h2 class="rail-label"><span class="idx">${String(i + 1).padStart(2, "0")}</span><span>${chapter.label}</span></h2>
         </div>
         <div class="band-body">
           <div class="chapter-body reveal">

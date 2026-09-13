@@ -25,7 +25,6 @@ data/
   skills.js            Certifications
   involvement.js       Involvement: roles, societies, volunteering
 assets/
-  favicon.svg
   hca-healthcare.pdf   Bluegrass equity research report, Apr 2026
   marathon-petroleum.pdf  UK 2026 Stock Pitch Competition deck
 CNAME                  Custom domain for GitHub Pages

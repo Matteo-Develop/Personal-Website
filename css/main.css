@@ -443,6 +443,13 @@ button {
   display: flex;
   align-items: baseline;
   gap: 0.8rem;
+  /* This is an <h2> for the document outline, so it has to be pulled back
+     to the rail's mono metrics: the UA sheet sizes h2 at 1.5em, and the
+     shared h1-h4 rule sets letter-spacing on the element directly, which
+     beats the .mono values it would otherwise inherit from the parent. */
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
 }
 
 @media (min-width: 880px) {
