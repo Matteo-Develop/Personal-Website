@@ -77,9 +77,9 @@ export const about = {
     { value: 400, suffix: "+", label: "Subscribers at peak" },
     { value: 95, suffix: "%", label: "Retention rate" },
     { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue" },
-    { value: 15, label: "Team I managed" },
+    { value: 15, label: "People I managed" },
     { value: 6000, suffix: "+", label: "Users supported" },
-    { value: 70, suffix: "%", label: "Recurring tickets removed" },
+    { value: 70, suffix: "%", label: "Recurring questions removed" },
   ],
 
   // The operating record behind the narrative above, 2019–2022.
@@ -109,7 +109,7 @@ export const about = {
       org: "A checkout-automation platform",
       role: "Technical Support Staff",
       dates: "Feb 2021 – Jul 2021",
-      note: "Release-day support, under a clock, at a four-person company.",
+      note: "Release-day support, under a clock, at a five-person company.",
       metrics: [
         "Supported 5,000+ transactions, focused on system reliability and customer experience.",
         "Wrote onboarding materials that lifted adoption 25% and cut resolution times 24%.",
@@ -119,10 +119,10 @@ export const about = {
       org: "A high-volume checkout-automation platform",
       role: "Technical Support Staff",
       dates: "Aug 2020 – Feb 2021",
-      note: "Front-line and escalation support, at the largest scale I worked at. Seven people in the company, and support ran through me.",
+      note: "Front-line and escalation support, at the largest scale I worked at. Seven people in the company, and support ran through me: live, in chat, while releases were happening, not a queue somebody worked through the next morning.",
       metrics: [
         "6,000+ users on a platform carrying $10M+ in annual transactions.",
-        "Cut downtime 15% working with the developers, and wrote documentation that removed 70% of recurring tickets.",
+        "Cut downtime 15% working with the developers, and wrote documentation that removed 70% of the questions that kept coming back.",
       ],
     },
   ],
