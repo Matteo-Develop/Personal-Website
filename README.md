@@ -172,9 +172,10 @@ Two things worth getting right:
 Note on `about.operating`: those four roles and their figures (400+
 subscribers, a team of 15, $100k/month across two people, 6,000+ users,
 $10M+ in annual transactions, 70% ticket reduction) came from a LinkedIn
-export taken before those entries were deleted from the profile, with the
-team sizes corrected afterwards from memory. The website is now the only
-public place they appear, so there is no second source to check them
+export taken before those entries were deleted from the profile. The team
+sizes are Matteo's own account of businesses he ran, and take precedence
+over the export where the two differ. The website is now the only public
+place any of it appears, so there is no second source to check it
 against.
 
 Treat that as a hard boundary: these are **website narrative, not

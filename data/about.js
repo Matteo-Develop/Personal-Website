@@ -30,7 +30,7 @@ export const about = {
     {
       label: "Sneaker Twitter",
       body: [
-        "What I'd walked into was a market most people have never heard of. A few thousand serious participants worldwide, nearly all teenagers, building the infrastructure behind limited-release retail: monitors watching individual sites for restocks, proxy networks, data services, and paid information groups. Every one of those businesses existed to save a customer a few hundred milliseconds at checkout, and those milliseconds were worth real money.",
+        "What I'd walked into was a market most people have never heard of. A few thousand serious participants worldwide, nearly all teenagers, building the infrastructure behind limited-release retail: monitors watching individual sites for restocks, proxy networks, data services, and paid information groups. Every one of those businesses existed to save a customer a few hundred milliseconds at checkout, and customers paid a lot for that.",
         "It had genuine price discovery. Software licenses traded on a secondary market at multiples of retail, and eventually an exchange got built to clear those trades with escrow and dispute resolution. It has since turned into a reasonably well-known hiring pool. A number of venture-backed founders and early employees at hypergrowth companies came out of the same Discords.",
         "I ended up building inside it rather than just buying from it: a subscription research service of my own, and support and operations roles at three of the businesses other people were running. That record is further down this page.",
       ],
@@ -40,7 +40,7 @@ export const about = {
       body: [
         "That market repriced you in public every weekend. If your product underperformed on a single release, members cancelled that night, not next quarter. I learned retention, incident response, and how to hold a paying customer base together under that kind of pressure at an age when most of my friends had part-time jobs.",
         "I also learned how to talk to people who outranked me. At fifteen and sixteen I was working alongside adults who didn't care how old I was as long as I was useful, and that's still the most valuable thing I took out of it.",
-        "All of it ran alongside club and high school soccer. Practice, a release at 10am on a Saturday, and a support queue that cared about neither one. Whatever I know about holding three things at once, I learned it there.",
+        "All of it ran alongside club and high school soccer. Practice, a release at 10am on a Saturday, and a support queue that cared about neither one.",
       ],
     },
     {
@@ -59,7 +59,7 @@ export const about = {
       label: "Finance",
       body: [
         "So I switched to finance and eventually transferred to Georgia, into Terry. FP&A in Singapore, then equity research in Lexington, then private banking in Atlanta. The research side came naturally, because it's the same instinct as the sneaker work. Find the thing that's mispriced, understand why, and get there before the rest of the market does.",
-        "What I'm actually interested in is markets, geopolitics, and how capital moves around the world. Those three turn out to be the same subject.",
+        "What I'm actually interested in is markets, geopolitics, and how capital moves around the world. You can't really follow one without ending up in the other two.",
       ],
     },
     {
