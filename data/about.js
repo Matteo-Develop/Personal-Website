@@ -71,6 +71,17 @@ export const about = {
     },
   ],
 
+  // Headline figures for the operating years, counted up on scroll.
+  // Same caveat as `operating` below: his own numbers, no second source.
+  stats: [
+    { value: 400, suffix: "+", label: "Subscribers at peak" },
+    { value: 95, suffix: "%", label: "Retention rate" },
+    { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue" },
+    { value: 10, label: "People on the team" },
+    { value: 6000, suffix: "+", label: "Users supported" },
+    { value: 70, suffix: "%", label: "Recurring tickets removed" },
+  ],
+
   // The operating record behind the narrative above, 2019–2022.
   operating: [
     {

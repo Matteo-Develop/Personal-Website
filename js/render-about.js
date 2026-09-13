@@ -8,28 +8,52 @@ function renderLede() {
   if (slot) slot.textContent = about.lede;
 }
 
-// Each chapter is its own band, so the mono label sits in the sticky rail
-// beside its prose — the same structure the main page uses.
+// One sticky navigator for the whole narrative, plus the chapters
+// themselves. Clicking a chapter jumps to it; scrolling highlights it.
 function renderChapters() {
   const mount = document.getElementById("chapters");
-  if (!mount) return;
+  const nav = document.getElementById("chapter-nav");
+  if (!mount || !nav) return;
 
   about.chapters.forEach((chapter, i) => {
-    const section = document.createElement("section");
-    section.className = "band chapter";
+    const n = String(i + 1).padStart(2, "0");
+    const id = "ch-" + n;
+
+    const section = document.createElement("article");
+    section.className = "chapter";
+    section.id = id;
     section.innerHTML = `
-      <div class="shell band-grid">
-        <div class="rail mono">
-          <h2 class="rail-label"><span class="idx">${String(i + 1).padStart(2, "0")}</span><span>${chapter.label}</span></h2>
-        </div>
-        <div class="band-body">
-          <div class="chapter-body reveal">
-            ${chapter.body.map((p) => `<p>${p}</p>`).join("")}
-          </div>
-        </div>
+      <h2 class="chapter-head">
+        <span class="idx mono">${n}</span>
+        <span class="chapter-title">${chapter.label}</span>
+      </h2>
+      <div class="chapter-body reveal">
+        ${chapter.body.map((para) => `<p>${para}</p>`).join("")}
       </div>
     `;
     mount.appendChild(section);
+
+    const li = document.createElement("li");
+    li.innerHTML = `<a class="chapter-link mono" href="#${id}" data-chapter="${id}">
+      <span class="dot" aria-hidden="true"></span><span class="idx">${n}</span><span>${chapter.label}</span>
+    </a>`;
+    nav.appendChild(li);
+  });
+}
+
+// Counts the headline figures up as they come into view.
+function renderStats() {
+  const mount = document.getElementById("stats");
+  if (!mount) return;
+
+  about.stats.forEach((stat) => {
+    const item = document.createElement("div");
+    item.className = "stat";
+    item.innerHTML = `
+      <dt class="stat-value" data-value="${stat.value}" data-prefix="${stat.prefix || ""}" data-suffix="${stat.suffix || ""}">${stat.prefix || ""}0${stat.suffix || ""}</dt>
+      <dd class="stat-label mono">${stat.label}</dd>
+    `;
+    mount.appendChild(item);
   });
 }
 
@@ -74,6 +98,7 @@ function renderCapabilities() {
 
 renderLede();
 renderChapters();
+renderStats();
 renderOperating();
 renderCapabilities();
 initShared();

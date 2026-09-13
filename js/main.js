@@ -258,6 +258,99 @@ function initScrollMotion() {
   }
 }
 
+
+// Chapter navigator on the About page: highlights the chapter you're in and
+// fills a spine as you move through the story. Clicking a chapter jumps to
+// it (the shared anchor handler does the scrolling and focus).
+function initChapterNav() {
+  const links = Array.from(document.querySelectorAll(".chapter-link"));
+  const fill = document.querySelector(".spine-fill");
+  const story = document.getElementById("story");
+  if (!links.length || !story) return;
+
+  const targets = links
+    .map((link) => ({ link, section: document.getElementById(link.dataset.chapter) }))
+    .filter((t) => t.section);
+
+  let queued = false;
+  const paint = () => {
+    queued = false;
+    const y = window.scrollY;
+    const line = y + 160;
+
+    let active = targets[0];
+    targets.forEach((t) => {
+      if (t.section.getBoundingClientRect().top + y <= line) active = t;
+    });
+    targets.forEach((t) => t.link.classList.toggle("is-active", t === active));
+
+    if (fill) {
+      const box = story.getBoundingClientRect();
+      const total = box.height - 160;
+      const done = Math.min(Math.max((line - (box.top + y)) / Math.max(total, 1), 0), 1);
+      fill.style.transform = `scaleY(${done})`;
+    }
+  };
+
+  const onScroll = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(paint);
+  };
+
+  paint();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  if ("ResizeObserver" in window) new ResizeObserver(onScroll).observe(document.body);
+}
+
+// Counts each headline figure up once, the first time it's seen.
+function initCounters() {
+  const nums = document.querySelectorAll(".stat-value[data-value]");
+  if (!nums.length) return;
+
+  const format = (n) => n >= 1000 ? n.toLocaleString("en-US") : String(n);
+  const settle = (el) => {
+    el.textContent = el.dataset.prefix + format(+el.dataset.value) + el.dataset.suffix;
+  };
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    nums.forEach(settle);
+    return;
+  }
+
+  const run = (el) => {
+    const target = +el.dataset.value;
+    const start = performance.now();
+    const dur = 1100;
+    const tick = (now) => {
+      const t = Math.min((now - start) / dur, 1);
+      // ease-out so it decelerates into the real number
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = el.dataset.prefix + format(Math.round(target * eased)) + el.dataset.suffix;
+      if (t < 1) requestAnimationFrame(tick);
+      else settle(el);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        run(entry.target);
+        io.unobserve(entry.target);
+      } else if (entry.boundingClientRect.bottom < 0) {
+        // Already scrolled past, e.g. someone deep-linked below this point.
+        // Without this the figure would sit at zero forever.
+        settle(entry.target);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  nums.forEach((n) => io.observe(n));
+}
+
 function initYear() {
   const el = document.querySelector("[data-current-year]");
   if (el) el.textContent = String(new Date().getFullYear());
@@ -275,5 +368,7 @@ export function initShared() {
   initActiveNav();
   initClocks();
   initScrollMotion();
+  initChapterNav();
+  initCounters();
   initYear();
 }

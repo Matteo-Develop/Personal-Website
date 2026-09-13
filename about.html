@@ -57,7 +57,15 @@
       </div>
     </section>
 
-    <div id="chapters"></div>
+    <section class="narrative" id="story" tabindex="-1">
+      <div class="shell narrative-grid">
+        <nav class="chapter-nav" aria-label="Chapters">
+          <span class="spine" aria-hidden="true"><span class="spine-fill"></span></span>
+          <ol id="chapter-nav"></ol>
+        </nav>
+        <div id="chapters"></div>
+      </div>
+    </section>
 
     <section class="band" id="operating" tabindex="-1">
       <div class="shell band-grid">
@@ -66,6 +74,7 @@
         </div>
         <div class="band-body">
           <p class="operating-intro reveal">From 2019 to 2022, alongside high school and club soccer. The record behind the story above.</p>
+          <dl id="stats" class="stats"></dl>
           <div id="operating-list" class="rows"></div>
         </div>
       </div>

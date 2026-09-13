@@ -10,11 +10,13 @@ means touching layout or animation code.
 index.html             Main site: hero, about, experience, work,
                         certifications, involvement, contact
 about.html             Where it came from — the upbringing behind the
-                        professional record, linked from the hero
+                        professional record, told in numbered chapters with
+                        a sticky navigator, linked from the hero
 css/
   main.css             Tokens + all shared styles
 js/
-  main.js              Nav, scroll reveal + parallax, greeting, clocks
+  main.js              Nav, scroll reveal + parallax, greeting, clocks,
+                        chapter navigator, counting figures
   render-home.js       Renders index.html's sections from /data
   render-about.js      Renders about.html from /data
 data/
@@ -50,8 +52,10 @@ sitemap.xml
   themselves left-to-right as you reach them, with content fading in just
   behind. Scrolling away from the hero drifts it upward and dissolves it,
   and a brass hairline across the top of the window tracks progress through
-  the page. Links underline with a wipe. All of it is off under
-  `prefers-reduced-motion`.
+  the page. On the About page a spine beside the chapter list fills as you
+  read, and the headline figures count up the first time they scroll into
+  view. Links underline with a wipe. All of it is off under
+  `prefers-reduced-motion` — the figures just appear at their final value.
 - **The greeting** reads the *visitor's* own clock, not a server's: "Good
   morning" before noon, "Good afternoon" until 18:00, "Good evening" after.
   Thresholds are in `initGreeting()` in `js/main.js`. The location line
@@ -70,16 +74,19 @@ sitemap.xml
   `artifactsLabel` you choose per role — "What I built", "The call", "The
   numbers". Deliberately not a resume bullet list.
 - **Add a write-up** → `data/projects.js`.
-- **The long-form story** → `data/about.js`. `chapters` render in order,
-  `operating` is the 2019–2022 record with its real figures, and
-  `capabilities` is grouped rather than a badge wall.
+- **The long-form story** → `data/about.js`. `chapters` render in order and
+  each one picks up a numbered entry in the sticky chapter navigator
+  automatically, `stats` are the headline figures that count up when they
+  scroll into view (`value` plus optional `prefix`/`suffix`), `operating` is
+  the 2019–2022 record with its real figures, and `capabilities` is grouped
+  rather than a badge wall.
 - **Certifications / involvement** → same pattern in `data/skills.js` and
   `data/involvement.js`.
 - **Links** → `data/config.js`. Note the LinkedIn and email links are also
   hardcoded in `index.html` so they still work if a script fails to load —
   if you change one, change both.
-- **The About facts table** (study, citizenship, languages, focus) and the
-  hero copy live directly in `index.html`.
+- **The About facts table** (study, standing, abroad, languages, focus) and
+  the hero copy live directly in `index.html`.
 
 The hero copy is deliberately evergreen — it names the degree and school
 and nothing that expires, so it doesn't need editing every time a role
