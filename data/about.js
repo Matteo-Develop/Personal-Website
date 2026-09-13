@@ -52,13 +52,13 @@ export const about = {
     {
       label: "Kentucky",
       body: [
-        "I went to the University of Kentucky for biomedical technology, aiming at medicine. It didn't last. What kept pulling at me was the market side. I was running an event-driven ticket book on the side, and it held my attention in a way the pre-med track never did.",
+        "I went to the University of Kentucky in August 2023 for biomedical technology, aiming at medicine. It didn't last. What kept pulling at me was the market side. I was running an event-driven ticket book on the side, and it held my attention in a way the pre-med track never did.",
       ],
     },
     {
       label: "Finance",
       body: [
-        "So I switched to finance and eventually transferred to Georgia, into Terry. FP&A in Singapore, then equity research in Lexington, then private banking in Atlanta. The research side came naturally, because it's the same instinct as the sneaker work. Find the thing that's mispriced, understand why, and get there before the rest of the market does.",
+        "So I switched to finance, and after three years at Kentucky I transferred to Georgia, into Terry, in the fall of 2026. FP&A in Singapore and equity research in Lexington while I was still at Kentucky, then private banking in Atlanta over the summer in between. The research side came naturally, because it's the same instinct as the sneaker work. Find the thing that's mispriced, understand why, and get there before the rest of the market does.",
         "What I'm actually interested in is markets, geopolitics, and how capital moves around the world. You can't really follow one without ending up in the other two.",
       ],
     },
