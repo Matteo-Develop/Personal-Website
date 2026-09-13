@@ -10,7 +10,7 @@ export const config = {
     name: "Matteo Salinas",
     title: "Matteo Salinas",
     description:
-      "Matteo Salinas — finance at UGA's Terry College of Business. Private wealth, equity research, credit, and cross-border capital.",
+      "Matteo Salinas. Finance at UGA's Terry College of Business, focused on markets, equity research, credit and cross-border capital.",
     url: "https://matteo0001.com",
   },
 

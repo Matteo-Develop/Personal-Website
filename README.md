@@ -161,10 +161,19 @@ Two things worth getting right:
 
 ## Notes
 
-Note on `about.operating`: those four roles and their figures came from a
-LinkedIn export taken before they were deleted from the profile. The
-website is now the only public place they appear, so there is no second
-copy to check the numbers against.
+Note on `about.operating`: those four roles and their figures (400+
+subscribers, a team of 10 against $100k/month, 6,000+ users, $10M+ in
+annual transactions, 70% ticket reduction) came from a LinkedIn export
+taken before those entries were deleted from the profile. The website is
+now the only public place they appear, so there is no second source to
+check them against.
+
+Treat that as a hard boundary: these are **website narrative, not
+application fact**. They are fine here, telling his own story on his own
+site. They should not migrate onto a resume, a job application, or any
+form where an employer would reasonably expect to verify them. Everything
+else on the site can be checked against the resume or the two PDFs in
+`assets/`; these cannot.
 There is no photo anywhere in the current design — it's entirely
 type-driven, which is a deliberate choice and reads well for finance. If
 you want a headshot, that's a layout change, not a drop-in; say so and it
