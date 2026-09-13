@@ -52,7 +52,7 @@ export const about = {
     {
       label: "Kentucky",
       body: [
-        "I went to the University of Kentucky for biomedical technology, aiming at medicine. It didn't take. What kept pulling at me was the market side. I was running an event-driven ticket book on the side, and it held my attention in a way the pre-med track never did.",
+        "I went to the University of Kentucky for biomedical technology, aiming at medicine. It didn't last. What kept pulling at me was the market side. I was running an event-driven ticket book on the side, and it held my attention in a way the pre-med track never did.",
       ],
     },
     {
