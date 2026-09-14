@@ -213,20 +213,28 @@ Optionally, the matching `AAAA` records for IPv6:
 
 ### HTTPS
 
-GitHub issues a free certificate once its own DNS check passes, which can
-take up to 24 hours after the records are right. Until then Settings →
-Pages shows **DNS Check in Progress** and the site is served over plain
-`http://`, which browsers label "Not secure".
+Live and enforced. `http://matteo0001.com` redirects to `https://`, so
+there is nothing outstanding here.
 
-**Go back and tick "Enforce HTTPS" once the check clears.** It is a
-checkbox, it is not automatic, and nothing else prompts you to do it. A
-recruiting site sitting on `http://` with a "Not secure" chip in the
-address bar undoes a lot of what the design is for.
+Worth knowing for next time: GitHub issues the certificate only after its
+own DNS check passes, which can take up to 24 hours after the records are
+correct, and **Enforce HTTPS is a manual checkbox** that has to be ticked
+afterwards. Nothing prompts you. Until it is ticked the site serves over
+plain `http://` and browsers label it "Not secure", which on a site being
+sent to employers undoes a good deal of what the design is for.
 
-If the check is still pending after a day, the usual causes are a `CAA`
-record blocking Let's Encrypt (there is none here) or a stale `CNAME` file
-in the repo. Removing and re-entering the custom domain in Settings →
-Pages restarts the check.
+If the certificate ever lapses or the check gets stuck, the usual causes
+are a `CAA` record blocking Let's Encrypt (there is none on this domain)
+or a stale `CNAME` file in the repo. Removing and re-entering the custom
+domain under Settings → Pages restarts the check.
+
+Every URL the site declares about itself is already `https://` — the
+canonicals, both `og:url` values, `sitemap.xml`, `robots.txt` and
+`config.site.url` — and no asset is fetched over plain HTTP, so there is
+no mixed content to warn about. The two `http://` strings that turn up in
+a grep are XML namespace identifiers in `sitemap.xml` and the inline SVG
+in `main.css`; those are opaque identifiers rather than addresses, and
+they stay as they are.
 
 If you ever change the domain, update `CNAME`, `config.site.url` in
 `data/config.js`, the canonical and `og:url` values in `index.html`, and
