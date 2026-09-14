@@ -102,4 +102,4 @@ renderChapters();
 renderStats();
 renderOperating();
 renderCapabilities();
-initShared({ analyticsToken: config.analytics.cloudflareToken });
+initShared({ analytics: config.analytics });

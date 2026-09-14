@@ -99,4 +99,4 @@ renderExperience();
 renderProjects();
 renderSkills();
 renderInvolvement();
-initShared({ analyticsToken: config.analytics.cloudflareToken });
+initShared({ analytics: config.analytics });

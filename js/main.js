@@ -351,16 +351,25 @@ function initCounters() {
   nums.forEach((n) => io.observe(n));
 }
 
-// Cloudflare Web Analytics, loaded only if a token is configured. Kept here
-// rather than as a <script> tag in both pages so the token lives in one
-// place, and so an empty token means no third-party request at all.
-function initAnalytics(token) {
-  if (!token) return;
-  const beacon = document.createElement("script");
-  beacon.defer = true;
-  beacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
-  beacon.setAttribute("data-cf-beacon", JSON.stringify({ token }));
-  document.head.appendChild(beacon);
+// Analytics, loaded only if an account is configured. Kept here rather than
+// as <script> tags in both pages so the settings live in one place, and so
+// an unconfigured site makes no third-party request at all.
+function initAnalytics({ cloudflareToken, goatCounterCode } = {}) {
+  if (cloudflareToken) {
+    const beacon = document.createElement("script");
+    beacon.defer = true;
+    beacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    beacon.setAttribute("data-cf-beacon", JSON.stringify({ token: cloudflareToken }));
+    document.head.appendChild(beacon);
+  }
+
+  if (goatCounterCode) {
+    const gc = document.createElement("script");
+    gc.async = true;
+    gc.src = "https://gc.zgo.at/count.js";
+    gc.setAttribute("data-goatcounter", `https://${goatCounterCode}.goatcounter.com/count`);
+    document.head.appendChild(gc);
+  }
 }
 
 function initYear() {
@@ -382,6 +391,6 @@ export function initShared(options = {}) {
   initScrollMotion();
   initChapterNav();
   initCounters();
-  initAnalytics(options.analyticsToken);
+  initAnalytics(options.analytics);
   initYear();
 }

@@ -21,17 +21,23 @@ export const config = {
     email: "salinasmatteo@gmail.com",
   },
 
-  // Cloudflare Web Analytics. Paste the token from the Cloudflare dashboard
-  // (Analytics & Logs -> Web Analytics -> your site -> the data-cf-beacon
-  // token) between the quotes and it starts collecting on the next deploy.
-  // Left empty, no beacon loads and no request is made — the site behaves
-  // exactly as if analytics were never added.
+  // Analytics. Both are free, cookieless and need no consent banner, and
+  // both report the same basic shape: page views, visitors, referrers,
+  // countries, devices, and which page people actually read. Neither can
+  // tell you who an individual visitor was.
   //
-  // It is cookieless and does not fingerprint visitors, so it needs no
-  // consent banner. It reports counts, referrers, countries, devices and
-  // pages. It cannot tell you who any individual visitor was.
+  // Fill in whichever account you have. Leave both empty and no script
+  // loads and no third-party request is made at all. Filling in both would
+  // load both, which is just double-counting, so pick one.
+  //
+  //   cloudflareToken  Cloudflare dashboard -> Analytics & Logs -> Web
+  //                    Analytics -> your site -> the data-cf-beacon token.
+  //   goatCounterCode  The subdomain you chose at goatcounter.com. If your
+  //                    dashboard is at matteo.goatcounter.com, it is
+  //                    "matteo", not the full URL.
   analytics: {
     cloudflareToken: "",
+    goatCounterCode: "",
   },
 
   nav: [

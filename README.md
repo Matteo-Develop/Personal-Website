@@ -135,44 +135,42 @@ python3 -m http.server 8000
 
 ## Analytics
 
-Off by default. `config.analytics.cloudflareToken` in `data/config.js` is
-empty, and while it is empty no beacon script is injected and no
-third-party request is made — the site behaves as if analytics were never
-added.
+Off by default. Both fields in `config.analytics` (`data/config.js`) are
+empty, and while they are, no script loads and no third-party request is
+made — the site behaves as if analytics were never added. Fill in
+whichever account you have; filling in both just double-counts.
 
-To turn it on:
+Either option is free, cookieless and needs no consent banner, and both
+report the same things: page views, visitors, referrers (so a LinkedIn
+click is distinguishable from someone typing the domain), country, device,
+and which of the two pages people actually read. Neither can tell you who
+an individual visitor was, and no analytics product honestly can — the
+ones that claim to are guessing from IP addresses.
 
-1. Cloudflare dashboard → **Analytics & Logs → Web Analytics → Add a site**,
-   and enter `matteo0001.com`. The domain's DNS is at Squarespace, not
-   Cloudflare, so Cloudflare will say the hostname does not belong to an
-   account website and that a JS snippet is needed. That is the expected
-   path here, not an error. Click the dropdown entry that offers to use the
-   typed hostname anyway — typing alone does not commit it and the Done
-   button silently does nothing.
-2. Cloudflare shows a snippet containing `data-cf-beacon='{"token": "..."}'`.
-   Copy just the token. If Done spins forever, a content blocker is eating
-   the request: the API path contains the word "analytics", which most
-   filter lists block. A private window, where extensions are off, gets
-   through it.
-3. Paste it into `cloudflareToken` in `data/config.js`, commit, push.
-4. Numbers appear in the Cloudflare dashboard within a few minutes.
+**GoatCounter** — the simpler signup. Create an account at
+goatcounter.com, pick a subdomain, and put that word in `goatCounterCode`.
+If the dashboard is at `matteo.goatcounter.com`, the value is `matteo`,
+not the full URL.
 
-The token is meant to be public — it identifies the site, not the account,
-and it ships in the page source of every site that uses this. There is
-nothing to protect here.
+**Cloudflare Web Analytics** — Analytics & Logs → Web Analytics → Add a
+site → `matteo0001.com`, then copy the token out of the `data-cf-beacon`
+snippet into `cloudflareToken`. Two things reliably derail this flow:
 
-**What it reports:** page views, unique visitors, referrers (so you can
-tell a LinkedIn click from a direct visit), country, device type, browser,
-and which of the two pages people actually read.
+- The hostname field is a combobox. Typing does not commit the value; the
+  dropdown entry offering to use the typed hostname has to be clicked, or
+  Done silently does nothing.
+- If Done spins forever, a content blocker is eating the request. The API
+  path contains the word "analytics", which most filter lists block. A
+  private window, where extensions are off, gets through it.
 
-**What it does not report:** who anyone is. It sets no cookies and does no
-fingerprinting, which is why it needs no consent banner — a real advantage
-on a site whose whole design argument is restraint. No analytics product
-can tell you that a specific employer looked at your site; the ones that
-claim to are guessing from IP addresses and are wrong more often than not.
+Cloudflare will also say the hostname does not belong to a website on the
+account. That is expected — this domain's DNS is at Squarespace — and the
+JS snippet works regardless.
 
-`initAnalytics()` in `js/main.js` does the injection. It lives there rather
-than as a `<script>` tag in both pages so the token stays in one place.
+Either token is meant to be public. It identifies the site, not the
+account, and ships in the page source of every site that uses it.
+
+`initAnalytics()` in `js/main.js` does the injection.
 
 ## DNS (Squarespace)
 
