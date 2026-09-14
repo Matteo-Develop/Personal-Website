@@ -147,14 +147,19 @@ and which of the two pages people actually read. Neither can tell you who
 an individual visitor was, and no analytics product honestly can — the
 ones that claim to are guessing from IP addresses.
 
-**GoatCounter** — the simpler signup. Create an account at
-goatcounter.com, pick a subdomain, and put that word in `goatCounterCode`.
-If the dashboard is at `matteo.goatcounter.com`, the value is `matteo`,
-not the full URL.
+**GoatCounter** — what this site currently uses. The dashboard is at
+`matteosalinas.goatcounter.com`, and `goatCounterCode` holds the account
+name, `matteosalinas`, not the full URL. On the signup form that value is
+the **Account name** field; the separate "Site domain" field is only used
+for display and links back to `matteo0001.com`.
 
-**Cloudflare Web Analytics** — Analytics & Logs → Web Analytics → Add a
+**Cloudflare Web Analytics** — tried first and abandoned. Its onboarding
+dialog would not complete: the Done button spun indefinitely, in a normal
+window and a private one alike. Left supported in case it ever works, since
+switching is a one-line change. Analytics & Logs → Web Analytics → Add a
 site → `matteo0001.com`, then copy the token out of the `data-cf-beacon`
-snippet into `cloudflareToken`. Two things reliably derail this flow:
+snippet into `cloudflareToken`, and empty `goatCounterCode` so the two do
+not double-count. Two things reliably derail that flow:
 
 - The hostname field is a combobox. Typing does not commit the value; the
   dropdown entry offering to use the typed hostname has to be clicked, or

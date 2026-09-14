@@ -37,7 +37,7 @@ export const config = {
   //                    "matteo", not the full URL.
   analytics: {
     cloudflareToken: "",
-    goatCounterCode: "",
+    goatCounterCode: "matteosalinas",
   },
 
   nav: [
