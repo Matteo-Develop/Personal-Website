@@ -6,6 +6,7 @@ import { experience } from "../data/experience.js";
 import { projects } from "../data/projects.js";
 import { skills } from "../data/skills.js";
 import { involvement } from "../data/involvement.js";
+import { config } from "../data/config.js";
 import { initShared, staggerReveal } from "./main.js";
 
 const pad = (n) => String(n + 1).padStart(2, "0");
@@ -98,4 +99,4 @@ renderExperience();
 renderProjects();
 renderSkills();
 renderInvolvement();
-initShared();
+initShared({ analyticsToken: config.analytics.cloudflareToken });

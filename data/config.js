@@ -21,6 +21,19 @@ export const config = {
     email: "salinasmatteo@gmail.com",
   },
 
+  // Cloudflare Web Analytics. Paste the token from the Cloudflare dashboard
+  // (Analytics & Logs -> Web Analytics -> your site -> the data-cf-beacon
+  // token) between the quotes and it starts collecting on the next deploy.
+  // Left empty, no beacon loads and no request is made — the site behaves
+  // exactly as if analytics were never added.
+  //
+  // It is cookieless and does not fingerprint visitors, so it needs no
+  // consent banner. It reports counts, referrers, countries, devices and
+  // pages. It cannot tell you who any individual visitor was.
+  analytics: {
+    cloudflareToken: "",
+  },
+
   nav: [
     { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },

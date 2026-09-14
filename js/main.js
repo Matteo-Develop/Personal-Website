@@ -351,6 +351,18 @@ function initCounters() {
   nums.forEach((n) => io.observe(n));
 }
 
+// Cloudflare Web Analytics, loaded only if a token is configured. Kept here
+// rather than as a <script> tag in both pages so the token lives in one
+// place, and so an empty token means no third-party request at all.
+function initAnalytics(token) {
+  if (!token) return;
+  const beacon = document.createElement("script");
+  beacon.defer = true;
+  beacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  beacon.setAttribute("data-cf-beacon", JSON.stringify({ token }));
+  document.head.appendChild(beacon);
+}
+
 function initYear() {
   const el = document.querySelector("[data-current-year]");
   if (el) el.textContent = String(new Date().getFullYear());
@@ -358,7 +370,7 @@ function initYear() {
 
 // Called by each page's render script once its content is in the DOM, so
 // the observers see final markup instead of racing it.
-export function initShared() {
+export function initShared(options = {}) {
   initTopbar();
   initDrawer();
   initAnchors();
@@ -370,5 +382,6 @@ export function initShared() {
   initScrollMotion();
   initChapterNav();
   initCounters();
+  initAnalytics(options.analyticsToken);
   initYear();
 }

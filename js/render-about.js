@@ -1,6 +1,7 @@
 // Renders about.html from data/about.js.
 
 import { about } from "../data/about.js";
+import { config } from "../data/config.js";
 import { initShared, staggerReveal } from "./main.js";
 
 function renderLede() {
@@ -101,4 +102,4 @@ renderChapters();
 renderStats();
 renderOperating();
 renderCapabilities();
-initShared();
+initShared({ analyticsToken: config.analytics.cloudflareToken });
