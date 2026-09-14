@@ -106,16 +106,6 @@ export const about = {
       ],
     },
     {
-      org: "A checkout-automation platform",
-      role: "Technical Support Staff",
-      dates: "Feb 2021 – Jul 2021",
-      note: "Release-day support, under a clock, at a five-person company.",
-      metrics: [
-        "Supported 5,000+ transactions, focused on system reliability and customer experience.",
-        "Wrote onboarding materials that lifted adoption 25% and cut resolution times 24%.",
-      ],
-    },
-    {
       org: "A high-volume checkout-automation platform",
       role: "Technical Support Staff",
       dates: "Aug 2020 – Feb 2021",
@@ -123,6 +113,16 @@ export const about = {
       metrics: [
         "6,000+ users on a platform carrying $10M+ in annual transactions.",
         "Cut downtime 15% working with the developers, and wrote documentation that removed 70% of the questions that kept coming back.",
+      ],
+    },
+    {
+      org: "A checkout-automation platform",
+      role: "Technical Support Staff",
+      dates: "Feb 2021 – Jul 2021",
+      note: "Release-day support, under a clock, at a five-person company.",
+      metrics: [
+        "Supported 5,000+ transactions, focused on system reliability and customer experience.",
+        "Wrote onboarding materials that lifted adoption 25% and cut resolution times 24%.",
       ],
     },
   ],
