@@ -143,9 +143,17 @@ added.
 To turn it on:
 
 1. Cloudflare dashboard → **Analytics & Logs → Web Analytics → Add a site**,
-   and enter `matteo0001.com`.
+   and enter `matteo0001.com`. The domain's DNS is at Squarespace, not
+   Cloudflare, so Cloudflare will say the hostname does not belong to an
+   account website and that a JS snippet is needed. That is the expected
+   path here, not an error. Click the dropdown entry that offers to use the
+   typed hostname anyway — typing alone does not commit it and the Done
+   button silently does nothing.
 2. Cloudflare shows a snippet containing `data-cf-beacon='{"token": "..."}'`.
-   Copy just the token.
+   Copy just the token. If Done spins forever, a content blocker is eating
+   the request: the API path contains the word "analytics", which most
+   filter lists block. A private window, where extensions are off, gets
+   through it.
 3. Paste it into `cloudflareToken` in `data/config.js`, commit, push.
 4. Numbers appear in the Cloudflare dashboard within a few minutes.
 
@@ -166,18 +174,35 @@ claim to are guessing from IP addresses and are wrong more often than not.
 `initAnalytics()` in `js/main.js` does the injection. It lives there rather
 than as a `<script>` tag in both pages so the token stays in one place.
 
-## DNS (Cloudflare)
+## DNS (Squarespace)
 
-For the apex `matteo0001.com`, four `A` records at `@`:
+The domain is registered and its DNS is managed at **Squarespace**
+(`account.squarespace.com` → Domains → matteo0001.com → DNS Settings), not
+at the registrar-plus-CDN setup an earlier version of this file described.
+Nothing is on Cloudflare.
 
-```
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-```
+Records currently live, all verified resolving:
 
-Optionally the matching `AAAA` records for IPv6:
+| Type | Name | Data | What it is |
+|---|---|---|---|
+| A | `@` | `185.199.108.153` | GitHub Pages |
+| A | `@` | `185.199.109.153` | GitHub Pages |
+| A | `@` | `185.199.110.153` | GitHub Pages |
+| A | `@` | `185.199.111.153` | GitHub Pages |
+| CNAME | `www` | `matteo-develop.github.io` | so `www.` reaches the site |
+| MX | `@` | `mx01.mail.icloud.com` (priority 10) | iCloud Mail |
+| MX | `@` | `mx02.mail.icloud.com` (priority 10) | iCloud Mail |
+| TXT | `@` | `v=spf1 include:icloud.com ~all` | SPF, for mail |
+| TXT | `@` | `apple-domain=...` | Apple domain verification |
+| CNAME | `sig1._domainkey` | `sig1.dkim.matteo0001.com.at.icloudmailadmin.com` | DKIM, for mail |
+| CNAME | `gltiuypwhvdw` | `gv-...dv.googlehosted.com` | Google site verification |
+
+The four `A` records and the `www` `CNAME` are what serve the site. **Do
+not delete the MX, SPF, DKIM or Apple records** — those carry mail on the
+domain, and removing them silently breaks email rather than the website,
+which is the kind of breakage you notice a week late.
+
+Optionally, the matching `AAAA` records for IPv6:
 
 ```
 2606:50c0:8000::153
@@ -186,19 +211,26 @@ Optionally the matching `AAAA` records for IPv6:
 2606:50c0:8003::153
 ```
 
-And a `CNAME` at `www` → `<your-github-username>.github.io`, so
-`www.matteo0001.com` reaches the same site.
+### HTTPS
 
-Two things worth getting right:
+GitHub issues a free certificate once its own DNS check passes, which can
+take up to 24 hours after the records are right. Until then Settings →
+Pages shows **DNS Check in Progress** and the site is served over plain
+`http://`, which browsers label "Not secure".
 
-- Keep these records **DNS only** (grey cloud) until GitHub Pages has
-  issued the certificate — Cloudflare's proxy interferes with GitHub's
-  domain verification. Once the cert shows as issued under Settings →
-  Pages, you can switch to **Proxied** if you want Cloudflare in front of
-  it; if you do, set SSL/TLS to **Full (strict)**.
-- If you ever change the domain, update `CNAME`, `config.site.url` in
-  `data/config.js`, the canonical and `og:url` values in `index.html`, and
-  the URLs in `sitemap.xml` and `robots.txt`.
+**Go back and tick "Enforce HTTPS" once the check clears.** It is a
+checkbox, it is not automatic, and nothing else prompts you to do it. A
+recruiting site sitting on `http://` with a "Not secure" chip in the
+address bar undoes a lot of what the design is for.
+
+If the check is still pending after a day, the usual causes are a `CAA`
+record blocking Let's Encrypt (there is none here) or a stale `CNAME` file
+in the repo. Removing and re-entering the custom domain in Settings →
+Pages restarts the check.
+
+If you ever change the domain, update `CNAME`, `config.site.url` in
+`data/config.js`, the canonical and `og:url` values in `index.html`, and
+the URLs in `sitemap.xml` and `robots.txt`.
 
 ## Notes
 
