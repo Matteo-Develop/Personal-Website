@@ -65,8 +65,8 @@ export const about = {
     {
       label: "Now",
       body: [
-        "Two things, and the combination is the point. I'm technical: I'll build the model, write the measure, automate the report. And I'm good with people, because I've been selling, negotiating and keeping customers since I was fourteen.",
-        "So what I want is work that uses both sides. An industry where the technical half and the people half are the same job, not two different departments.",
+        "I'm comfortable on the technical side, and I'll build the model or write the measure or automate the report if that's what the job needs. I'm also comfortable with people, which comes from selling things and dealing with customers since I was fourteen rather than from anything I studied.",
+        "What I'd like is work where those two aren't separate jobs. Somewhere I can do the analysis and then be in the room when it gets discussed.",
       ],
     },
   ],
