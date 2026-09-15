@@ -55,18 +55,23 @@ function renderProjects() {
   if (!mount) return;
 
   projects.forEach((project, i) => {
-    const item = node("article", "project");
+    // The two write-ups with a document attached carry the section. Their
+    // link sits above the fold of the entry rather than inside the collapsed
+    // detail, so the strongest thing here takes a glance to find, not two
+    // clicks.
+    const item = node("article", project.featured ? "project project--featured" : "project");
     item.innerHTML = `
       <div class="project-top mono">
-        <span>${project.tag}</span>
+        <span class="project-tag">${project.tag}</span>
         <span class="faint">${pad(i)}</span>
       </div>
       <h3>${project.title}</h3>
       <p class="project-note">${project.note}</p>
+      ${project.featured && project.link ? projectLink(project.link) : ""}
       <details>
         <summary class="mono"><span class="plus" aria-hidden="true"></span>Detail</summary>
         <ul class="project-detail">${project.detail.map((d) => `<li>${d}</li>`).join("")}</ul>
-        ${project.link ? projectLink(project.link) : ""}
+        ${project.link && !project.featured ? projectLink(project.link) : ""}
       </details>
     `;
     mount.appendChild(item);

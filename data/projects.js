@@ -7,6 +7,7 @@
 export const projects = [
   {
     title: "Marathon Petroleum",
+    featured: true,
     tag: "Equity research",
     note: "The market prices MPC as a pure refiner and misses the midstream floor underneath it. MPLX, 64% owned, throws off enough fee-based cash to cover the dividend and all standalone CapEx on its own, which puts a floor under the equity that has nothing to do with crack spreads. Strong Buy at ~$232, April 2026: $287 bull case against a $142 bear floor.",
     detail: [
@@ -31,6 +32,7 @@ export const projects = [
   },
   {
     title: "HCA Healthcare",
+    featured: true,
     tag: "Equity research",
     note: "Five-year unlevered DCF, comps and a three-case scenario model. BUY, $558 price target, 28.4% implied upside.",
     detail: [

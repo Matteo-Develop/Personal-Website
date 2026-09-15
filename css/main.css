@@ -660,6 +660,27 @@ button {
   color: var(--bone-dim);
 }
 
+/* The two write-ups with a document attached are the strongest thing in
+   this section, and they used to look identical to a dashboard entry. They
+   are marked in the one accent the site already uses rather than with a
+   card or a border, which the rest of the page does not have: the tag goes
+   brass, the title sits a size larger, and the standing hairline above the
+   entry is drawn in accent instead of rule. */
+.project--featured .project-tag { color: var(--accent); }
+
+.project--featured h3 {
+  font-size: clamp(1.75rem, 4vw, 2.7rem);
+  max-width: 22ch;
+}
+
+.project--featured::before { background: var(--accent-soft); }
+
+.project--featured .project-note { color: var(--bone); }
+
+/* Featured links sit outside the collapsed detail, so they need the space
+   the detail block would otherwise have given them. */
+.project--featured > .project-link { margin-top: 1.25rem; }
+
 .project details { margin-top: 1.35rem; }
 
 .project summary {
