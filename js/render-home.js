@@ -40,6 +40,16 @@ function renderExperience() {
   staggerReveal(mount, 60, 4);
 }
 
+// A PDF or another site opens in a new tab and carries the outbound arrow.
+// Another page of this site stays in the tab and gets a plain one, because
+// sending a reader off-tab to reach your own second page is a small rudeness.
+function projectLink({ href, label }) {
+  const external = /^https?:/i.test(href) || /\.pdf$/i.test(href);
+  const attrs = external ? ' target="_blank" rel="noopener"' : "";
+  const arrow = external ? "&#8599;" : "&rarr;";
+  return `<p class="project-link"><a class="wipe mono" href="${href}"${attrs}>${label} <span aria-hidden="true">${arrow}</span></a></p>`;
+}
+
 function renderProjects() {
   const mount = document.getElementById("projects-list");
   if (!mount) return;
@@ -56,7 +66,7 @@ function renderProjects() {
       <details>
         <summary class="mono"><span class="plus" aria-hidden="true"></span>Detail</summary>
         <ul class="project-detail">${project.detail.map((d) => `<li>${d}</li>`).join("")}</ul>
-        ${project.link ? `<p class="project-link"><a class="wipe mono" href="${project.link.href}" target="_blank" rel="noopener">${project.link.label} <span aria-hidden="true">&#8599;</span></a></p>` : ""}
+        ${project.link ? projectLink(project.link) : ""}
       </details>
     `;
     mount.appendChild(item);

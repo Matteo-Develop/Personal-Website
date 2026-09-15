@@ -62,4 +62,15 @@ export const projects = [
     ],
     link: null,
   },
+  {
+    title: "Sensei Notify",
+    tag: "Founded",
+    note: "A subscription research platform I started at fifteen and ran for just over two years. Market analysis, alerts and trend forecasting for a market that repriced every weekend.",
+    detail: [
+      "Owned customer acquisition, pricing, financial management and the community end to end.",
+      "Managed a team of 15, spread across time zones.",
+      "Retention was the whole business. Subscribers could leave any week, so the product had to be right every week.",
+    ],
+    link: { href: "about.html", label: "The longer story" },
+  },
 ];

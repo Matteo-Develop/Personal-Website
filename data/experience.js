@@ -9,7 +9,7 @@ export const experience = [
     location: "Atlanta, GA",
     dates: "May 2026 – Aug 2026",
     summary:
-      "Private Banking is where the balance sheet meets the family. I worked both ends of it, mapping the Southeast and Florida for high-net-worth families, family offices and centers of influence the advisors hadn't reached yet, then building the tools they used once a conversation actually started.",
+      "I rotated across the group rather than sitting on one desk, so portfolio management and the advisory side were part of it too. Most of my time went to private banking, because that is where my mentor sat: mapping the Southeast and Florida for high-net-worth families, family offices and centers of influence the advisors hadn't reached yet, then building the tools they used once a conversation actually started. The client side was the part I liked most.",
     artifactsLabel: "What I built",
     artifacts: [
       "A Sell vs. Borrow dashboard that puts a number on liquidating a position versus borrowing against it, built for the Private Banking team.",
@@ -39,12 +39,13 @@ export const experience = [
     location: "Singapore, SG",
     dates: "Oct 2025 – Jan 2026",
     summary:
-      "Four markets on one monthly cycle: Singapore, Malaysia, Vietnam and the AEM cluster, running forecasts, variance analyses and management reports. Most of my time went underneath that, into the reporting layer it all came out of.",
+      "Four markets on one monthly close: Singapore, Malaysia, Vietnam and the AEM cluster. Rolling forecasts, variance against budget, and the management reporting that came out of both. Most of my time went underneath that, into the data layer the reporting sat on, because a management pack is only ever as good as the tables feeding it.",
     artifactsLabel: "What I built",
     artifacts: [
-      "Four Power BI dashboards running on SQL-structured datasets.",
-      "Excel models projecting revenue, expenses and cash flow across the region.",
-      "Market, competitor and industry research, plus sales and margin analysis feeding regional strategy.",
+      "Four Power BI dashboards over SQL-structured datasets, with the transformations in Power Query and the measures written in DAX rather than patched into the source.",
+      "Excel models projecting revenue, operating expense and cash flow across the region, built off drivers so one assumption change moved the whole regional forecast.",
+      "Variance analysis against budget and prior forecast, with sales and margin analysis feeding regional strategy.",
+      "Market, competitor and industry research across the four markets.",
     ],
   },
   {
@@ -58,7 +59,7 @@ export const experience = [
     artifacts: [
       "How a wealth conversation runs, watched at close range with the Chairman and C-suite clients in the room.",
       "Exposure to tax-efficient strategy, estate planning considerations and portfolio construction for high-net-worth clients.",
-      "The people half of the work, which turns out to be most of the work.",
+      "Direct mentorship from the Chairman, and training in the sales side of it: how a relationship gets opened, and what keeps it.",
     ],
   },
   {
