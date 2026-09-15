@@ -38,6 +38,16 @@
   box-sizing: border-box;
 }
 
+/* The site carried no images at all until the portrait, so it never needed
+   this — and without `height: auto` the width/height attributes act as
+   presentational hints that beat aspect-ratio, which rendered the portrait
+   at its literal pixel height. Keep the attributes: they reserve the right
+   space before the file loads, so the section does not jump. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 html {
   scroll-behavior: smooth;
   /* Clears the fixed 74px header, which was otherwise covering the top of
@@ -471,6 +481,35 @@ button {
    About
    ========================================================================== */
 
+/* The About rail holds a label and then a column of empty space. The
+   portrait fills it without touching the reading column, so the measure
+   and rhythm of the page are unchanged.
+
+   A colour studio photograph would be the only full-colour object on the
+   site and would pull every eye on the page. Desaturating it and letting
+   the navy through folds it into the two colours already here; it lifts to
+   full colour on hover, so the real photograph is one gesture away. */
+.portrait {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  margin-top: 1.6rem;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 8%;
+  filter: grayscale(1) contrast(1.05) brightness(0.9);
+  mix-blend-mode: luminosity;
+  transition: filter var(--mid) ease;
+}
+
+.portrait:hover { filter: none; }
+
+@media (max-width: 879px) {
+  /* The rail stacks above the text on narrow screens, so a full-width
+     portrait would push the section's first sentence off the fold. */
+  .portrait { max-width: 118px; margin-top: 1.2rem; }
+}
+
 .about-lede {
   font-family: var(--serif);
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
@@ -683,7 +722,9 @@ button {
 
 .project details { margin-top: 1.35rem; }
 
-.project summary {
+/* One disclosure control, shared by Work and Experience. */
+.project summary,
+.row-more summary {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -693,11 +734,14 @@ button {
   transition: color var(--fast) ease;
 }
 
-.project summary::-webkit-details-marker { display: none; }
+.project summary::-webkit-details-marker,
+.row-more summary::-webkit-details-marker { display: none; }
 
-.project summary:hover { color: var(--bone); }
+.project summary:hover,
+.row-more summary:hover { color: var(--bone); }
 
-.project summary .plus {
+.project summary .plus,
+.row-more summary .plus {
   display: inline-block;
   width: 11px;
   height: 11px;
@@ -705,24 +749,29 @@ button {
 }
 
 .project summary .plus::before,
-.project summary .plus::after {
+.project summary .plus::after,
+.row-more summary .plus::before,
+.row-more summary .plus::after {
   content: "";
   position: absolute;
   background: currentColor;
   transition: transform var(--mid) var(--ease);
 }
 
-.project summary .plus::before {
+.project summary .plus::before,
+.row-more summary .plus::before {
   inset: 5px 0 5px 0;
   height: 1px;
 }
 
-.project summary .plus::after {
+.project summary .plus::after,
+.row-more summary .plus::after {
   inset: 0 5px 0 5px;
   width: 1px;
 }
 
-.project details[open] summary .plus::after { transform: scaleY(0); }
+.project details[open] summary .plus::after,
+.row-more[open] summary .plus::after { transform: scaleY(0); }
 
 .project-detail {
   margin-top: 1.25rem;
@@ -1008,15 +1057,19 @@ button {
   color: var(--bone-dim);
 }
 
-.artifact-label {
-  margin-top: 1.5rem;
+/* Each role's artifact list collapses behind its own label, which was
+   already written per role ("What I built", "The call", "The numbers") and
+   now does double duty as the toggle. Five roles of prose plus five lists
+   was more than anyone scrolls; this keeps the voice visible and puts the
+   specifics one click away, the same way Work already behaves. */
+.row-more {
+  margin-top: 1.4rem;
   padding-top: 0.9rem;
   border-top: 1px solid var(--line);
   max-width: 62ch;
 }
 
-.row-summary + .row-notes,
-.artifact-label + .row-notes { margin-top: 0.9rem; }
+.row-more > .row-notes { margin-top: 0.9rem; }
 
 .operating-intro {
   max-width: 54ch;

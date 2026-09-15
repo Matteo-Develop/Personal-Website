@@ -30,8 +30,10 @@ function renderExperience() {
         <h3 class="row-role">${job.role}</h3>
         <p class="row-org">${job.org}${job.location ? ` <span class="at">&middot; ${job.location}</span>` : ""}</p>
         <p class="row-summary">${job.summary}</p>
-        <p class="artifact-label mono faint">${job.artifactsLabel}</p>
-        <ul class="row-notes">${job.artifacts.map((a) => `<li>${a}</li>`).join("")}</ul>
+        <details class="row-more">
+          <summary class="mono"><span class="plus" aria-hidden="true"></span>${job.artifactsLabel}</summary>
+          <ul class="row-notes">${job.artifacts.map((a) => `<li>${a}</li>`).join("")}</ul>
+        </details>
       </div>
     `;
     mount.appendChild(row);
