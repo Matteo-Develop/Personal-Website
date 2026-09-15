@@ -43,7 +43,7 @@ export const experience = [
       "Four markets on one monthly close: Singapore, Malaysia, Vietnam and the AEM cluster. Rolling forecasts, variance against budget, and the management reporting that came out of both. Most of my time went underneath that, into the data layer the reporting sat on, because a management pack is only ever as good as the tables feeding it.",
     artifactsLabel: "What I built",
     artifacts: [
-      "Four Power BI dashboards over SQL-structured datasets, with the transformations in Power Query and the measures written in DAX rather than patched into the source.",
+      "Four Power BI dashboards built from the ground up over SQL-structured datasets, with the transformations in Power Query and the measures written in DAX rather than patched into the source. The region still runs on them.",
       "Excel models projecting revenue, operating expense and cash flow across the region, built off drivers so one assumption change moved the whole regional forecast.",
       "Variance analysis against budget and prior forecast, with sales and margin analysis feeding regional strategy.",
       "Market, competitor and industry research across the four markets.",
