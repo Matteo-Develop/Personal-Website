@@ -9,7 +9,7 @@ export const experience = [
     location: "Atlanta, GA",
     dates: "May 2026 – Aug 2026",
     summary:
-      "I rotated across the floor rather than sitting on one desk: private banking, advisory and portfolio management. Most of my time went into developing the dashboards and tools those teams ran on, turning complexity into a clear number and a next step an advisor could take into the room. My mentor was a private banker, so that is where the most hours landed, and the client side was the part I liked most.",
+      "I rotated across the floor rather than sitting on one desk: private banking, advisory and portfolio management. Most of my time went into developing the dashboards and tools those teams ran on, turning complexity into a clear number and a next step an advisor could take into the room. The whole wealth team in the Atlanta office uses them. My mentor was a private banker, so that is where the most hours landed, and the client side was the part I liked most.",
     artifactsLabel: "What I built",
     artifacts: [
       "A Sell vs. Borrow dashboard pricing a taxable liquidation against securities-based lending, so the advisor could put a number on the tradeoff in front of the client.",
