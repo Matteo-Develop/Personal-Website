@@ -44,9 +44,9 @@ export const projects = [
   {
     title: "Sell vs. Borrow Dashboard",
     tag: "BNY · Private Banking",
-    note: "Quantifies the tradeoff between liquidating investments and borrowing against them.",
+    note: "Prices a taxable liquidation against securities-based lending, so the cost of each route is explicit before the client picks one.",
     detail: [
-      "Built for the Private Banking team to make the liquidate-or-lend decision explicit in client conversations.",
+      "Built for the private banking team to make the liquidate-or-lend decision explicit in the client conversation rather than after it.",
       "Paired with a Banking Deal Sheet dashboard that cut the prep time on deal documentation.",
     ],
     link: null,
@@ -57,7 +57,7 @@ export const projects = [
     note: "An event-driven ticket portfolio. $70,000 of revenue in the first five months.",
     detail: [
       "Evaluated 100+ event opportunities a year, pricing off supply-demand dynamics and market research.",
-      "Averaged markups above 200% while spreading capital across concurrent events.",
+      "Averaged markups above 200%, sizing positions across concurrent events so no single night carried the book.",
       "Owned capital allocation, operating budget and full P&L.",
     ],
     link: null,
@@ -69,7 +69,7 @@ export const projects = [
     detail: [
       "Owned customer acquisition, pricing, financial management and the community end to end.",
       "Managed a team of 15, spread across time zones.",
-      "Retention was the whole business. Subscribers could leave any week, so the product had to be right every week.",
+      "Recurring revenue, so churn was the whole business. Subscribers could leave any week, which meant the product had to be right every week.",
     ],
     link: { href: "about.html", label: "The longer story" },
   },

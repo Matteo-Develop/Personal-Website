@@ -5,18 +5,19 @@
 export const experience = [
   {
     org: "BNY",
-    role: "Global Investments & Wealth Intern, Private Banking",
+    role: "Global Investments & Wealth Intern",
     location: "Atlanta, GA",
     dates: "May 2026 – Aug 2026",
     summary:
-      "I rotated across the group rather than sitting on one desk, so portfolio management and the advisory side were part of it too. Most of my time went to private banking, because that is where my mentor sat: mapping the Southeast and Florida for high-net-worth families, family offices and centers of influence the advisors hadn't reached yet, then building the tools they used once a conversation actually started. The client side was the part I liked most.",
+      "I rotated across the floor rather than sitting on one desk: private banking, advisory and portfolio management. Most of my time went into the dashboards and tools those teams ran on, the analysis that has to exist before a client conversation starts and the material that carries it once it does. My mentor was a private banker, so that is where the most hours landed, and the client side was the part I liked most.",
     artifactsLabel: "What I built",
     artifacts: [
-      "A Sell vs. Borrow dashboard that puts a number on liquidating a position versus borrowing against it, built for the Private Banking team.",
+      "A Sell vs. Borrow dashboard pricing a taxable liquidation against securities-based lending, so the advisor could put a number on the tradeoff in front of the client.",
       "A Roth conversion analysis tool from scratch: one-time and multi-year strategies across tax cost, IRMAA and estate outcomes, shipped with an advisor SOP so the desk could run it without me.",
       "A banking deal sheet dashboard to take the friction out of deal prep.",
       "Net Worth Statements and client meeting books organizing assets and liabilities across investment, retirement, trust, alternative and real estate holdings.",
       "Relationship-level SWOT analyses, leaning on internal AI tooling to move faster, presented for office review.",
+      "Prospect coverage across the Southeast and Florida: high-net-worth families, family offices and centers of influence the advisors hadn't reached yet.",
     ],
   },
   {

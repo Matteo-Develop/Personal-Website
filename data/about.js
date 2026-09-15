@@ -90,7 +90,7 @@ export const about = {
       dates: "Dec 2019 – Feb 2022",
       note: "A subscription research platform built from nothing: market analysis, alerts and trend forecasting for the release market described above.",
       metrics: [
-        "400+ active subscribers at a 95% retention rate.",
+        "400+ active subscribers on recurring billing, at a 95% retention rate.",
         "Managed a team of 15, spread across time zones, most of whom I never met in person.",
         "Owned customer acquisition, financial management and community end to end.",
       ],
