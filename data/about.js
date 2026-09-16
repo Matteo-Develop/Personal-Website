@@ -16,9 +16,15 @@
 // responsibility but are described by what they were rather than by brand
 // name. Nothing is hidden by this — the Sneaker Twitter chapter above spells
 // out exactly what that industry was — it only drops the searchable strings.
+//
+// Those descriptions name the business function rather than the subculture:
+// "an e-commerce infrastructure company", not "a proxy business". A reader
+// who knows the ecosystem loses nothing; a recruiter who does not is not
+// sent to look up what a proxy or a checkout bot is in the middle of a
+// paragraph about a fifteen-year-old running support.
 
 export const about = {
-  lede: "It started when I wanted to buy in-game currency on an app. My dad said no, so I had to find a way to make my own money.",
+  lede: "It started because I wanted to buy something in a game and my dad said no. So I had to figure out how to make my own money.",
 
   chapters: [
     {
@@ -58,7 +64,7 @@ export const about = {
     {
       label: "Finance",
       body: [
-        "So I switched to finance, and after three years at Kentucky I transferred to Georgia in the fall of 2026. FP&A in Singapore and equity research in Lexington while I was still at Kentucky, then private banking in Atlanta over the summer in between. The research side came naturally, because it's the same instinct as the sneaker work. Find the thing that's mispriced, understand why, and get there before the rest of the market does.",
+        "So I switched to finance, and after three years at Kentucky I transferred to the University of Georgia in the fall of 2026. I've applied to the Terry College of Business to study finance, with a decision expected in October. FP&A in Singapore and equity research in Lexington while I was still at Kentucky, then private banking in Atlanta over the summer in between. The research side came naturally, because it used the same instinct as the sneaker work: understand what drives value, work out what other people are missing, and make a decision without complete information.",
         "What I'm actually interested in is markets, geopolitics, and how capital moves around the world. You can't really follow one without ending up in the other two.",
       ],
     },
@@ -72,13 +78,19 @@ export const about = {
   ],
 
   // Headline figures for the operating years, counted up on scroll.
+  //
+  // Each label names the business it belongs to. Unlabelled, the six read as
+  // one company's numbers, which would have Sensei Notify doing $100k a month
+  // with 6,000 users — neither of which the detail below claims. Four
+  // different businesses are represented here and the block has to say so.
+  //
   // Same caveat as `operating` below: his own numbers, no second source.
   stats: [
-    { value: 400, suffix: "+", label: "Subscribers at peak" },
-    { value: 95, suffix: "%", label: "Retention rate" },
-    { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue" },
-    { value: 15, label: "People I managed" },
-    { value: 6000, suffix: "+", label: "Users supported" },
+    { value: 400, suffix: "+", label: "Sensei subscribers at peak" },
+    { value: 95, suffix: "%", label: "Sensei retention rate" },
+    { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue, infrastructure company" },
+    { value: 15, label: "Sensei team managed" },
+    { value: 6000, suffix: "+", label: "Users on the largest platform" },
     { value: 70, suffix: "%", label: "Recurring questions removed" },
   ],
 
@@ -96,33 +108,33 @@ export const about = {
       ],
     },
     {
-      org: "A proxy infrastructure business",
+      org: "An e-commerce infrastructure company",
       role: "Customer Support Specialist → Operations Manager",
       dates: "Feb 2021 – Aug 2021",
       note: "Started on the support queue and moved into running operations two months later.",
       metrics: [
-        "Two of us ran it, me and the owner, against $100,000 in monthly revenue at a 95% customer satisfaction rate.",
-        "Resolved 85% of tickets inside 24 hours and wrote the procedures that cut response times by 60%.",
+        "Two of us ran it, me and the owner, against $100,000 in monthly revenue.",
+        "Ran the support queue to a same-day standard, then wrote the procedures it ran on after I moved into operations.",
       ],
     },
     {
-      org: "A high-volume checkout-automation platform",
+      org: "A limited-release retail automation platform",
       role: "Technical Support Staff",
       dates: "Aug 2020 – Feb 2021",
       note: "Front-line and escalation support, at the largest scale I worked at. Seven people in the company, and support ran through me: live, in chat, while releases were happening, not a queue somebody worked through the next morning.",
       metrics: [
         "6,000+ users on a platform carrying $10M+ in annual transactions.",
-        "Cut downtime 15% working with the developers, and wrote documentation that removed 70% of the questions that kept coming back.",
+        "Worked with the developers on the failures causing the most downtime, and wrote the documentation that removed 70% of the questions that kept coming back.",
       ],
     },
     {
-      org: "A checkout-automation platform",
+      org: "A smaller retail automation platform",
       role: "Technical Support Staff",
       dates: "Feb 2021 – Jul 2021",
       note: "Release-day support, under a clock, at a five-person company.",
       metrics: [
         "Supported 5,000+ transactions, focused on system reliability and customer experience.",
-        "Wrote onboarding materials that lifted adoption 25% and cut resolution times 24%.",
+        "Wrote the onboarding materials, which took work off the queue by getting new customers running without needing it.",
       ],
     },
   ],
@@ -135,7 +147,7 @@ export const about = {
     },
     {
       group: "Wealth",
-      items: "Private wealth management · Portfolio analysis · Tax-efficient strategies · Estate & inheritance planning · Net worth statements",
+      items: "Private wealth management · Portfolio analysis · Tax-efficient strategies · Estate planning concepts · Net worth statements",
     },
     {
       group: "FP&A",
@@ -143,19 +155,19 @@ export const about = {
     },
     {
       group: "Data",
-      items: "Excel (PivotTables, lookups) · Power BI · DAX · Power Query · SQL · Bloomberg Terminal · Salesforce & CRM",
+      items: "Excel (financial modeling, scenario analysis, PivotTables, advanced lookups) · Power BI · DAX · Power Query · SQL · Bloomberg Terminal · Salesforce & CRM",
     },
     {
       group: "AI",
-      items: "Anthropic Claude API · Prompt engineering · Agent building (reasoning & deep-research) · AI-assisted research & workflow automation",
+      items: "AI workflow development · Anthropic Claude API integration · Prompt design · Research automation",
     },
     {
       group: "Code",
       items: "Python · Go · Java · HTML & CSS",
     },
     {
-      group: "Commercial",
-      items: "Business development · Client relations · Prospecting & lead generation · Negotiation",
+      group: "Client & Commercial",
+      items: "Client relationship management · Business development · Prospect research · Negotiation",
     },
     {
       group: "Operating",
