@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Not found &middot; Matteo Salinas</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#070c16" />
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+  <!-- Self-hosted; see the @font-face block at the top of css/main.css. -->
+  <link rel="preload" href="/assets/fonts/InstrumentSerif-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin />
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <style>
+    /* GitHub Pages serves this for any path that does not exist, from any
+       depth, so every asset and link here is root-relative. It is a single
+       screen with no script: a wrong URL should cost the reader one click,
+       not a blank page with GitHub's logo on it. */
+    .lost {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.6rem;
+      padding-block: 6rem;
+    }
+    .lost-code { color: var(--accent); }
+    .lost h1 { font-family: var(--serif); font-size: clamp(2.4rem, 7vw, 4.5rem); line-height: 1.02; max-width: 16ch; }
+    .lost p { color: var(--bone-dim); max-width: 46ch; }
+    .lost ul { display: flex; flex-wrap: wrap; gap: 1.4rem 2.2rem; }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main class="shell lost">
+    <p class="mono lost-code">404</p>
+    <h1>That page isn&rsquo;t here.</h1>
+    <p>It may have been renamed, or the link may have picked up a stray character. The two pages below are the whole site.</p>
+    <ul class="mono">
+      <li><a class="wipe" href="/">Matteo Salinas <span aria-hidden="true">&rarr;</span></a></li>
+      <li><a class="wipe" href="/about.html">How I got here <span aria-hidden="true">&rarr;</span></a></li>
+      <li><a class="wipe" href="mailto:salinasmatteo@gmail.com">Email <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+  </main>
+</body>
+</html>

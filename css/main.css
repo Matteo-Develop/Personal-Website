@@ -1,3 +1,54 @@
+/* Self-hosted, latin subset only.
+   
+   These used to come from fonts.googleapis.com, which cost two DNS lookups
+   and two TLS handshakes to a third party before a single glyph could paint,
+   sent every visitor's IP to Google on a site that otherwise tracks nobody,
+   and — the reason that actually forced this — silently fell back to Georgia
+   and the system sans on any network that blocks Google Fonts. Corporate
+   networks do block it. This container blocks it. A site whose typography is
+   most of its argument should not lose that typography to a proxy rule.
+
+   font-display: swap so text is readable immediately and reflows once. */
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("../assets/fonts/InstrumentSerif-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("../assets/fonts/IBMPlexSans-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("../assets/fonts/IBMPlexSans-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../assets/fonts/IBMPlexMono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../assets/fonts/IBMPlexMono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ==========================================================================
    Tokens
    ========================================================================== */
@@ -321,11 +372,6 @@ button {
   font-size: clamp(3.6rem, 14vw, 10rem);
   line-height: 0.88;
   letter-spacing: -0.025em;
-}
-
-.display em {
-  font-style: italic;
-  color: var(--accent);
 }
 
 .mask {
@@ -1434,6 +1480,50 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .chapter-nav .spine-fill { transform: scaleY(1); }
+}
+
+/* ==========================================================================
+   Touch targets
+   ==========================================================================
+   Measured on a 390px viewport, the disclosure toggles were 19px tall and
+   most inline links 22px. WCAG 2.2 asks for 24px minimum and Apple
+   recommends 44; more to the point, those toggles are the primary
+   interaction on this site — every artifact list and every capability group
+   is behind one — and most visitors arrive from a LinkedIn link on a phone.
+
+   Scoped to coarse pointers so the desktop layout, which is tuned tightly,
+   is not touched at all. Padding only grows the hit area; nothing moves
+   visually except the spacing between rows. */
+
+@media (pointer: coarse) {
+  .project summary,
+  .row-more summary,
+  .cap-group summary {
+    padding-block: 0.6rem;
+  }
+
+  .topnav a,
+  .hero-links a,
+  .contact-aside a,
+  .about-more a,
+  .project-link a,
+  .chapter-link,
+  .site-foot a {
+    padding-block: 0.45rem;
+  }
+
+  /* The wordmark is a link back to the top and was 20px tall. */
+  .mark { padding-block: 0.5rem; }
+
+  /* The slider track is drawn at 1px, so a taller input changes nothing
+     visually and gives the thumb a real area to be grabbed by. */
+  .dcf input[type="range"] { height: 44px; }
+}
+
+@media (pointer: coarse) and (hover: none) {
+  /* The portrait lifts to colour on hover, which a touch device cannot do
+     and which a tap would otherwise latch on. Leave it monochrome. */
+  .portrait:hover { filter: grayscale(1) contrast(1.05) brightness(0.9); }
 }
 
 /* ==========================================================================
