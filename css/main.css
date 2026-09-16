@@ -785,8 +785,19 @@ button {
 }
 
 /* What he is recruiting for and when. The most useful line on a recruiting
-   site, and Contact used to carry only a location. */
+   site, and Contact used to carry only a location.
+   It appears twice on purpose: a recruiter who lands in the hero and one who
+   scrolls to the foot both get the answer without hunting for it. */
 .contact-status { color: var(--bone-dim); }
+
+/* The hero copy of it. Two mono lines of equal weight under the lede read as
+   one block of metadata and neither gets looked at, so the status line sits
+   tighter to the facts above it and leads in the accent, with the three
+   answers themselves dimmed. */
+.hero-status {
+  margin: 0.55rem 0 0;
+  color: var(--accent);
+}
 
 /* ==========================================================================
    Interactive DCF
@@ -1095,6 +1106,21 @@ button {
   margin: 0;
   color: var(--muted);
   text-align: right;
+}
+
+/* The collapsed tail of the involvement list. It is one label and a run of
+   names, so it has to read as a line of prose rather than as a right-aligned
+   value: the label shrinks to a rail marker and the names take the width. */
+.list-more .name {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.list-more .by {
+  flex: 1 1 22ch;
+  text-align: left;
+  color: var(--bone-dim);
+  font-size: 0.95rem;
 }
 
 /* Narrow screens: let label/value stack cleanly instead of half-wrapping
@@ -1621,6 +1647,7 @@ button {
     max-width: none;
   }
   .hero-facts { margin-top: 0.5rem; }
+  .hero-status { margin-top: 0.25rem; }
   .hero-links { margin-top: 0.5rem; }
 
   /* Bands are spaced for scrolling, not for reading a stack of pages. */

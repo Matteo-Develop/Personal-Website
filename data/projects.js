@@ -13,11 +13,11 @@ export const projects = [
     note: "The market prices MPC as a pure refiner and misses the midstream business underneath it. MPLX, 64% owned, generates enough fee-based cash to cover the dividend and all standalone CapEx, which materially reduces MPC&rsquo;s dependence on refining economics and supports a stronger downside case than a pure-refiner valuation implies. Strong Buy &middot; price at publication ~$232, April 2026 &middot; bull case $287 &middot; bear case $142.",
     detail: [
       "Built for the University of Kentucky 2026 Stock Pitch Competition.",
-      "Scenario spread rather than a single number: $230 mid-cycle DCF base, ~$232 sum-of-the-parts intrinsic, $287 bull, $142 bear floor.",
+      "Scenario spread rather than a single number: $230 mid-cycle DCF base, ~$232 sum-of-the-parts intrinsic, $287 bull, $142 bear.",
       "The thesis: MPLX, 64% owned, pays MPC $3.5B+ a year in fee-based distributions by 2027, independent of crack spreads. That alone covers the dividend and all standalone CapEx, which makes the refining upside close to free.",
       "An FCFF discounted cash flow at a 7.90% WACC, a sum-of-the-parts valuing MPC ex-MPLX against pure-play refiner multiples, and a WACC against terminal-growth sensitivity grid.",
       "A reverse DCF showing that at $232 the market was implying only about 3.5% revenue CAGR over five years.",
-      "Bear case floored at $142, because the midstream distributions hold even when crack spreads compress.",
+      "The bear case sits at $142 rather than lower because the midstream distributions are contracted and fee-based: the argument is that the downside is set by MPLX, not by crack spreads.",
     ],
     link: { href: "assets/marathon-petroleum.pdf", label: "Read the full deck" },
   },
@@ -40,9 +40,21 @@ export const projects = [
       "Built the revenue, margin, CapEx and working-capital build off 10-K/10-Q filings and earnings releases.",
       "Differentiated theses on capital return policy, structural margin mispricing and network density compounding.",
       "Supported by WACC analysis and a football-field valuation across the scenario set.",
-      "The network-density thesis: HCA holds 27% of the US hospital services market and targets 29% by 2030, with outpatient sites compounding referral retention.",
+      "The network-density thesis: roughly 27% inpatient share across the markets HCA actually operates in, targeting 29% by 2030, with outpatient sites compounding referral retention inside each one.",
     ],
     link: { href: "assets/hca-healthcare.pdf", label: "Read the full report" },
+  },
+  {
+    title: "Southeast Asia FP&A Reporting System",
+    tag: "ZEISS \u00b7 FP&A",
+    note: "Four markets reported on four different shapes of source data, which meant the regional pack was rebuilt by hand every month. I rebuilt the layer underneath it: one modelled dataset per market, the logic written once, the monthly pack falling out of it.",
+    detail: [
+      "The architecture: source extracts per market, cleaned and conformed in Power Query, modelled into a star schema over SQL-structured datasets, measures written in DAX, surfaced as four Power BI dashboards feeding management reporting.",
+      "Writing the logic as DAX measures rather than patching the source is the part that made it survive: the definitions live in one place, so a change to how margin is calculated moves every market at once instead of being re-fixed four times.",
+      "Covered Singapore, Malaysia, Vietnam and the AEM cluster, against monthly close, rolling forecast and budget variance.",
+      "No figures or screenshots here. The work is the architecture, and the architecture is the part that transfers.",
+    ],
+    link: null,
   },
   {
     title: "Sell vs. Borrow Dashboard",
@@ -57,7 +69,7 @@ export const projects = [
   {
     title: "MAAD Investments",
     tag: "Founded",
-    note: "An event-driven ticket portfolio. $70,000 of revenue in the first five months.",
+    note: "A ticket resale business built around supply-demand analysis, pricing and disciplined capital allocation. $70,000 of revenue in the first five months.",
     detail: [
       "Evaluated 100+ event opportunities a year, pricing off supply-demand dynamics and market research.",
       "Sized positions across concurrent events so no single night carried the book.",

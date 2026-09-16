@@ -1,16 +1,29 @@
-// Involvement, not leadership: chaired and elected roles first, then the
-// societies, then volunteering. Add an entry to grow the list.
+// Involvement.
+//
+// `featured: true` puts an entry in the list proper. Everything else is
+// collapsed into a single "Also" line underneath it. That split exists
+// because eleven rows of mostly "Member" diluted the four that actually say
+// something: by the time a reader reached Sigma Nu's chaired roles they had
+// scrolled past six identical lines. Nothing is dropped — the rest is still
+// on the page, just not competing with the signal.
+//
+// Chaired and elected roles first, then the societies, then volunteering.
 
 export const involvement = [
   {
     org: "Sigma Nu Fraternity",
     roles: ["Formal Social Chair", "Treasury", "Philanthropy", "Alumni", "Recruitment"],
+    featured: true,
   },
-  { org: "Order of Omega Honor Society", roles: ["Member", "Top 5% of Greek members"] },
-  { org: "Finance Society", roles: ["Member"] },
+  {
+    org: "Order of Omega Honor Society",
+    roles: ["Member", "Top 5% of Greek members"],
+    featured: true,
+  },
+  { org: "M&A Society", roles: ["Member"], featured: true },
+  { org: "Finance Society", roles: ["Member"], featured: true },
+  { org: "Economics Society", roles: ["Member"], featured: true },
   { org: "AI Society", roles: ["Member"] },
-  { org: "M&A Society", roles: ["Member"] },
-  { org: "Economics Society", roles: ["Member"] },
   { org: "Sales Club", roles: ["Member"] },
   { org: "DanceBlue", roles: ["Volunteer Staff"] },
   { org: "Meals by Grace", roles: ["Assistant"] },

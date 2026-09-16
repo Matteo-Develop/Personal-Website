@@ -83,7 +83,12 @@ const expectations = [
   ["index", home, '<article class="row"', experience.length, "experience roles"],
   ["index", home, '<article class="project', projects.length, "work write-ups"],
   ["index", home, '<div class="list-item"><dt', skills.length, "certifications"],
-  ["index", home, '<li class="list-item">', involvement.length, "involvement rows"],
+  // Featured entries get a row each; everything else is one collapsed "Also"
+  // row. Both halves are asserted, so dropping a name from either is caught.
+  ["index", home, '<li class="list-item">', involvement.filter((i) => i.featured).length,
+    "featured involvement rows"],
+  ["index", home, '<li class="list-item list-more">',
+    involvement.some((i) => !i.featured) ? 1 : 0, "collapsed involvement rows"],
   ["about", story, '<article class="chapter"', about.chapters.length, "chapters"],
   ["about", story, 'class="chapter-link', about.chapters.length, "chapter nav links"],
   ["about", story, '<div class="stat">', about.stats.length, "stats"],
@@ -94,6 +99,17 @@ for (const [page, html, needle, want, label] of expectations) {
   const got = count(html, needle);
   got === want ? ok(`${page}: ${got} ${label}`) : bad(`${page}: ${got} ${label}, expected ${want}`);
 }
+
+// Collapsing the tail of the involvement list must not lose any of it.
+// The templates interpolate the name as-is, so "M&A Society" reaches the
+// page with a bare ampersand. Accept either spelling rather than assuming
+// one, so this check keeps working if the templates start escaping.
+const missing = involvement
+  .map((item) => item.org)
+  .filter((org) => !home.includes(org) && !home.includes(org.replace(/&/g, "&amp;")));
+missing.length === 0
+  ? ok(`index: all ${involvement.length} involvement names present`)
+  : bad(`index: involvement names missing from the page: ${missing.join(", ")}`);
 
 // --- 5. duplicate ids -------------------------------------------------------
 console.log("\nunique ids");

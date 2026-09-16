@@ -75,12 +75,27 @@ export function skillsHtml(skills) {
 }
 
 export function involvementHtml(involvement) {
-  return involvement
+  const featured = involvement.filter((item) => item.featured);
+  const rest = involvement.filter((item) => !item.featured);
+
+  const rows = featured
     .map(
       (item) =>
         `<li class="list-item"><span class="name">${item.org}</span><span class="by mono">${item.roles.join(" &middot; ")}</span></li>`
     )
     .join("");
+
+  // The remainder as one wrapped line rather than one row each. Six more
+  // rows reading "Member" cost 400px of scroll and told a reader nothing
+  // the first five had not; as a single line they are still on the page for
+  // anyone who wants them.
+  const more = rest.length
+    ? `<li class="list-item list-more"><span class="name mono faint">Also</span><span class="by">${rest
+        .map((item) => item.org)
+        .join(" &middot; ")}</span></li>`
+    : "";
+
+  return rows + more;
 }
 
 export function chaptersHtml(chapters) {

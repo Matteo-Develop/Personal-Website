@@ -63,7 +63,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>
 <div class="kicker">BBA Finance &middot; UGA Terry</div>
 <div>
   <h1>Matteo Salinas</h1>
-  <p class="sub">Equity research, credit and cross-border capital.</p>
+  <p class="sub">Investment research, private wealth, credit and capital markets.</p>
   <div class="rule"></div>
 </div>
 <div class="foot">
