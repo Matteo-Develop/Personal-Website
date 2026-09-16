@@ -10,7 +10,7 @@ export const projects = [
     dcf: true,
     featured: true,
     tag: "Equity research",
-    note: "The market prices MPC as a pure refiner and misses the midstream floor underneath it. MPLX, 64% owned, throws off enough fee-based cash to cover the dividend and all standalone CapEx on its own, which puts a floor under the equity that has nothing to do with crack spreads. Strong Buy at ~$232, April 2026: $287 bull case against a $142 bear floor.",
+    note: "The market prices MPC as a pure refiner and misses the midstream business underneath it. MPLX, 64% owned, generates enough fee-based cash to cover the dividend and all standalone CapEx, which materially reduces MPC&rsquo;s dependence on refining economics and supports a stronger downside case than a pure-refiner valuation implies. Strong Buy &middot; price at publication ~$232, April 2026 &middot; bull case $287 &middot; bear case $142.",
     detail: [
       "Built for the University of Kentucky 2026 Stock Pitch Competition.",
       "Scenario spread rather than a single number: $230 mid-cycle DCF base, ~$232 sum-of-the-parts intrinsic, $287 bull, $142 bear floor.",
@@ -24,7 +24,7 @@ export const projects = [
   {
     title: "Roth Conversion Analysis Tool",
     tag: "BNY · Private Banking",
-    note: "Built from the ground up to model one-time and multi-year conversion strategies.",
+    note: "Built from scratch to compare one-time and multi-year Roth conversion strategies across tax cost, IRMAA, portfolio growth and estate outcomes. Designed so advisors could run the analysis themselves after my internship.",
     detail: [
       "Models tax cost, IRMAA exposure and estate outcomes across one-time and staged multi-year conversions.",
       "Shipped with a written advisor SOP so the team could run it without me.",
@@ -47,7 +47,7 @@ export const projects = [
   {
     title: "Sell vs. Borrow Dashboard",
     tag: "BNY · Private Banking",
-    note: "Prices a taxable liquidation against securities-based lending, so the cost of each route is explicit before the client picks one.",
+    note: "Compares the after-tax cost of liquidating appreciated securities against borrowing against the portfolio, giving an advisor a client-ready view of the tradeoff.",
     detail: [
       "Built for the private banking team to make the liquidate-or-lend decision explicit in the client conversation rather than after it.",
       "Paired with a Banking Deal Sheet dashboard that cut the prep time on deal documentation.",
@@ -60,7 +60,7 @@ export const projects = [
     note: "An event-driven ticket portfolio. $70,000 of revenue in the first five months.",
     detail: [
       "Evaluated 100+ event opportunities a year, pricing off supply-demand dynamics and market research.",
-      "Averaged markups above 200%, sizing positions across concurrent events so no single night carried the book.",
+      "Sized positions across concurrent events so no single night carried the book.",
       "Owned capital allocation, operating budget and full P&L.",
     ],
     link: null,
@@ -68,7 +68,7 @@ export const projects = [
   {
     title: "Sensei Notify",
     tag: "Founded",
-    note: "A subscription research platform I started at fifteen and ran for just over two years. Market analysis, alerts and trend forecasting for a market that repriced every weekend.",
+    note: "A subscription research platform I started at fifteen and ran for just over two years: market analysis, alerts and trend forecasting for a market that repriced every weekend. 400+ subscribers at peak, at a 95% retention rate.",
     detail: [
       "Owned customer acquisition, pricing, financial management and the community end to end.",
       "Managed a team of 15, spread across time zones.",

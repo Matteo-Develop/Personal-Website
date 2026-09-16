@@ -9,14 +9,14 @@ export const experience = [
     location: "Atlanta, GA",
     dates: "May 2026 – Aug 2026",
     summary:
-      "I rotated across the floor rather than sitting on one desk: private banking, advisory and portfolio management. Most of my time went into developing the dashboards and tools those teams ran on, turning complexity into a clear number and a next step an advisor could take into the room. The whole wealth team in the Atlanta office uses them. My mentor was a private banker, so that is where the most hours landed, and the client side was the part I liked most.",
+      "I rotated across the floor rather than sitting on one desk: private banking, advisory and portfolio management. Most of my time went into developing the dashboards and tools those teams ran on, turning complex client decisions into a clear financial tradeoff an advisor could use in the room, and they were adopted across the wealth team in the Atlanta office. Because my primary mentor was a private banker, much of my work centered on banking and client advisory, and the client side was the part I liked most.",
     artifactsLabel: "What I built",
     artifacts: [
       "A Sell vs. Borrow dashboard pricing a taxable liquidation against securities-based lending, so the advisor could put a number on the tradeoff in front of the client.",
       "A Roth conversion analysis tool from scratch: one-time and multi-year strategies across tax cost, IRMAA and estate outcomes, shipped with an advisor SOP so the desk could run it without me.",
       "A banking deal sheet dashboard to take the friction out of deal prep.",
       "Net Worth Statements and client meeting books organizing assets and liabilities across investment, retirement, trust, alternative and real estate holdings.",
-      "Relationship-level SWOT analyses, leaning on internal AI tooling to move faster, presented for office review.",
+      "Relationship-level SWOT analyses presented for office review, identifying client needs, risks and potential opportunities.",
       "Prospect coverage across the Southeast and Florida: high-net-worth families, family offices and centers of influence the advisors hadn't reached yet.",
     ],
   },
@@ -26,12 +26,12 @@ export const experience = [
     location: "Lexington, KY",
     dates: "Feb 2026 – May 2026",
     summary:
-      "A five-year unlevered DCF, comps and three cases on HCA. The model is how you defend a call. The theses underneath are why you make it: capital return policy, structural margin mispricing, and network density compounding.",
+      "I built a five-year unlevered DCF, trading comps and a three-case valuation for HCA. The work forced me to separate the mechanics of valuation from the investment thesis behind it: capital returns, margin durability, and the value of network density.",
     artifactsLabel: "The call",
     artifacts: [
       "BUY on HCA Healthcare (NYSE: HCA). $558 price target, 28.4% implied upside.",
       "WACC analysis and a football-field valuation across the three cases.",
-      "Forward projections off 10-K/10-Q filings and earnings releases, covering revenue, margins, CapEx and working capital in healthcare, energy and TMT.",
+      "Forward projections off 10-K/10-Q filings and earnings releases across the healthcare, energy and TMT names on the coverage list: revenue, margins, CapEx and working capital.",
     ],
   },
   {
@@ -40,10 +40,10 @@ export const experience = [
     location: "Singapore, SG",
     dates: "Oct 2025 – Jan 2026",
     summary:
-      "Four markets on one monthly close: Singapore, Malaysia, Vietnam and the AEM cluster. Rolling forecasts, variance against budget, and the management reporting that came out of both. Most of my time went underneath that, into the data layer the reporting sat on, because a management pack is only ever as good as the tables feeding it.",
+      "I supported the Southeast Asia FP&A team across Singapore, Malaysia, Vietnam and the AEM cluster, working on monthly close, rolling forecasts, budget variance analysis and management reporting. Much of my work focused on improving the data and reporting infrastructure underneath those processes.",
     artifactsLabel: "What I built",
     artifacts: [
-      "Four Power BI dashboards built from the ground up over SQL-structured datasets, with the transformations in Power Query and the measures written in DAX rather than patched into the source. The region still runs on them.",
+      "Four Power BI dashboards built from the ground up over SQL-structured datasets, with the transformations in Power Query and the measures written in DAX rather than patched into the source. The dashboards remained in use after my internship.",
       "Excel models projecting revenue, operating expense and cash flow across the region, built off drivers so one assumption change moved the whole regional forecast.",
       "Variance analysis against budget and prior forecast, with sales and margin analysis feeding regional strategy.",
       "Market, competitor and industry research across the four markets.",
@@ -55,11 +55,10 @@ export const experience = [
     location: "Alpharetta, GA",
     dates: "May 2025 – Aug 2025",
     summary:
-      "Mostly, I was in the room. I went with the firm's Chairman into executive-level client meetings and strategic planning sessions, which is the fastest way to learn how a wealth conversation actually runs. Less analysis than apprenticeship: how you talk to people, how you read a room, and how much of this job turns out to be exactly that.",
+      "The value of this internship was proximity. I accompanied the firm's Chairman into executive-level client meetings and strategic planning conversations, getting an early look at how wealth-management relationships are built, maintained and expanded.",
     artifactsLabel: "What I took from it",
     artifacts: [
-      "How a wealth conversation runs, watched at close range with the Chairman and C-suite clients in the room.",
-      "Exposure to tax-efficient strategy, estate planning considerations and portfolio construction for high-net-worth clients.",
+      "How tax strategy, estate planning, portfolio construction and business development come together inside a single client conversation, and how much of the judgment depends on understanding the person across the table.",
       "Direct mentorship from the Chairman, and training in the sales side of it: how a relationship gets opened, and what keeps it.",
     ],
   },
@@ -73,7 +72,7 @@ export const experience = [
     artifactsLabel: "The numbers",
     artifacts: [
       "$70,000 in revenue within the first five months.",
-      "Average markups above 200%.",
+      "Managed pricing, inventory, capital allocation and full P&L across concurrent events.",
       "100+ event opportunities evaluated annually.",
     ],
   },
