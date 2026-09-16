@@ -18,19 +18,32 @@ function initDrawer() {
   const drawer = document.getElementById("drawer");
   if (!toggle || !drawer) return;
 
-  const close = () => {
-    toggle.setAttribute("aria-expanded", "false");
-    drawer.classList.remove("is-open");
+  // `inert` keeps the closed drawer out of the tab order and the
+  // accessibility tree. Clip-path alone hid it visually but left its links
+  // focusable, so tabbing off the button walked a keyboard user through six
+  // links they could not see. The CSS handles visibility; this handles the
+  // tree, and the two have to agree.
+  const setOpen = (open) => {
+    toggle.setAttribute("aria-expanded", String(open));
+    drawer.classList.toggle("is-open", open);
+    drawer.inert = !open;
+  };
+
+  setOpen(false);
+
+  const close = ({ refocus = false } = {}) => {
+    const wasOpen = drawer.classList.contains("is-open");
+    setOpen(false);
+    // Escape must not orphan focus inside an element that just went inert.
+    if (refocus && wasOpen) toggle.focus();
   };
 
   toggle.addEventListener("click", () => {
-    const open = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!open));
-    drawer.classList.toggle("is-open", !open);
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
   });
 
-  drawer.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
-  document.addEventListener("keydown", (e) => e.key === "Escape" && close());
+  drawer.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => close()));
+  document.addEventListener("keydown", (e) => e.key === "Escape" && close({ refocus: true }));
 }
 
 // Native smooth scrolling handles the motion; this moves focus with it so
@@ -395,6 +408,12 @@ function initYear() {
 // Called by each page's render script once its content is in the DOM, so
 // the observers see final markup instead of racing it.
 export function initShared(options = {}) {
+  // Disarm the watchdog in the inline <head> script. If this module never
+  // gets here, that watchdog strips html.js and everything the reveal rules
+  // were holding at opacity 0 becomes visible. Called first, before anything
+  // below can throw, because reaching this line is the thing being reported.
+  if (typeof window.__revealReady === "function") window.__revealReady();
+
   initTopbar();
   initDrawer();
   initAnchors();

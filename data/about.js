@@ -59,7 +59,7 @@ export const about = {
     {
       label: "Finance",
       body: [
-        "So I switched to finance, and after three years at Kentucky I transferred to the University of Georgia in the fall of 2026. I've applied to the Terry College of Business to study finance, with a decision expected in October. FP&A in Singapore and equity research in Lexington while I was still at Kentucky, then private banking in Atlanta over the summer in between. The research side came naturally, because it used the same instinct as the sneaker work: understand what drives value, work out what other people are missing, and make a decision without complete information.",
+        "So I switched to finance, and after three years at Kentucky I transferred to the University of Georgia in the fall of 2026. I've applied to the Terry College of Business to study finance, with a decision expected in October 2026. FP&A in Singapore and equity research in Lexington while I was still at Kentucky, then private banking in Atlanta over the summer in between. The research side came naturally, because it used the same instinct as the sneaker work: understand what drives value, work out what other people are missing, and make a decision without complete information.",
         "What I'm actually interested in is markets, geopolitics, and how capital moves around the world. You can't really follow one without ending up in the other two.",
       ],
     },
@@ -86,7 +86,7 @@ export const about = {
     { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue, proxy business" },
     { value: 15, label: "Sensei team managed" },
     { value: 6000, suffix: "+", label: "Users on the largest platform" },
-    { value: 70, suffix: "%", label: "Recurring questions removed" },
+    { value: 70, suffix: "%", label: "Recurring questions removed, largest platform" },
   ],
 
   // The operating record behind the narrative above, 2019–2022.

@@ -19,7 +19,7 @@ export const experience = [
       "I rotated across the floor rather than sitting on one desk: private banking, advisory and portfolio management. Most of my time went into the dashboards and tools those teams ran on, turning a complex client decision into a financial tradeoff an advisor could put a number on in the room. My primary mentor was a private banker, so most of the work was banking and client advisory, and the client side was the part I liked most.",
     artifactsLabel: "What I built",
     artifacts: [
-      "A Roth conversion analysis tool and a Sell vs. Borrow dashboard, both written up in Work below, adopted across the wealth team in the Atlanta office.",
+      "A Roth conversion analysis tool and a Sell vs. Borrow dashboard, both written up in Work below, adopted across the wealth team in the Atlanta office. Several of the tools were picked up by colleagues in other offices, including Tampa and New York.",
       "A banking deal sheet dashboard to take the friction out of deal prep.",
       "Net Worth Statements and client meeting books across investment, retirement, trust, alternative and real estate holdings.",
       "Relationship-level SWOT analyses presented for office review, identifying client needs, risks and potential opportunities.",
@@ -45,10 +45,10 @@ export const experience = [
     location: "Singapore, SG",
     dates: "Oct 2025 – Jan 2026",
     summary:
-      "I supported the Southeast Asia FP&A team across Singapore, Malaysia, Vietnam and the AEM cluster, working on monthly close, rolling forecasts, budget variance analysis and management reporting. Much of my work focused on improving the data and reporting infrastructure underneath those processes.",
+      "I supported the Southeast Asia FP&A team across four reporting units, Singapore, Malaysia, Vietnam and the AEM cluster, working on monthly close, rolling forecasts, budget variance analysis and management reporting. Much of my work focused on improving the data and reporting infrastructure underneath those processes.",
     artifactsLabel: "What I built",
     artifacts: [
-      "Four Power BI dashboards built from the ground up over SQL-structured datasets, one per market. The architecture is in Work below. They remained in use after my internship.",
+      "Four Power BI dashboards built from the ground up over SQL-structured datasets, one per reporting unit. The architecture is in Work below. They remained in use after my internship.",
       "Excel models projecting revenue, operating expense and cash flow across the region, built off drivers so one assumption change moved the whole regional forecast.",
       "Variance analysis against budget and prior forecast, with sales and margin analysis feeding regional strategy.",
       "Market, competitor and industry research across the four markets.",

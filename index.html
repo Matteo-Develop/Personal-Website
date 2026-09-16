@@ -40,11 +40,11 @@
         "en",
         "es"
       ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Georgia"
+      },
       "alumniOf": [
-        {
-          "@type": "CollegeOrUniversity",
-          "name": "University of Georgia"
-        },
         {
           "@type": "CollegeOrUniversity",
           "name": "University of Kentucky"
@@ -62,6 +62,33 @@
   <link rel="preload" href="assets/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin />
 
   <link rel="stylesheet" href="css/main.css" />
+  <script>
+    // Progressive enhancement, arranged so that failure is safe.
+    //
+    // The reveal animations are scoped under html.js in the stylesheet. This
+    // adds that class, so a browser with no JavaScript never hides anything.
+    // Then it arms a watchdog: if the module script has not reported in, the
+    // class comes off and every animated element falls back to its visible
+    // resting state. That covers the case <noscript> cannot — scripts on,
+    // module dead (a CSP, a blocked import, a proxy that rewrites
+    // type="module"), which would otherwise leave the whole record on the
+    // page at opacity 0.
+    (function () {
+      var el = document.documentElement;
+      el.className += " js";
+      var give = function () { el.className = el.className.replace(/\bjs\b/, ""); };
+      var timer = setTimeout(give, 2000);
+      // Only a failed module script means the renderer is not coming. An
+      // earlier version reacted to any script error, which meant a content
+      // blocker eating the analytics script — the common case, and one this
+      // site expects — switched off every animation on the page.
+      window.addEventListener("error", function (e) {
+        var t = e.target;
+        if (t && t.tagName === "SCRIPT" && t.type === "module") { clearTimeout(timer); give(); }
+      }, true);
+      window.__revealReady = function () { clearTimeout(timer); };
+    })();
+  </script>
   <noscript><style>.reveal,.row>*,.project>*,.list-item>*{opacity:1!important;transform:none!important}.mask>span{transform:none!important}.row::before,.project::before,.list-item::before{transform:scaleX(1)!important}</style></noscript>
 </head>
 <body>
@@ -143,15 +170,15 @@
           <p class="about-lede reveal">I&rsquo;ve built the models and I&rsquo;ve been in the client meetings. I want the work that needs both.</p>
 
           <div class="about-body reveal">
-            <p>I&rsquo;m a student at the University of Georgia pursuing a BBA in Finance, and I have applied to the Terry College of Business with a decision expected in October. I transferred from the University of Kentucky, where I studied from August 2023 through spring 2026. I speak English and Spanish, and I can work in both the US and EU without sponsorship.</p>
-            <p>Most of my experience has been at the intersection of research, analysis, and decision-making. I&rsquo;ve done valuation work on HCA and Marathon Petroleum using unlevered DCFs, sum-of-the-parts analysis, and reverse DCFs. At ZEISS, I built four Power BI dashboards from the ground up for its Southeast Asia markets that are still in use today. At BNY Wealth in Atlanta, I built analytical tools used by the broader wealth team and sat in on client and portfolio discussions. I liked the modeling. I liked the client conversations even more.</p>
+            <p>I&rsquo;m a student at the University of Georgia. I have applied to the Terry College of Business to study finance, with a decision expected in October 2026. I transferred from the University of Kentucky, where I studied from August 2023 through spring 2026. I speak English and Spanish, and I can work in both the US and EU without sponsorship.</p>
+            <p>Most of my experience has been at the intersection of research, analysis, and decision-making. I&rsquo;ve done valuation work on HCA and Marathon Petroleum using unlevered DCFs, sum-of-the-parts analysis, and reverse DCFs. At ZEISS, I built four Power BI dashboards from the ground up for its Southeast Asia reporting units, and they remained in use after my internship. At BNY Wealth in Atlanta, I built analytical tools the Atlanta wealth team adopted, several of which colleagues picked up in other offices, and I sat in on client and portfolio discussions. I liked the modeling. I liked the client conversations even more.</p>
             <p>What I want next is more of both, with harder problems and more responsibility. I enjoyed working abroad and would do it again, but the work matters more to me than the place.</p>
           </div>
 
           <dl class="about-facts reveal mono">
             <div class="fact"><dt>Study</dt><dd>University of Georgia &middot; Intended Finance &middot; Expected May 2028</dd></div>
             <div class="fact"><dt>Previously</dt><dd>University of Kentucky &middot; Aug 2023 &ndash; Spring 2026</dd></div>
-            <div class="fact"><dt>Standing</dt><dd>3.50 GPA &middot; President&rsquo;s List &amp; Dean&rsquo;s List, University of Kentucky</dd></div>
+            <div class="fact"><dt>Standing</dt><dd>3.60 GPA &middot; President&rsquo;s List &amp; Dean&rsquo;s List, University of Kentucky</dd></div>
             <div class="fact"><dt>Languages</dt><dd>English &middot; Spanish</dd></div>
             <div class="fact"><dt>Focus</dt><dd>Investment Research &middot; Private Wealth &middot; Credit &middot; Capital Markets</dd></div>
           </dl>
@@ -179,7 +206,7 @@
           <p class="row-summary">I rotated across the floor rather than sitting on one desk: private banking, advisory and portfolio management. Most of my time went into the dashboards and tools those teams ran on, turning a complex client decision into a financial tradeoff an advisor could put a number on in the room. My primary mentor was a private banker, so most of the work was banking and client advisory, and the client side was the part I liked most.</p>
           <details class="row-more">
             <summary class="mono"><span class="plus" aria-hidden="true"></span>What I built</summary>
-            <ul class="row-notes"><li>A Roth conversion analysis tool and a Sell vs. Borrow dashboard, both written up in Work below, adopted across the wealth team in the Atlanta office.</li><li>A banking deal sheet dashboard to take the friction out of deal prep.</li><li>Net Worth Statements and client meeting books across investment, retirement, trust, alternative and real estate holdings.</li><li>Relationship-level SWOT analyses presented for office review, identifying client needs, risks and potential opportunities.</li><li>Prospect coverage across the Southeast and Florida: high-net-worth families, family offices and centers of influence the advisors hadn't reached yet.</li></ul>
+            <ul class="row-notes"><li>A Roth conversion analysis tool and a Sell vs. Borrow dashboard, both written up in Work below, adopted across the wealth team in the Atlanta office. Several of the tools were picked up by colleagues in other offices, including Tampa and New York.</li><li>A banking deal sheet dashboard to take the friction out of deal prep.</li><li>Net Worth Statements and client meeting books across investment, retirement, trust, alternative and real estate holdings.</li><li>Relationship-level SWOT analyses presented for office review, identifying client needs, risks and potential opportunities.</li><li>Prospect coverage across the Southeast and Florida: high-net-worth families, family offices and centers of influence the advisors hadn't reached yet.</li></ul>
           </details>
         </div>
       </article>
@@ -200,10 +227,10 @@
         <div class="row-body">
           <h3 class="row-role">Financial Planning & Analysis Intern, Southeast Asia</h3>
           <p class="row-org">ZEISS Group <span class="at">&middot; Singapore, SG</span></p>
-          <p class="row-summary">I supported the Southeast Asia FP&A team across Singapore, Malaysia, Vietnam and the AEM cluster, working on monthly close, rolling forecasts, budget variance analysis and management reporting. Much of my work focused on improving the data and reporting infrastructure underneath those processes.</p>
+          <p class="row-summary">I supported the Southeast Asia FP&A team across four reporting units, Singapore, Malaysia, Vietnam and the AEM cluster, working on monthly close, rolling forecasts, budget variance analysis and management reporting. Much of my work focused on improving the data and reporting infrastructure underneath those processes.</p>
           <details class="row-more">
             <summary class="mono"><span class="plus" aria-hidden="true"></span>What I built</summary>
-            <ul class="row-notes"><li>Four Power BI dashboards built from the ground up over SQL-structured datasets, one per market. The architecture is in Work below. They remained in use after my internship.</li><li>Excel models projecting revenue, operating expense and cash flow across the region, built off drivers so one assumption change moved the whole regional forecast.</li><li>Variance analysis against budget and prior forecast, with sales and margin analysis feeding regional strategy.</li><li>Market, competitor and industry research across the four markets.</li></ul>
+            <ul class="row-notes"><li>Four Power BI dashboards built from the ground up over SQL-structured datasets, one per reporting unit. The architecture is in Work below. They remained in use after my internship.</li><li>Excel models projecting revenue, operating expense and cash flow across the region, built off drivers so one assumption change moved the whole regional forecast.</li><li>Variance analysis against budget and prior forecast, with sales and margin analysis feeding regional strategy.</li><li>Market, competitor and industry research across the four markets.</li></ul>
           </details>
         </div>
       </article>
@@ -334,11 +361,11 @@
           <span class="faint">04</span>
         </div>
         <h3>Southeast Asia FP&A Reporting System</h3>
-        <p class="project-note">Four markets reported on four different shapes of source data, which meant the regional pack was rebuilt by hand every month. I rebuilt the layer underneath it: one modelled dataset per market, the logic written once, the monthly pack falling out of it.</p>
+        <p class="project-note">Four reporting units on four different shapes of source data, which meant the regional pack was rebuilt by hand every month. I rebuilt the layer underneath it: one modelled dataset per market, the logic written once, the monthly pack falling out of it.</p>
         
         <details>
           <summary class="mono"><span class="plus" aria-hidden="true"></span>Detail</summary>
-          <ul class="project-detail"><li>The architecture: source extracts per market, cleaned and conformed in Power Query, modelled into a star schema over SQL-structured datasets, measures written in DAX, surfaced as four Power BI dashboards feeding management reporting.</li><li>Writing the logic as DAX measures rather than patching the source is the part that made it survive: the definitions live in one place, so a change to how margin is calculated moves every market at once instead of being re-fixed four times.</li><li>Covered Singapore, Malaysia, Vietnam and the AEM cluster, against monthly close, rolling forecast and budget variance.</li><li>No figures or screenshots here. The work is the architecture, and the architecture is the part that transfers.</li></ul>
+          <ul class="project-detail"><li>The architecture: source extracts per market, cleaned and conformed in Power Query, modelled into a star schema over SQL-structured datasets, measures written in DAX, surfaced as four Power BI dashboards feeding management reporting.</li><li>Writing the logic as DAX measures rather than patching the source is the part that made it survive: the same measure definitions across all four, so a figure means the same thing in every unit's report instead of depending on who built that tab.</li><li>Covered four reporting units, Singapore, Malaysia, Vietnam and the AEM cluster, against monthly close, rolling forecast and budget variance.</li><li>No figures or screenshots here. The work is the architecture, and the architecture is the part that transfers.</li></ul>
           
           
         </details>

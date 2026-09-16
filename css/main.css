@@ -282,14 +282,17 @@ button {
 
 .menu-toggle {
   position: relative;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
+  /* The bars are positioned from the top-left, so widening the button moves
+     them; this keeps the glyph centred at the new size. */
+  margin-right: -5px;
 }
 
 /* Both bars share one centre point so they cross into an X when open. */
 .menu-toggle span {
   position: absolute;
-  left: 7px;
+  left: 12px;
   top: 17px;
   width: 20px;
   height: 1px;
@@ -310,10 +313,33 @@ button {
   background: var(--navy-800);
   border-bottom: 1px solid var(--line);
   clip-path: inset(0 0 100% 0);
-  transition: clip-path var(--mid) var(--ease);
+  /* A landscape phone is about 360px tall; seven links plus padding do not
+     fit, and without this the last ones are simply unreachable. */
+  max-height: calc(100dvh - 74px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  visibility: hidden;
+  transition: clip-path var(--mid) var(--ease), visibility 0s linear var(--mid);
 }
 
-.drawer.is-open { clip-path: inset(0 0 0 0); }
+.drawer.is-open {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition: clip-path var(--mid) var(--ease), visibility 0s;
+}
+
+/* No JavaScript, no way to open the drawer — and the top nav is hidden at
+   this width, so the page had no navigation at all. Show it as a plain list
+   instead of a panel. */
+html:not(.js) .drawer {
+  position: static;
+  clip-path: none;
+  visibility: visible;
+  max-height: none;
+  inset: auto;
+}
+
+html:not(.js) .menu-toggle { display: none; }
 
 .drawer ul { padding: 0.5rem var(--gutter) 1.5rem; }
 
@@ -382,7 +408,7 @@ button {
   padding-bottom: 0.2em;
 }
 
-.mask > span {
+.js .mask > span {
   display: block;
   /* Must exceed (lineHeight + padding) / lineHeight = ~123%, or the text
      peeks into the padding while it's supposed to be hidden. */
@@ -391,8 +417,10 @@ button {
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.is-visible .mask > span,
-.mask.is-visible > span { transform: none; }
+.mask > span { display: block; }
+
+.js .is-visible .mask > span,
+.js .mask.is-visible > span { transform: none; }
 
 .hero-lede {
   margin-top: clamp(1.75rem, 4vw, 2.5rem);
@@ -908,8 +936,18 @@ button {
 }
 
 .dcf input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.25); }
-.dcf input[type="range"]:focus-visible { outline: none; }
+
+.dcf input[type="range"]:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Engine-specific thumb halo on top of the outline, not instead of it. */
 .dcf input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.dcf input[type="range"]:focus-visible::-moz-range-thumb {
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
@@ -1182,27 +1220,48 @@ button {
 .site-foot a { transition: color var(--fast) ease; }
 .site-foot a:hover { color: var(--accent); }
 
+
+/* The hairlines above each row draw themselves in on reveal, from scaleX(0).
+   Without JavaScript nothing ever scales them up, so the section dividers
+   would simply be missing. Same inversion as the reveal rules above. */
+html:not(.js) .row::before,
+html:not(.js) .project::before,
+html:not(.js) .list-item::before { transform: scaleX(1); }
+
 /* ==========================================================================
    Reveal
    ========================================================================== */
 
-.reveal {
+/* Everything here is scoped under html.js, which an inline script in <head>
+   adds and a watchdog in that same script removes.
+
+   The default used to be hidden, with JavaScript revealing content. That is
+   the wrong way round for a page whose content ships in the HTML. <noscript>
+   only fires when scripts are *disabled*; it does nothing when scripts are
+   enabled and the module fails — a CSP, a blocked import, a proxy that
+   mangles type="module". In that case nothing added is-visible, nothing
+   applied the noscript style, and the reader got a blank page with the whole
+   record sitting in it, unreadable. That is the exact failure the prerender
+   exists to prevent, reached through a different door.
+
+   Hidden is now a thing JavaScript opts into and gives up if it dies. */
+.js .reveal {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
 /* Children of a revealed row fade slightly behind the rule that draws above them. */
-.row .row-when,
-.row .row-body,
-.project > *:not(::before),
-.list-item > * {
+.js .row .row-when,
+.js .row .row-body,
+.js .project > *:not(::before),
+.js .list-item > * {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease);

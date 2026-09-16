@@ -28,6 +28,33 @@
   <link rel="preload" href="assets/fonts/IBMPlexSans-400.woff2" as="font" type="font/woff2" crossorigin />
 
   <link rel="stylesheet" href="css/main.css" />
+  <script>
+    // Progressive enhancement, arranged so that failure is safe.
+    //
+    // The reveal animations are scoped under html.js in the stylesheet. This
+    // adds that class, so a browser with no JavaScript never hides anything.
+    // Then it arms a watchdog: if the module script has not reported in, the
+    // class comes off and every animated element falls back to its visible
+    // resting state. That covers the case <noscript> cannot — scripts on,
+    // module dead (a CSP, a blocked import, a proxy that rewrites
+    // type="module"), which would otherwise leave the whole record on the
+    // page at opacity 0.
+    (function () {
+      var el = document.documentElement;
+      el.className += " js";
+      var give = function () { el.className = el.className.replace(/\bjs\b/, ""); };
+      var timer = setTimeout(give, 2000);
+      // Only a failed module script means the renderer is not coming. An
+      // earlier version reacted to any script error, which meant a content
+      // blocker eating the analytics script — the common case, and one this
+      // site expects — switched off every animation on the page.
+      window.addEventListener("error", function (e) {
+        var t = e.target;
+        if (t && t.tagName === "SCRIPT" && t.type === "module") { clearTimeout(timer); give(); }
+      }, true);
+      window.__revealReady = function () { clearTimeout(timer); };
+    })();
+  </script>
   <noscript><style>.reveal,.row>*,.list-item>*{opacity:1!important;transform:none!important}.mask>span{transform:none!important}.row::before,.list-item::before{transform:scaleX(1)!important}</style></noscript>
 </head>
 <body>
@@ -139,7 +166,7 @@
           <span class="chapter-title">Finance</span>
         </h2>
         <div class="chapter-body reveal">
-          <p>So I switched to finance, and after three years at Kentucky I transferred to the University of Georgia in the fall of 2026. I've applied to the Terry College of Business to study finance, with a decision expected in October. FP&A in Singapore and equity research in Lexington while I was still at Kentucky, then private banking in Atlanta over the summer in between. The research side came naturally, because it used the same instinct as the sneaker work: understand what drives value, work out what other people are missing, and make a decision without complete information.</p><p>What I'm actually interested in is markets, geopolitics, and how capital moves around the world. You can't really follow one without ending up in the other two.</p>
+          <p>So I switched to finance, and after three years at Kentucky I transferred to the University of Georgia in the fall of 2026. I've applied to the Terry College of Business to study finance, with a decision expected in October 2026. FP&A in Singapore and equity research in Lexington while I was still at Kentucky, then private banking in Atlanta over the summer in between. The research side came naturally, because it used the same instinct as the sneaker work: understand what drives value, work out what other people are missing, and make a decision without complete information.</p><p>What I'm actually interested in is markets, geopolitics, and how capital moves around the world. You can't really follow one without ending up in the other two.</p>
         </div>
       </article>
       <article class="chapter" id="ch-07">
@@ -164,28 +191,28 @@
           <p class="operating-intro reveal">Four businesses between 2019 and 2022, alongside high school and club soccer. One was mine; I worked at the other three. The figures below belong to different companies, so each says which.</p>
           <dl id="stats" class="stats">
       <div class="stat">
-        <dt class="stat-value" data-value="400" data-prefix="" data-suffix="+">0+</dt>
+        <dt class="stat-value" data-value="400" data-prefix="" data-suffix="+">400+</dt>
         <dd class="stat-label mono">Sensei subscribers at peak</dd>
       </div>
       <div class="stat">
-        <dt class="stat-value" data-value="95" data-prefix="" data-suffix="%">0%</dt>
+        <dt class="stat-value" data-value="95" data-prefix="" data-suffix="%">95%</dt>
         <dd class="stat-label mono">Sensei retention rate</dd>
       </div>
       <div class="stat">
-        <dt class="stat-value" data-value="100" data-prefix="$" data-suffix="K">$0K</dt>
+        <dt class="stat-value" data-value="100" data-prefix="$" data-suffix="K">$100K</dt>
         <dd class="stat-label mono">Monthly revenue, proxy business</dd>
       </div>
       <div class="stat">
-        <dt class="stat-value" data-value="15" data-prefix="" data-suffix="">0</dt>
+        <dt class="stat-value" data-value="15" data-prefix="" data-suffix="">15</dt>
         <dd class="stat-label mono">Sensei team managed</dd>
       </div>
       <div class="stat">
-        <dt class="stat-value" data-value="6000" data-prefix="" data-suffix="+">0+</dt>
+        <dt class="stat-value" data-value="6000" data-prefix="" data-suffix="+">6,000+</dt>
         <dd class="stat-label mono">Users on the largest platform</dd>
       </div>
       <div class="stat">
-        <dt class="stat-value" data-value="70" data-prefix="" data-suffix="%">0%</dt>
-        <dd class="stat-label mono">Recurring questions removed</dd>
+        <dt class="stat-value" data-value="70" data-prefix="" data-suffix="%">70%</dt>
+        <dd class="stat-label mono">Recurring questions removed, largest platform</dd>
       </div>
         </dl>
           <div id="operating-list" class="rows">

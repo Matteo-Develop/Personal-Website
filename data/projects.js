@@ -47,11 +47,11 @@ export const projects = [
   {
     title: "Southeast Asia FP&A Reporting System",
     tag: "ZEISS \u00b7 FP&A",
-    note: "Four markets reported on four different shapes of source data, which meant the regional pack was rebuilt by hand every month. I rebuilt the layer underneath it: one modelled dataset per market, the logic written once, the monthly pack falling out of it.",
+    note: "Four reporting units on four different shapes of source data, which meant the regional pack was rebuilt by hand every month. I rebuilt the layer underneath it: one modelled dataset per market, the logic written once, the monthly pack falling out of it.",
     detail: [
       "The architecture: source extracts per market, cleaned and conformed in Power Query, modelled into a star schema over SQL-structured datasets, measures written in DAX, surfaced as four Power BI dashboards feeding management reporting.",
-      "Writing the logic as DAX measures rather than patching the source is the part that made it survive: the definitions live in one place, so a change to how margin is calculated moves every market at once instead of being re-fixed four times.",
-      "Covered Singapore, Malaysia, Vietnam and the AEM cluster, against monthly close, rolling forecast and budget variance.",
+      "Writing the logic as DAX measures rather than patching the source is the part that made it survive: the same measure definitions across all four, so a figure means the same thing in every unit's report instead of depending on who built that tab.",
+      "Covered four reporting units, Singapore, Malaysia, Vietnam and the AEM cluster, against monthly close, rolling forecast and budget variance.",
       "No figures or screenshots here. The work is the architecture, and the architecture is the part that transfers.",
     ],
     link: null,

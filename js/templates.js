@@ -125,12 +125,27 @@ export function chapterNavHtml(chapters) {
     .join("");
 }
 
+// The markup carries the real figure, not a zero placeholder.
+//
+// It used to render 0, on the assumption that initCounters would replace it
+// before anyone looked. That put six false numbers into the shipped HTML —
+// "0+ subscribers at peak", "$0K monthly revenue" — which is what a reader
+// without working JavaScript saw, and what a print-to-PDF captured. A page
+// that states nothing is incomplete; a page that states zero is wrong.
+//
+// initCounters still animates: its first frame overwrites with 0 and counts
+// back up, so the motion is unchanged and only the fallback differs.
+const statText = (stat) =>
+  (stat.prefix || "") +
+  (stat.value >= 1000 ? stat.value.toLocaleString("en-US") : String(stat.value)) +
+  (stat.suffix || "");
+
 export function statsHtml(stats) {
   return stats
     .map(
       (stat) => `
       <div class="stat">
-        <dt class="stat-value" data-value="${stat.value}" data-prefix="${stat.prefix || ""}" data-suffix="${stat.suffix || ""}">${stat.prefix || ""}0${stat.suffix || ""}</dt>
+        <dt class="stat-value" data-value="${stat.value}" data-prefix="${stat.prefix || ""}" data-suffix="${stat.suffix || ""}">${statText(stat)}</dt>
         <dd class="stat-label mono">${stat.label}</dd>
       </div>`
     )

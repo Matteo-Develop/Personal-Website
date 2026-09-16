@@ -94,6 +94,11 @@ export function initDcf(root) {
     waccOut.textContent = pct(wacc);
     exitOut.textContent = exit.toFixed(1) + "x";
 
+    // Without these a screen reader announces the raw value: "0.079" for the
+    // WACC slider, "7.3" for the multiple. Say what the number means.
+    waccInput.setAttribute("aria-valuetext", `${(wacc * 100).toFixed(2)} percent`);
+    exitInput.setAttribute("aria-valuetext", `${exit.toFixed(1)} times EBITDA`);
+
     deltaOut.textContent = (upside >= 0 ? "+" : "") + (upside * 100).toFixed(0) + "%";
     deltaOut.classList.toggle("is-up", upside >= 0);
     deltaOut.classList.toggle("is-down", upside < 0);

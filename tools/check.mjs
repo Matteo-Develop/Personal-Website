@@ -33,6 +33,16 @@ const bad = (m) => { failures++; console.log(`  FAIL  ${m}`); };
 function nesting(html) {
   const stack = [];
   const errors = [];
+  // <script> and <style> hold raw text, not markup, so anything that looks
+  // like a tag inside them is a string — a comment mentioning <noscript>, a
+  // template literal, a selector. A real parser switches to raw-text mode at
+  // these; this blanks their contents first, which comes to the same thing.
+  // Skipping it made the inline boot script report a false mismatch, and
+  // would equally have masked a true one.
+  html = html.replace(
+    /(<(script|style)\b[^>]*>)([\s\S]*?)(<\/\2>)/gi,
+    (_, open, name, body, close) => open + body.replace(/[<>]/g, " ") + close
+  );
   const tag = /<(\/?)([a-zA-Z][\w-]*)\b[^>]*?(\/?)>|<!--[\s\S]*?-->/g;
   for (let m; (m = tag.exec(html)); ) {
     if (m[0].startsWith("<!--")) continue;
@@ -98,6 +108,30 @@ const expectations = [
 for (const [page, html, needle, want, label] of expectations) {
   const got = count(html, needle);
   got === want ? ok(`${page}: ${got} ${label}`) : bad(`${page}: ${got} ${label}, expected ${want}`);
+}
+
+// The stat block used to ship "0+" and "$0K" and rely on the counter to
+// replace them, which meant the HTML stated six false figures to anyone
+// whose JavaScript did not run. The markup must carry the real number.
+const zeros = about.stats
+  .map((stat) => {
+    const shown = (stat.prefix || "") +
+      (stat.value >= 1000 ? stat.value.toLocaleString("en-US") : String(stat.value)) +
+      (stat.suffix || "");
+    return story.includes(`>${shown}</dt>`) ? null : `${stat.label} (expected ${shown})`;
+  })
+  .filter(Boolean);
+zeros.length === 0
+  ? ok(`about: all ${about.stats.length} stats carry their real figure`)
+  : bad(`about: stats not rendered with real values: ${zeros.join(", ")}`);
+
+// Reveal animations are opt-in via html.js, so the inline boot script is what
+// stands between a failed module and an invisible page. Losing it would not
+// break anything a browser test notices on a healthy page.
+for (const [name, html] of [["index.html", home], ["about.html", story]]) {
+  html.includes("__revealReady") && html.includes('className += " js"')
+    ? ok(`${name}: progressive-enhancement boot script present`)
+    : bad(`${name}: boot script missing — a module failure would blank the page`);
 }
 
 // Collapsing the tail of the involvement list must not lose any of it.
