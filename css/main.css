@@ -733,14 +733,17 @@ button {
    Interactive DCF
    ========================================================================== */
 
-/* The deck's model, live, on the entry that links to the deck. It sits above
-   the collapsed detail rather than inside it: a widget nobody finds is not
-   interactive. Hairlines and mono labels like everything else — the only new
-   object on the page is the slider, and it is drawn out of the same two
-   colours. */
+/* The deck's model, live, inside the detail of the entry that links to the
+   deck. It was above the fold of that entry first, which put two sliders and
+   an unexplained number in front of every reader before anything had set
+   them up — it read as noise. Down here it costs nothing and is found by the
+   reader who opened the entry, which is the reader who wants it.
+
+   Hairlines and mono labels like everything else; the only new object is the
+   slider, drawn out of the same two colours. */
 .dcf {
-  margin-top: 1.5rem;
-  padding: 1.35rem 0 0.25rem;
+  margin-top: 1.6rem;
+  padding-top: 1.35rem;
   border-top: 1px solid var(--line);
   max-width: 34rem;
 }

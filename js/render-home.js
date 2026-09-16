@@ -71,10 +71,10 @@ function renderProjects() {
       <h3>${project.title}</h3>
       <p class="project-note">${project.note}</p>
       ${project.featured && project.link ? projectLink(project.link) : ""}
-      ${project.dcf ? dcfMarkup() : ""}
       <details>
         <summary class="mono"><span class="plus" aria-hidden="true"></span>Detail</summary>
         <ul class="project-detail">${project.detail.map((d) => `<li>${d}</li>`).join("")}</ul>
+        ${project.dcf ? dcfMarkup() : ""}
         ${project.link && !project.featured ? projectLink(project.link) : ""}
       </details>
     `;

@@ -112,10 +112,15 @@ economics, which is a framing a finance reader can evaluate.
 
 ## The interactive DCF
 
-The Marathon Petroleum entry in Work carries a live version of the model from
-`assets/marathon-petroleum.pdf`. Two drivers — WACC and the exit EBITDA
-multiple — recompute the implied value per share; three buttons jump to the
-deck's published bear, base and bull cases.
+Inside the **Detail** of the Marathon Petroleum entry in Work sits a live
+version of the model from `assets/marathon-petroleum.pdf`. Two drivers — WACC
+and the exit EBITDA multiple — recompute the implied value per share; three
+buttons jump to the deck's published bear, base and bull cases.
+
+It was above that toggle first, and it was wrong there: two sliders and an
+unexplained number arriving before anything sets them up reads as noise, not
+as evidence. Behind the toggle it costs no page height and reaches the reader
+who opened the entry, which is the only reader it was ever for.
 
 `data/marathon-model.js` holds the figures, `js/dcf.js` the arithmetic and
 the binding. No dependencies, and the whole calculation is six lines:
