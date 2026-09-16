@@ -60,7 +60,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>
   .foot { display: flex; justify-content: space-between; align-items: baseline; }
   .foot .dom { color: ${accent}; }
 </style>
-<div class="kicker">BBA Finance &middot; UGA Terry</div>
+<div class="kicker">Finance &middot; University of Georgia</div>
 <div>
   <h1>Matteo Salinas</h1>
   <p class="sub">Investment research, private wealth, credit and capital markets.</p>
