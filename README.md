@@ -17,7 +17,13 @@ css/
 js/
   main.js              Nav, scroll reveal + parallax, greeting, clocks,
                         chapter navigator, counting figures
+  templates.js         The markup for every repeating section, as pure
+                        functions — imported by both the browser and the
+                        prerender script so there is only one copy
   dcf.js               The interactive DCF on the Marathon entry
+tools/
+  prerender.mjs        Writes /data into the HTML files. Run after editing
+                        anything in /data
   render-home.js       Renders index.html's sections from /data
   render-about.js      Renders about.html from /data
 data/
@@ -145,6 +151,33 @@ piece of work with a different set of problems.
 To change the model, edit `data/marathon-model.js`. To put the widget on
 another write-up, add `dcf: true` to that entry in `data/projects.js` —
 though it would need its own model file, since the figures are Marathon's.
+
+## After editing anything in /data
+
+```bash
+node tools/prerender.mjs
+```
+
+Then commit the changed HTML along with the data file.
+
+**Why this step exists.** Every repeating section used to be injected by the
+render scripts at load. A reader whose browser could not run them got the
+hero, the About paragraph, and five empty headings — measured at 279 words
+and zero experience entries. That is not a hypothetical audience here: bank
+and asset-manager machines run aggressive endpoint controls, and a content
+blocker, a CSP or a proxy that mangles module scripts all produce the same
+result. A finance candidate's site with no finance on it.
+
+`tools/prerender.mjs` imports the same `/data` modules and the same
+`js/templates.js` the browser does, and writes the rendered markup into
+`index.html` and `about.html`. The render scripts then fill only what they
+find empty, so a prerendered page is not rendered twice. `/data` stays the
+single source of truth; the HTML is generated output that happens to be
+committed.
+
+Forgetting to run it is not catastrophic — the site still renders correctly
+for anyone with working JavaScript — but the HTML will be one edit behind for
+everyone else.
 
 ## Running locally
 
