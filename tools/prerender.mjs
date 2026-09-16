@@ -29,19 +29,38 @@ const { involvement } = await import(`${root}/data/involvement.js`);
 const { about } = await import(`${root}/data/about.js`);
 const t = await import(`${root}/js/templates.js`);
 
-// Replaces the inner HTML of the element carrying id="<id>", matching the
-// opening tag by id and walking to its matching close. The mounts are all
-// simple containers, so a non-greedy match to the next close of the same tag
-// name is exact here.
+// Replaces the inner HTML of the element carrying id="<id>".
+//
+// The close tag has to be found by walking the nesting depth, not by taking
+// the next `</tag>`. An earlier version did the latter and it silently
+// corrupted both pages: the first run was fine because every mount was
+// empty, but on the second run the content this script had already written
+// contained `</div>`, so `indexOf` landed inside it. Content was spliced at
+// the wrong boundary and the surplus closing tags leaked out and broke the
+// surrounding <section> nesting. It hid because the mounts whose content has
+// no nested tag of the same name — the <dl> and the <ul> — stayed correct,
+// and because counting elements still passed: they all existed, in the wrong
+// parents. Depth-matching makes the script idempotent, which is the property
+// that was missing.
 function fill(html, id, contents) {
   const open = new RegExp(`(<(\\w+)[^>]*\\bid="${id}"[^>]*>)`, "i");
   const m = html.match(open);
   if (!m) throw new Error(`prerender: no element with id="${id}"`);
   const tag = m[2];
   const start = m.index + m[1].length;
-  const close = `</${tag}>`;
-  const end = html.indexOf(close, start);
+
+  let depth = 0;
+  let end = -1;
+  const tags = new RegExp(`<(/?)${tag}\\b[^>]*?(/?)>`, "gi");
+  tags.lastIndex = start;
+  for (let t; (t = tags.exec(html)); ) {
+    if (t[2] === "/") continue;        // self-closing, neither opens nor closes
+    if (t[1] === "") depth += 1;
+    else if (depth === 0) { end = t.index; break; }
+    else depth -= 1;
+  }
   if (end === -1) throw new Error(`prerender: unclosed <${tag} id="${id}">`);
+
   return html.slice(0, start) + contents + "\n        " + html.slice(end);
 }
 
