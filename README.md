@@ -106,6 +106,9 @@ sitemap.xml
 - **The About facts table** (study, standing, abroad, languages, focus) and
   the hero copy live directly in `index.html`.
 
+Commit and you are done — see *Publishing* below. Nothing needs to be built
+or run by hand.
+
 The hero copy is deliberately evergreen — it names the degree and school
 and nothing that expires, so it doesn't need editing every time a role
 changes. Anything time-bound belongs in `data/experience.js`.
@@ -163,56 +166,60 @@ To change the model, edit `data/marathon-model.js`. To put the widget on
 another write-up, add `dcf: true` to that entry in `data/projects.js` —
 though it would need its own model file, since the figures are Marathon's.
 
-## Before committing
+## Publishing — there is nothing to run
 
-```bash
-node tools/check.mjs
-```
+Edit a file in `/data` however you like, including straight in the GitHub web
+editor, and commit. That is the whole workflow.
 
-It needs no browser and no network, and it exists because this site has
-shipped two real bugs and the tests at the time passed through both.
+`.github/workflows/build.yml` runs on every push to `main`. It regenerates the
+HTML from `/data`, commits the result if it changed, then runs the checks. A
+minute or so later Pages has redeployed with everything in step. Nothing to
+install, no command to remember.
 
-It checks:
+**If you ever do want to run it locally** — `node tools/prerender.mjs` to
+regenerate, `node tools/check.mjs` to verify. Neither needs any dependency
+installed. You should not need either.
 
-- **Nesting.** `prerender.mjs` once spliced content at the wrong boundary and
-  `</div>` ended up closing `<section>`, which duplicated and overlapped
-  content on both pages. Every test then in place counted elements and kept
-  passing, because every element existed — in the wrong parent. Run against
-  that commit, `check.mjs` reports eight mismatches per page and 13
-  experience roles where there should be 5.
-- **Idempotency and freshness.** It runs the prerender and fails if the
-  output differs from what is committed — which catches both a
-  non-idempotent prerender and the more likely everyday mistake of editing
-  `/data` and forgetting to run it.
-- **Counts** of every repeating section against the data files, **unique
-  ids**, and **no unexpected third-party references** in the shipped HTML.
+## Why the HTML is generated
 
-## After editing anything in /data
+`/data` is the source of truth, but the HTML is what ships, and it has to
+carry the content itself.
 
-```bash
-node tools/prerender.mjs
-```
-
-Then commit the changed HTML along with the data file.
-
-**Why this step exists.** Every repeating section used to be injected by the
-render scripts at load. A reader whose browser could not run them got the
-hero, the About paragraph, and five empty headings — measured at 279 words
-and zero experience entries. That is not a hypothetical audience here: bank
-and asset-manager machines run aggressive endpoint controls, and a content
-blocker, a CSP or a proxy that mangles module scripts all produce the same
-result. A finance candidate's site with no finance on it.
+Every repeating section used to be injected by the render scripts at load. A
+reader whose browser could not run them got the hero, the About paragraph,
+and five empty headings — measured at 279 words and zero experience entries.
+That is not a hypothetical audience here: bank and asset-manager machines run
+aggressive endpoint controls, and a content blocker, a CSP or a proxy that
+mangles module scripts all produce the same result. A finance candidate's
+site with no finance on it.
 
 `tools/prerender.mjs` imports the same `/data` modules and the same
 `js/templates.js` the browser does, and writes the rendered markup into
 `index.html` and `about.html`. The render scripts then fill only what they
-find empty, so a prerendered page is not rendered twice. `/data` stays the
-single source of truth; the HTML is generated output that happens to be
-committed.
+find empty, so a prerendered page is not rendered twice.
 
-Forgetting to run it is not catastrophic — the site still renders correctly
-for anyone with working JavaScript — but the HTML will be one edit behind for
-everyone else.
+Keeping the two in step by hand is a thing that gets forgotten, and
+forgetting it fails quietly: readers with JavaScript see the new version
+while everyone else sees the old one. Hence the workflow.
+
+## What the checks catch
+
+`tools/check.mjs` exists because this site has shipped two real bugs and the
+tests in place at the time passed through both — they counted elements, and
+every element existed, just in the wrong parent. It validates:
+
+- **Nesting.** The prerender once spliced content at the wrong boundary and
+  `</div>` ended up closing `<section>`, which duplicated and overlapped
+  content on both pages. Run against that commit, the check reports eight
+  mismatches per page and 13 experience roles where there should be 5.
+- **Freshness and idempotency.** It runs the prerender and fails if the result
+  differs from what is committed.
+- **Counts** against the data files, **unique ids**, and **no unexpected
+  third-party references** in the shipped HTML.
+
+If the workflow ever fails, GitHub emails you and the Actions tab says which
+check and why. A failure means a real problem — the ordinary case of stale
+HTML has already been fixed automatically by then.
 
 ## The share card
 

@@ -1,0 +1,69 @@
+# Runs the prerender and the checks on every push, so nobody has to remember.
+#
+# The site's content lives in /data but what actually ships is the HTML, and
+# keeping those in step used to mean running `node tools/prerender.mjs` by
+# hand. That is a step nobody should have to remember, and forgetting it fails
+# quietly: readers with JavaScript see fresh content while everyone else —
+# including anyone on a locked-down corporate machine — gets the previous
+# version. So this does it instead.
+#
+# Edit a data file in the GitHub web editor, commit, and a minute later the
+# HTML has caught up and Pages has redeployed. Nothing to install, nothing to
+# run locally.
+
+name: Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  # Never cancel mid-run: this job pushes a commit.
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Skip the run triggered by this workflow's own commit. Guarding on the
+    # actor rather than putting [skip ci] in the message, because [skip ci]
+    # may also suppress the Pages deployment — which would leave the
+    # regenerated HTML committed but never published, the exact failure this
+    # workflow exists to prevent.
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # No dependencies to install: prerender.mjs and check.mjs are plain
+      # Node with no imports outside the repo. (tools/og.mjs needs Playwright
+      # and is deliberately not run here — the share card only changes when
+      # someone decides it should.)
+      - name: Prerender /data into the HTML
+        run: node tools/prerender.mjs
+
+      - name: Commit the regenerated HTML, if it changed
+        run: |
+          if [ -z "$(git status --porcelain index.html about.html)" ]; then
+            echo "HTML already up to date."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html about.html
+          git commit -m "Prerender /data into the HTML"
+          git push
+
+      # Runs after the commit so a stale-HTML failure cannot fail the build —
+      # that case has just been fixed automatically. What remains are the real
+      # problems: broken nesting, counts that disagree with the data files,
+      # duplicate ids, unexpected third parties.
+      - name: Check
+        run: node tools/check.mjs
