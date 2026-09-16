@@ -16,12 +16,7 @@
 // responsibility but are described by what they were rather than by brand
 // name. Nothing is hidden by this — the Sneaker Twitter chapter above spells
 // out exactly what that industry was — it only drops the searchable strings.
-//
-// Those descriptions name the business function rather than the subculture:
-// "an e-commerce infrastructure company", not "a proxy business". A reader
-// who knows the ecosystem loses nothing; a recruiter who does not is not
-// sent to look up what a proxy or a checkout bot is in the middle of a
-// paragraph about a fifteen-year-old running support.
+
 
 export const about = {
   lede: "It started because I wanted to buy something in a game and my dad said no. So I had to figure out how to make my own money.",
@@ -88,7 +83,7 @@ export const about = {
   stats: [
     { value: 400, suffix: "+", label: "Sensei subscribers at peak" },
     { value: 95, suffix: "%", label: "Sensei retention rate" },
-    { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue, infrastructure company" },
+    { value: 100, prefix: "$", suffix: "K", label: "Monthly revenue, proxy business" },
     { value: 15, label: "Sensei team managed" },
     { value: 6000, suffix: "+", label: "Users on the largest platform" },
     { value: 70, suffix: "%", label: "Recurring questions removed" },
@@ -108,7 +103,7 @@ export const about = {
       ],
     },
     {
-      org: "An e-commerce infrastructure company",
+      org: "A proxy infrastructure business",
       role: "Customer Support Specialist → Operations Manager",
       dates: "Feb 2021 – Aug 2021",
       note: "Started on the support queue and moved into running operations two months later.",
@@ -118,7 +113,7 @@ export const about = {
       ],
     },
     {
-      org: "A limited-release retail automation platform",
+      org: "A high-volume checkout-automation platform",
       role: "Technical Support Staff",
       dates: "Aug 2020 – Feb 2021",
       note: "Front-line and escalation support, at the largest scale I worked at. Seven people in the company, and support ran through me: live, in chat, while releases were happening, not a queue somebody worked through the next morning.",
@@ -128,7 +123,7 @@ export const about = {
       ],
     },
     {
-      org: "A smaller retail automation platform",
+      org: "A checkout-automation platform",
       role: "Technical Support Staff",
       dates: "Feb 2021 – Jul 2021",
       note: "Release-day support, under a clock, at a five-person company.",
