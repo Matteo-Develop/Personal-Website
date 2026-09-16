@@ -372,6 +372,21 @@ function initAnalytics({ cloudflareToken, goatCounterCode } = {}) {
   }
 }
 
+// The strongest signal available during recruiting is not that someone
+// visited — it is that someone opened the Marathon deck or the HCA report.
+// That is a reader who went deep. GoatCounter counts page views on its own;
+// these are the two clicks worth counting by hand.
+function initDocumentEvents() {
+  document.querySelectorAll('a[href$=".pdf"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      const name = link.getAttribute("href").split("/").pop().replace(/\.pdf$/, "");
+      // No-op unless GoatCounter loaded, which it will not have if analytics
+      // is unconfigured or a content blocker ate the beacon.
+      window.goatcounter?.count?.({ path: `opened/${name}`, title: `Opened ${name}`, event: true });
+    });
+  });
+}
+
 function initYear() {
   const el = document.querySelector("[data-current-year]");
   if (el) el.textContent = String(new Date().getFullYear());
@@ -392,5 +407,6 @@ export function initShared(options = {}) {
   initChapterNav();
   initCounters();
   initAnalytics(options.analytics);
+  initDocumentEvents();
   initYear();
 }

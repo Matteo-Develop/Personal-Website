@@ -729,6 +729,19 @@ button {
 
 .project details { margin-top: 1.35rem; }
 
+/* One line of hard facts above the fold. The hero is a greeting and a
+   sentence naming the degree; a reader who never scrolls used to leave
+   knowing nothing they could act on. Same mono register as the links under
+   it, so it reads as metadata rather than as a second headline. */
+.hero-facts {
+  margin: 1.4rem 0 0;
+  color: var(--muted);
+}
+
+/* What he is recruiting for and when. The most useful line on a recruiting
+   site, and Contact used to carry only a location. */
+.contact-status { color: var(--bone-dim); }
+
 /* ==========================================================================
    Interactive DCF
    ========================================================================== */
@@ -1421,4 +1434,142 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .chapter-nav .spine-fill { transform: scaleY(1); }
+}
+
+/* ==========================================================================
+   Print
+   ==========================================================================
+   Recruiters print candidate material, or save it to PDF to read later,
+   attach to a req, or forward to a hiring manager. Without this the site
+   prints navy pages with invisible hairlines and every <details> shut, which
+   silently drops every artifact list on the page.
+
+   The rule that matters most is `details { display: block }` with
+   `::details-content` unhidden: on paper there is nothing to click, so
+   everything has to be open. What comes out is a clean document from content
+   that is already maintained — a second artifact nobody has to write. */
+
+@media print {
+  :root {
+    --bone: #111;
+    --bone-dim: #333;
+    --muted: #555;
+    --line: rgba(0, 0, 0, 0.22);
+    --line-strong: rgba(0, 0, 0, 0.35);
+    --accent: #6b5836;
+  }
+
+  /* Every size and gap in this stylesheet is in rem, which roots at html and
+     not at body — so shrinking body font-size did nothing. Scaling the root
+     scales the whole layout proportionally, which is the single biggest
+     lever on page count here. */
+  html { font-size: 10.5px; }
+
+  html, body { background: #fff !important; color: #111; }
+
+  /* Chrome, the drawer, and everything that only makes sense on a screen. */
+  .topbar, .drawer, .menu-toggle, .grain, .scroll-progress,
+  .hero-scroll, .skip-link, .clocks, .dcf-controls, .dcf-cases,
+  .chapter-nav, .portrait { display: none !important; }
+
+  /* Nothing may be hidden behind a toggle on paper. */
+  details { display: block; }
+  details > summary { list-style: none; font-weight: 500; }
+  details::details-content { content-visibility: visible !important; }
+  .plus { display: none !important; }
+
+  /* Reveal animations never run without script or motion, so make sure the
+     print path does not inherit an opacity:0 mid-state. */
+  .reveal, .row > *, .project > *, .list-item > *, .chapter-body, .stat {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .row::before, .project::before, .list-item::before { transform: scaleX(1) !important; }
+  .mask > span { transform: none !important; }
+
+  /* Give the reader the destination, since a printed link is otherwise a
+     dead end — but only where it earns its place. Printing it after every
+     link put the whole LinkedIn URL inside the hero's icon row and broke
+     the line. The two documents and one profile link are what matter. */
+  .project-link a::after,
+  .contact-aside a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.72em;
+    color: #555;
+    word-break: break-all;
+  }
+
+  /* Only units that fit on a page may ask to be kept whole. A .band is
+     taller than A4, so asking to keep it intact cannot be honoured and just
+     wastes the page before it — that alone was two pages. */
+  .project, .row, .chapter, .list-item, .stat { break-inside: avoid; }
+  h1, h2, h3 { break-after: avoid; }
+
+  .shell { max-width: none; padding: 0; }
+  body { font-size: 10pt; line-height: 1.45; }
+
+  /* Everything below exists because the first print came out at fifteen A4
+     pages, which is worse than no print stylesheet at all — nobody reads a
+     fifteen-page candidate handout. The screen layout is built out of
+     viewport-relative padding and display-sized type, both of which are
+     wrong on paper. */
+
+  /* The hero is a full viewport on screen and a title block on paper. The
+     greeting is atmosphere; the lede carries the name, so it leads. */
+  .hero { min-height: 0 !important; padding: 0 0 0.6rem !important; display: block; }
+  .display-greet { display: none !important; }
+  .hero-inner {
+    /* initScrollMotion writes transform and opacity inline, so a page
+       printed after scrolling would otherwise come out blank or displaced. */
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: 17pt;
+    line-height: 1.25;
+    max-width: none;
+  }
+  .hero-facts { margin-top: 0.5rem; }
+  .hero-links { margin-top: 0.5rem; }
+
+  /* Bands are spaced for scrolling, not for reading a stack of pages. */
+  .band { padding: 0.9rem 0 !important; }
+  .band-grid { display: block !important; gap: 0 !important; }
+  .rail { position: static !important; margin-bottom: 0.35rem; }
+  .rail-label { flex-direction: row !important; }
+
+  .about-lede { font-size: 13pt; max-width: none; margin-bottom: 0.5rem; }
+  .about-body, .about-body p { max-width: none; }
+  .about-body p { margin: 0.35rem 0; }
+  /* The measure that reads well on screen leaves half the sheet blank on
+     A4, where the column is wider and the type smaller. */
+  .row-summary, .project-note, .row-notes, .project-detail,
+  .hero-lede, .cap-items, .chapter-body p { max-width: none; }
+
+  .row, .project { padding: 0.55rem 0 !important; }
+  .row { display: grid !important; grid-template-columns: 7.5rem 1fr; gap: 0 1rem; }
+  .row-role, .project h3, .project--featured h3 {
+    font-size: 12pt !important;
+    max-width: none;
+    margin-top: 0.15rem;
+  }
+  .row-summary, .project-note { margin-top: 0.2rem; max-width: none; }
+  .row-notes, .project-detail { margin-top: 0.3rem; gap: 0.15rem; max-width: none; }
+  .row-more { margin-top: 0.4rem; padding-top: 0.3rem; }
+
+  /* The DCF is a tool. On paper it is a dead control panel, and the deck it
+     comes from is linked two lines above with its URL printed. */
+  .dcf { display: none !important; }
+
+  /* The story page prints as prose; its navigator is a screen affordance. */
+  .narrative-grid { display: block !important; }
+  .chapter { padding: 0.5rem 0 !important; }
+  .chapter-body p { margin: 0.3rem 0; max-width: none; }
+  .stats { gap: 0.5rem !important; }
+
+  .list-item { padding: 0.3rem 0 !important; }
+  .two-up { gap: 1.2rem !important; }
+
+  @page { margin: 14mm 13mm; }
 }
