@@ -84,17 +84,25 @@ function renderCapabilities() {
   const mount = document.getElementById("capability-list");
   if (!mount) return;
 
+  // Ten groups rendered as full rows ran to 1403px for 124 words, the worst
+  // density on either page. Each group is now a disclosure showing how many
+  // terms sit inside it, so the shape of the list is readable at a glance
+  // and the terms themselves are one click away.
   about.capabilities.forEach((cap) => {
-    const row = document.createElement("article");
-    row.className = "row";
-    row.innerHTML = `
-      <p class="row-when mono">${cap.group}</p>
-      <div class="row-body"><p class="cap-items">${cap.items}</p></div>
+    const count = cap.items.split("\u00b7").length;
+    const group = document.createElement("details");
+    group.className = "cap-group reveal";
+    group.innerHTML = `
+      <summary class="mono">
+        <span class="plus" aria-hidden="true"></span>${cap.group}
+        <span class="cap-count">${count}</span>
+      </summary>
+      <p class="cap-items">${cap.items}</p>
     `;
-    mount.appendChild(row);
+    mount.appendChild(group);
   });
 
-  staggerReveal(mount, 55, 6);
+  staggerReveal(mount, 40, 8);
 }
 
 renderLede();

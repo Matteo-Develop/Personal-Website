@@ -643,10 +643,16 @@ button {
 
 .projects { display: grid; }
 
+/* Work was the tallest section on the page (2134px) for 203 words, because
+   all six entries carried the same display-sized title and padding. The four
+   ordinary entries are now compact; the two featured ones keep their weight
+   below, which sharpens the distinction rather than flattening it. */
 .project {
   position: relative;
-  padding: clamp(1.75rem, 3.5vw, 2.5rem) 0;
+  padding: clamp(1.2rem, 2.4vw, 1.7rem) 0;
 }
+
+.project--featured { padding: clamp(1.9rem, 3.8vw, 2.7rem) 0; }
 
 .project::before {
   content: "";
@@ -683,9 +689,9 @@ button {
 }
 
 .project h3 {
-  margin-top: 0.9rem;
+  margin-top: 0.75rem;
   font-family: var(--serif);
-  font-size: clamp(1.55rem, 3.4vw, 2.35rem);
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
   line-height: 1.12;
   max-width: 20ch;
   transition: color var(--mid) ease;
@@ -708,6 +714,7 @@ button {
 .project--featured .project-tag { color: var(--accent); }
 
 .project--featured h3 {
+  margin-top: 0.9rem;
   font-size: clamp(1.75rem, 4vw, 2.7rem);
   max-width: 22ch;
 }
@@ -722,9 +729,10 @@ button {
 
 .project details { margin-top: 1.35rem; }
 
-/* One disclosure control, shared by Work and Experience. */
+/* One disclosure control, shared by Work, Experience and Capabilities. */
 .project summary,
-.row-more summary {
+.row-more summary,
+.cap-group summary {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -735,13 +743,16 @@ button {
 }
 
 .project summary::-webkit-details-marker,
-.row-more summary::-webkit-details-marker { display: none; }
+.row-more summary::-webkit-details-marker,
+.cap-group summary::-webkit-details-marker { display: none; }
 
 .project summary:hover,
-.row-more summary:hover { color: var(--bone); }
+.row-more summary:hover,
+.cap-group summary:hover { color: var(--bone); }
 
 .project summary .plus,
-.row-more summary .plus {
+.row-more summary .plus,
+.cap-group summary .plus {
   display: inline-block;
   width: 11px;
   height: 11px;
@@ -751,7 +762,9 @@ button {
 .project summary .plus::before,
 .project summary .plus::after,
 .row-more summary .plus::before,
-.row-more summary .plus::after {
+.row-more summary .plus::after,
+.cap-group summary .plus::before,
+.cap-group summary .plus::after {
   content: "";
   position: absolute;
   background: currentColor;
@@ -759,7 +772,8 @@ button {
 }
 
 .project summary .plus::before,
-.row-more summary .plus::before {
+.row-more summary .plus::before,
+.cap-group summary .plus::before {
   inset: 5px 0 5px 0;
   height: 1px;
 }
@@ -770,8 +784,14 @@ button {
   width: 1px;
 }
 
+.cap-group summary .plus::after {
+  inset: 0 5px 0 5px;
+  width: 1px;
+}
+
 .project details[open] summary .plus::after,
-.row-more[open] summary .plus::after { transform: scaleY(0); }
+.row-more[open] summary .plus::after,
+.cap-group[open] summary .plus::after { transform: scaleY(0); }
 
 .project-detail {
   margin-top: 1.25rem;
@@ -800,6 +820,28 @@ button {
 /* ==========================================================================
    Certifications + leadership lists
    ========================================================================== */
+
+/* Certifications and Involvement were two full-width sections carrying 92
+   words between them across 1488px — 18% of the front page's height for 10%
+   of its words. They are now one section, side by side, with nothing cut. */
+.two-up {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.25rem);
+}
+
+@media (min-width: 880px) {
+  .two-up { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+/* An <h3> for the document outline, so it needs the same pull-back to mono
+   metrics that .rail-label needs: the shared h1-h4 rule sets letter-spacing
+   on the element, which beats the .mono value it would otherwise inherit. */
+.col-label {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  margin-bottom: 0.4rem;
+}
 
 .list { display: grid; }
 
@@ -1045,7 +1087,27 @@ button {
    not six separate parts of a page. */
 .chapter { padding-block: clamp(2rem, 4vw, 3.25rem); }
 
+.caps { display: grid; }
+
+.cap-group {
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.caps .cap-group:last-child { border-bottom: 1px solid var(--line); }
+
+/* The count sits hard right, so the column of numbers reads as a shape:
+   which groups are deep and which are thin, before opening any of them. */
+.cap-group summary {
+  display: flex;
+  width: 100%;
+  color: var(--bone-dim);
+}
+
+.cap-count { margin-left: auto; color: var(--muted); }
+
 .cap-items {
+  margin-top: 0.8rem;
   color: var(--bone-dim);
   max-width: 62ch;
 }
