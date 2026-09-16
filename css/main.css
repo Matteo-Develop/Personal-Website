@@ -729,6 +729,148 @@ button {
 
 .project details { margin-top: 1.35rem; }
 
+/* ==========================================================================
+   Interactive DCF
+   ========================================================================== */
+
+/* The deck's model, live, on the entry that links to the deck. It sits above
+   the collapsed detail rather than inside it: a widget nobody finds is not
+   interactive. Hairlines and mono labels like everything else — the only new
+   object on the page is the slider, and it is drawn out of the same two
+   colours. */
+.dcf {
+  margin-top: 1.5rem;
+  padding: 1.35rem 0 0.25rem;
+  border-top: 1px solid var(--line);
+  max-width: 34rem;
+}
+
+.dcf-kicker { margin: 0 0 0.9rem; }
+
+.dcf-readout {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+.dcf-value {
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 5vw, 3rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.dcf-delta { font-size: 0.72rem; letter-spacing: 0.14em; }
+.dcf-delta.is-up { color: var(--accent); }
+.dcf-delta.is-down { color: var(--muted); }
+
+.dcf-against { margin: 0.6rem 0 0; }
+
+.dcf-controls {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.dcf-control { display: grid; gap: 0.5rem; cursor: pointer; }
+
+.dcf-legend {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+}
+
+.dcf-legend span { color: var(--bone); }
+
+/* One track, drawn by hand so it looks the same in every browser. --fill is
+   set from JS because no engine exposes the filled portion to CSS. */
+.dcf input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  cursor: grab;
+}
+
+.dcf input[type="range"]:active { cursor: grabbing; }
+
+.dcf input[type="range"]::-webkit-slider-runnable-track {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0 var(--fill, 50%),
+    var(--line-strong) var(--fill, 50%) 100%
+  );
+}
+
+.dcf input[type="range"]::-moz-range-track {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0 var(--fill, 50%),
+    var(--line-strong) var(--fill, 50%) 100%
+  );
+}
+
+.dcf input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform var(--fast) ease;
+}
+
+.dcf input[type="range"]::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.dcf input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.25); }
+.dcf input[type="range"]:focus-visible { outline: none; }
+.dcf input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.dcf-cases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.4rem;
+}
+
+.dcf-cases button {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--line);
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  transition: color var(--fast) ease, border-color var(--fast) ease;
+}
+
+.dcf-cases button:hover {
+  color: var(--bone);
+  border-color: var(--line-strong);
+}
+
+.dcf-note {
+  margin: 1.3rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
 /* One disclosure control, shared by Work, Experience and Capabilities. */
 .project summary,
 .row-more summary,

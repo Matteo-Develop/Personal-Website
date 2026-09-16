@@ -17,6 +17,7 @@ css/
 js/
   main.js              Nav, scroll reveal + parallax, greeting, clocks,
                         chapter navigator, counting figures
+  dcf.js               The interactive DCF on the Marathon entry
   render-home.js       Renders index.html's sections from /data
   render-about.js      Renders about.html from /data
 data/
@@ -108,6 +109,37 @@ those years beats a public version plus a hidden one — and the About page
 frames the period the way that market is now actually understood: an
 infrastructure business with real price discovery and brutal retention
 economics, which is a framing a finance reader can evaluate.
+
+## The interactive DCF
+
+The Marathon Petroleum entry in Work carries a live version of the model from
+`assets/marathon-petroleum.pdf`. Two drivers — WACC and the exit EBITDA
+multiple — recompute the implied value per share; three buttons jump to the
+deck's published bear, base and bull cases.
+
+`data/marathon-model.js` holds the figures, `js/dcf.js` the arithmetic and
+the binding. No dependencies, and the whole calculation is six lines:
+discount the five-year FCFF stream, add the terminal value discounted at the
+same rate, subtract net debt, divide by shares.
+
+**Why the numbers in the file differ slightly from the deck's.** The deck
+prints per-year figures to one decimal. Recomputing from those rounded values
+gives $234 a share rather than the $230 the deck concludes — the sum of its
+displayed present values is $32.11B against its own stated $31.3B. The FCFF
+stream and terminal EBITDA in `marathon-model.js` are back-solved from the
+deck's stated subtotals, so the base case returns exactly $230 and the bull
+and bear cases land within fifty cents of $287 and $142. That reconciliation
+is the whole point: the widget sits directly beneath a link to the PDF, and
+anyone can check one against the other.
+
+**It is not live market data and must not become it.** The comparison price
+is $232, MPC at the time of the pitch, and the widget says so on its face. If
+you ever want a current price next to a price target, that is a different
+piece of work with a different set of problems.
+
+To change the model, edit `data/marathon-model.js`. To put the widget on
+another write-up, add `dcf: true` to that entry in `data/projects.js` —
+though it would need its own model file, since the figures are Marathon's.
 
 ## Running locally
 

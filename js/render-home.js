@@ -7,6 +7,7 @@ import { projects } from "../data/projects.js";
 import { skills } from "../data/skills.js";
 import { involvement } from "../data/involvement.js";
 import { config } from "../data/config.js";
+import { dcfMarkup, initDcf } from "./dcf.js";
 import { initShared, staggerReveal } from "./main.js";
 
 const pad = (n) => String(n + 1).padStart(2, "0");
@@ -70,6 +71,7 @@ function renderProjects() {
       <h3>${project.title}</h3>
       <p class="project-note">${project.note}</p>
       ${project.featured && project.link ? projectLink(project.link) : ""}
+      ${project.dcf ? dcfMarkup() : ""}
       <details>
         <summary class="mono"><span class="plus" aria-hidden="true"></span>Detail</summary>
         <ul class="project-detail">${project.detail.map((d) => `<li>${d}</li>`).join("")}</ul>
@@ -77,6 +79,7 @@ function renderProjects() {
       </details>
     `;
     mount.appendChild(item);
+    if (project.dcf) initDcf(item);
   });
 
   staggerReveal(mount, 60, 4);
