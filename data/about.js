@@ -30,17 +30,17 @@ export const about = {
     {
       label: "Sneaker Twitter",
       body: [
-        "What I'd walked into was a market most people have never heard of. A few thousand serious participants worldwide, nearly all teenagers, building the infrastructure behind limited-release retail: monitors watching individual sites for restocks, proxy networks, data services, and paid information groups. Every one of those businesses existed to save a customer a few hundred milliseconds at checkout, and customers paid a lot for that.",
-        "It had genuine price discovery. Software licenses traded on a secondary market at multiples of retail, and eventually an exchange got built to clear those trades with escrow and dispute resolution. It has since turned into a reasonably well-known hiring pool. A number of venture-backed founders and early employees at hypergrowth companies came out of the same Discords.",
-        "I ended up building inside it rather than just buying from it: a subscription research service of my own, and support and operations roles at three of the businesses other people were running. That record is further down this page.",
+        "What I'd walked into was a market most people have never heard of: a few thousand serious participants worldwide, nearly all teenagers, building the infrastructure behind limited-release retail. Restock monitors, proxy networks, data services, paid information groups. All of it existed to save a customer a few hundred milliseconds at checkout, and customers paid a lot for that.",
+        "It had real price discovery. Software licenses traded on a secondary market at multiples of retail, and an exchange got built to clear those trades with escrow. Venture-backed founders and early employees at hypergrowth companies came out of the same Discords.",
+        "I ended up building inside it rather than buying from it: a subscription service of my own, and support and operations roles at three of the businesses other people ran.",
       ],
     },
     {
       label: "What it taught me",
       body: [
-        "That market repriced you in public every weekend. If your product underperformed on a single release, members cancelled that night, not next quarter. I learned retention, incident response, and how to hold a paying customer base together under that kind of pressure at an age when most of my friends had part-time jobs.",
-        "I also learned how to talk to people who outranked me. At fifteen and sixteen I was working alongside adults who didn't care how old I was as long as I was useful, and that's still the most valuable thing I took out of it.",
-        "All of it ran alongside club and high school soccer. Practice, a release at 10am on a Saturday, and a support queue that cared about neither one.",
+        "That market repriced you in public every weekend. If your product underperformed on one release, members cancelled that night, not next quarter. I learned retention and incident response at an age when most of my friends had part-time jobs.",
+        "I also learned how to talk to people who outranked me. At fifteen I was working alongside adults who didn't care how old I was as long as I was useful. That's still the most valuable thing I took from it.",
+        "All of it ran alongside club and high school soccer: practice, a release at 10am on a Saturday, and a support queue that cared about neither.",
       ],
     },
     {
@@ -131,31 +131,31 @@ export const about = {
   capabilities: [
     {
       group: "Valuation",
-      items: "Financial modeling · DCF · Comparable companies · Precedent transactions · Scenario modeling · WACC · Football-field valuation · Forecasting",
+      items: "DCF · Comparable companies · Precedent transactions · Scenario modeling · WACC · Football-field valuation",
     },
     {
       group: "Wealth",
-      items: "Private wealth management · Family wealth · Portfolio analysis · Investment management · Tax-efficient strategies · Estate & inheritance planning · Net worth statements",
+      items: "Private wealth management · Portfolio analysis · Tax-efficient strategies · Estate & inheritance planning · Net worth statements",
     },
     {
       group: "FP&A",
-      items: "Monthly forecasting · Variance analysis · Budgeting · Management reporting · Sales & margin analysis · GL reconciliation",
+      items: "Monthly forecasting · Variance analysis · Management reporting · Sales & margin analysis · GL reconciliation",
     },
     {
       group: "Data",
-      items: "Excel (PivotTables, lookups) · Power BI · DAX · Power Query · SQL · Bloomberg Terminal · PowerPoint · Salesforce & CRM · GitHub",
+      items: "Excel (PivotTables, lookups) · Power BI · DAX · Power Query · SQL · Bloomberg Terminal · Salesforce & CRM",
     },
     {
       group: "AI",
-      items: "Anthropic Claude API · Prompt engineering · Agent building (reasoning & deep-research) · LLM applications · AI-assisted research & workflow automation",
+      items: "Anthropic Claude API · Prompt engineering · Agent building (reasoning & deep-research) · AI-assisted research & workflow automation",
     },
     {
       group: "Code",
-      items: "Python · Go · Java · SQL · HTML & CSS",
+      items: "Python · Go · Java · HTML & CSS",
     },
     {
       group: "Commercial",
-      items: "Business development · Client relations · Prospecting & lead generation · Negotiation · Sales · Customer support",
+      items: "Business development · Client relations · Prospecting & lead generation · Negotiation",
     },
     {
       group: "Operating",
@@ -167,7 +167,7 @@ export const about = {
     },
     {
       group: "Outside work",
-      items: "Soccer · Golf · Geopolitics · Tennis · History · Hiking · Pickleball",
+      items: "Soccer · Golf · Geopolitics · History",
     },
   ],
 };
