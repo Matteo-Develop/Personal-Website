@@ -12,7 +12,9 @@
 export const involvement = [
   {
     org: "Sigma Nu Fraternity",
-    roles: ["Formal Social Chair", "Treasury", "Philanthropy", "Alumni", "Recruitment"],
+    // One elected office, then the committees. Five middot-separated items
+    // read as five equal positions, which overstated the last four.
+    roles: ["Formal Social Chair", "Treasury, Philanthropy, Alumni &amp; Recruitment Committees"],
     featured: true,
   },
   {
