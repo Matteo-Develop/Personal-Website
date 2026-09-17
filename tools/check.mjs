@@ -92,12 +92,13 @@ const count = (html, needle) => html.split(needle).length - 1;
 const expectations = [
   ["index", home, '<article class="row"', experience.length, "experience roles"],
   ["index", home, '<article class="project', projects.length, "work write-ups"],
-  ["index", home, '<div class="list-item"><dt', skills.length, "certifications"],
-  // Featured entries get a row each; everything else is one collapsed "Also"
-  // row. Both halves are asserted, so dropping a name from either is caught.
-  ["index", home, '<li class="list-item">', involvement.filter((i) => i.featured).length,
-    "featured involvement rows"],
-  ["index", home, '<li class="list-item list-more">',
+  // Match the opening tag by prefix, not exactly: rows carry a modifier class
+  // when their value is long enough to stack, and an exact needle would have
+  // silently counted 3 featured involvement rows instead of 5.
+  ["index", home, '<div class="list-item', skills.length, "certifications"],
+  ["index", home, '<li class="list-item', involvement.length ? involvement.filter((i) => i.featured).length + 1 : 0,
+    "involvement rows (featured + the collapsed one)"],
+  ["index", home, 'list-more">',
     involvement.some((i) => !i.featured) ? 1 : 0, "collapsed involvement rows"],
   ["about", story, '<article class="chapter"', about.chapters.length, "chapters"],
   ["about", story, 'class="chapter-link', about.chapters.length, "chapter nav links"],

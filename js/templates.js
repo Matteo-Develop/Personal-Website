@@ -12,6 +12,16 @@ import { dcfMarkup } from "./dcf.js";
 
 const pad = (n) => String(n + 1).padStart(2, "0");
 
+// A value longer than this gets its own full-width row rather than sharing
+// the line with the name. CSS cannot measure text, so the decision is made
+// here from the data. Entities count as one character, which is what they
+// render as. Issuer names run 3 to 9 characters and stay on the line; the
+// two long role lists in data/involvement.js are 32 and 77 and stack.
+const STACK_AT = 24;
+const plainLength = (s) => s.replace(/&[a-z]+;/gi, "x").length;
+const rowClass = (value) =>
+  "list-item" + (plainLength(value) > STACK_AT ? " list-item--stacked" : "");
+
 export function experienceHtml(experience) {
   return experience
     .map(
@@ -69,7 +79,7 @@ export function skillsHtml(skills) {
   return skills
     .map(
       (skill) =>
-        `<div class="list-item"><dt class="name">${skill.name}</dt><dd class="by mono">${skill.by}</dd></div>`
+        `<div class="${rowClass(skill.by)}"><dt class="name">${skill.name}</dt><dd class="by mono">${skill.by}</dd></div>`
     )
     .join("");
 }
@@ -79,10 +89,10 @@ export function involvementHtml(involvement) {
   const rest = involvement.filter((item) => !item.featured);
 
   const rows = featured
-    .map(
-      (item) =>
-        `<li class="list-item"><span class="name">${item.org}</span><span class="by mono">${item.roles.join(" &middot; ")}</span></li>`
-    )
+    .map((item) => {
+      const roles = item.roles.join(" &middot; ");
+      return `<li class="${rowClass(roles)}"><span class="name">${item.org}</span><span class="by mono">${roles}</span></li>`;
+    })
     .join("");
 
   // The remainder as one wrapped line rather than one row each. Six more

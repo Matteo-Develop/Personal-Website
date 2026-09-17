@@ -1098,15 +1098,27 @@ html:not(.js) .menu-toggle { display: none; }
 
 .list { display: grid; }
 
+/* Two columns, not wrapping flex.
+   As flex, the value was shrink-to-fit, so where it landed depended on how
+   long it happened to be: beside the name it went right; wrapped to its own
+   line it sat at flex-start (left) because space-between has nothing to
+   space; wrapped and wider than the row it filled the width and text-align
+   finally applied, ragged-left. Three placements, one rule. A grid column
+   puts it in the same place every time and lets a long name wrap inside its
+   own column instead of pushing the value off the line. */
 .list-item {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
-  justify-content: space-between;
   gap: 0.35rem 2rem;
   padding: 1.1rem 0;
 }
+
+/* A value too long for a column takes the full width underneath instead,
+   where it reads left-to-right as a continuation of the name. Set from the
+   data in js/templates.js, because CSS cannot measure text. */
+.list-item--stacked { grid-template-columns: 1fr; }
 
 .list-item::before {
   content: "";
@@ -1146,16 +1158,19 @@ html:not(.js) .menu-toggle { display: none; }
   text-align: right;
 }
 
+/* Same specificity as the rule above, so this has to follow it. */
+.list-item--stacked .by { text-align: left; }
+
 /* The collapsed tail of the involvement list. It is one label and a run of
    names, so it has to read as a line of prose rather than as a right-aligned
    value: the label shrinks to a rail marker and the names take the width. */
-.list-more .name {
-  flex: 0 0 auto;
-  color: var(--muted);
+.list-more {
+  grid-template-columns: auto minmax(0, 1fr);
 }
 
+.list-more .name { color: var(--muted); }
+
 .list-more .by {
-  flex: 1 1 22ch;
   text-align: left;
   color: var(--bone-dim);
   font-size: 0.95rem;
@@ -1164,9 +1179,15 @@ html:not(.js) .menu-toggle { display: none; }
 /* Narrow screens: let label/value stack cleanly instead of half-wrapping
    whenever a value happens to be long. */
 @media (max-width: 620px) {
-  .fact,
-  .list-item {
+  .fact {
     flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+
+  .list-item,
+  .list-more {
+    grid-template-columns: 1fr;
     align-items: stretch;
     gap: 0.3rem;
   }
