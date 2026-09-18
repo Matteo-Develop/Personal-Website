@@ -1238,6 +1238,11 @@ html:not(.js) .menu-toggle { display: none; }
   color: var(--muted);
 }
 
+/* Its own line in the footer's flex row, above the copyright and the clocks.
+   Everything else — mono, 0.7rem, the letter-spacing, uppercase, --muted — is
+   inherited from .site-foot .shell, so the line matches its neighbours. */
+.foot-quote { flex: 0 0 100%; }
+
 .site-foot a { transition: color var(--fast) ease; }
 .site-foot a:hover { color: var(--accent); }
 
