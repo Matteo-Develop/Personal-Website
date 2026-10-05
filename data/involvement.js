@@ -7,7 +7,9 @@
 // scrolled past six identical lines. Nothing is dropped — the rest is still
 // on the page, just not competing with the signal.
 //
-// Chaired and elected roles first, then the societies, then volunteering.
+// Selected and substantive roles first regardless of type — a chaired office
+// and a research cohort outrank an honour society here — then the societies,
+// then volunteering.
 
 export const involvement = [
   {
@@ -18,13 +20,20 @@ export const involvement = [
     featured: true,
   },
   {
+    org: "Economics Society",
+    roles: [
+      "Associate",
+      "Selective year-long research cohort in econometrics and data analysis",
+    ],
+    featured: true,
+  },
+  {
     org: "Order of Omega Honor Society",
     roles: ["Member", "Top 5% of Greek members"],
     featured: true,
   },
   { org: "M&A Society", roles: ["Member"], featured: true },
   { org: "Finance Society", roles: ["Member"], featured: true },
-  { org: "Economics Society", roles: ["Member"], featured: true },
   { org: "AI Society", roles: ["Member"] },
   { org: "Sales Club", roles: ["Member"] },
   { org: "DanceBlue", roles: ["Volunteer Staff"] },
