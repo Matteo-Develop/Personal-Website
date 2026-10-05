@@ -56,7 +56,7 @@ export const experience = [
   },
   {
     org: "Vantage Financial Alliance",
-    role: "Private Wealth & Asset Management Intern",
+    role: "Private Wealth Management Intern",
     location: "Alpharetta, GA",
     dates: "May 2025 – Aug 2025",
     summary:
