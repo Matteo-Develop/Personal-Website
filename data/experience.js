@@ -45,7 +45,7 @@ export const experience = [
     location: "Singapore, SG",
     dates: "Oct 2025 – Jan 2026",
     summary:
-      "I supported the Southeast Asia FP&A team across four reporting units, Singapore, Malaysia, Vietnam and the AEM cluster, working on monthly close, rolling forecasts, budget variance analysis and management reporting. Much of my work focused on improving the data and reporting infrastructure underneath those processes.",
+      "I supported the Southeast Asia FP&A team across four Southeast Asian reporting units, including Singapore, Malaysia and Vietnam, working on monthly close, rolling forecasts, budget variance analysis and management reporting. Much of my work focused on improving the data and reporting infrastructure underneath those processes.",
     artifactsLabel: "What I built",
     artifacts: [
       "Four Power BI dashboards built from the ground up over SQL-structured datasets, one per reporting unit. The architecture is in Work below. They remained in use after my internship.",
@@ -69,7 +69,7 @@ export const experience = [
   },
   {
     org: "MAAD Investments",
-    role: "Founder & Operator",
+    role: "Founder",
     location: "Atlanta, GA",
     dates: "Aug 2024 – Dec 2025",
     summary:
