@@ -51,7 +51,7 @@ export const projects = [
     detail: [
       "The architecture: source extracts per market, cleaned and conformed in Power Query, modeled into a star schema over SQL-structured datasets, measures written in DAX, surfaced as four Power BI dashboards feeding management reporting.",
       "Writing the logic as DAX measures rather than patching the source is the part that made it survive: the same measure definitions across all four, so a figure means the same thing in every unit's report instead of depending on who built that tab.",
-      "Covered four Southeast Asian reporting units, including Singapore, Malaysia and Vietnam, against monthly close, rolling forecast and budget variance.",
+      "Covered four reporting units, including Singapore, Malaysia and Vietnam, against monthly close, rolling forecast and budget variance.",
       "No figures or screenshots here. The work is the architecture, and the architecture is the part that transfers.",
     ],
     link: null,

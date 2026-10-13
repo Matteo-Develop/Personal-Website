@@ -33,7 +33,7 @@ export const about = {
       body: [
         "What I'd walked into was a market most people have never heard of: a few thousand serious participants worldwide, nearly all teenagers, building the infrastructure behind limited-release retail. Restock monitors, proxy networks, data services, paid information groups. All of it existed to save a customer a few hundred milliseconds at checkout, and customers paid a lot for that.",
         "It had real price discovery. Software licenses traded on a secondary market at multiples of retail, and an exchange got built to clear those trades with escrow. Venture-backed founders and early employees at hypergrowth companies came out of the same Discords.",
-        "I ended up building inside it rather than buying from it: a subscription service of my own, and support and operations roles at three of the businesses other people ran.",
+        "I ended up building inside it rather than buying from it: a subscription service I co-founded, and support and operations roles at three of the businesses other people ran.",
       ],
     },
     {
