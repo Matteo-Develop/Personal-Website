@@ -79,8 +79,8 @@ export const projects = [
   },
   {
     title: "Sensei Notify",
-    tag: "Founded",
-    note: "A subscription research platform I started at fifteen and ran for just over two years: market analysis, alerts and trend forecasting for a market that repriced every weekend. 400+ subscribers at peak, at a 95% retention rate.",
+    tag: "Co-founded",
+    note: "A subscription research platform I co-founded at fifteen and ran for just over two years: market analysis, alerts and trend forecasting for a market that repriced every weekend. 400+ subscribers at peak, at a 95% retention rate.",
     detail: [
       "Owned customer acquisition, pricing, financial management and the community end to end.",
       "Managed a team of 15, spread across time zones.",

@@ -11,7 +11,7 @@
 // second copy to check them against.
 //
 // Naming follows the same line Matteo drew on LinkedIn: Sensei Notify is
-// his own company and still listed there, so it keeps its name. The other
+// the company he co-founded and is still listed there, so it keeps its name. The other
 // three were removed from the profile, so they keep every date, metric and
 // responsibility but are described by what they were rather than by brand
 // name. Nothing is hidden by this — the Sneaker Twitter chapter above spells
@@ -93,7 +93,7 @@ export const about = {
   operating: [
     {
       org: "Sensei Notify Inc.",
-      role: "Founder & Strategy Director",
+      role: "Co-Founder & Strategy Director",
       dates: "Dec 2019 – Feb 2022",
       note: "A subscription research platform built from nothing: market analysis, alerts and trend forecasting for the release market described above.",
       metrics: [
