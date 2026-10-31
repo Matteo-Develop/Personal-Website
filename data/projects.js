@@ -62,7 +62,7 @@ export const projects = [
     note: "Compares the after-tax cost of liquidating appreciated securities against borrowing against the portfolio, giving an advisor a client-ready view of the tradeoff.",
     detail: [
       "Built for the private banking team to make the liquidate-or-lend decision explicit in the client conversation rather than after it.",
-      "Paired with a Banking Deal Sheet dashboard that cut the prep time on deal documentation.",
+      "Paired with a banking deal sheet dashboard that cut the prep time on deal documentation.",
     ],
     link: null,
   },

@@ -35,7 +35,7 @@ export const experience = [
     artifacts: [
       "A Roth conversion analysis tool and a Sell vs. Borrow dashboard, both written up in Work below, adopted across the wealth team in the Atlanta office. Several of the tools were picked up by colleagues in other offices, including Tampa and New York.",
       "A banking deal sheet dashboard to take the friction out of deal prep.",
-      "Net Worth Statements and client meeting books across investment, retirement, trust, alternative and real estate holdings.",
+      "Net worth statements and client meeting books across investment, retirement, trust, alternative and real estate holdings.",
       "Relationship-level SWOT analyses presented for office review, identifying client needs, risks and potential opportunities.",
       "Prospect coverage across the Southeast and Florida: high-net-worth families, family offices and centers of influence the advisors hadn't reached yet.",
     ],
@@ -47,7 +47,7 @@ export const experience = [
     dates: "Feb 2026 – May 2026",
     summary:
       "I built a five-year unlevered DCF, trading comps and a three-case valuation for HCA. The work forced me to separate the mechanics of valuation from the investment thesis behind it: capital returns, margin durability, and the value of network density.",
-    artifactsLabel: "The call",
+    artifactsLabel: "The work",
     artifacts: [
       "BUY on HCA Healthcare (NYSE: HCA). $558 price target, 28.4% implied upside. The full report is in Work below.",
       "Forward projections off 10-K/10-Q filings and earnings releases across the healthcare, energy and TMT names on the coverage list: revenue, margins, CapEx and working capital.",
@@ -87,11 +87,10 @@ export const experience = [
     location: "Atlanta, GA",
     dates: "Aug 2024 – Dec 2025",
     summary:
-      "A ticket resale business built around supply-demand analysis, pricing and disciplined capital allocation. Over a hundred event opportunities evaluated a year, priced off the supply and demand around each one rather than off instinct, which is the entire edge. Capital allocation, operating budget and full P&L were mine.",
+      "A ticket resale business built around supply-demand analysis, pricing and disciplined capital allocation. Each event was priced off the supply and demand around it rather than off instinct, which is the entire edge. Capital allocation, operating budget and full P&L were mine.",
     artifactsLabel: "The numbers",
     artifacts: [
       "$70,000 in revenue within the first five months.",
-      "Managed pricing, inventory, capital allocation and full P&L across concurrent events.",
       "100+ event opportunities evaluated annually.",
     ],
   },

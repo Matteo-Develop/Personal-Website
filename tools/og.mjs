@@ -67,7 +67,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>
   <div class="rule"></div>
 </div>
 <div class="foot">
-  <span>HCA &middot; Marathon &middot; BNY &middot; ZEISS &middot; Bluegrass</span>
+  <span>Bank of America &middot; BNY &middot; ZEISS &middot; HCA &middot; Marathon</span>
   <span class="dom">matteo0001.com</span>
 </div>`;
 

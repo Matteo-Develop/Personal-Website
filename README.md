@@ -21,6 +21,8 @@ js/
                         functions — imported by both the browser and the
                         prerender script so there is only one copy
   dcf.js               The interactive DCF on the Marathon entry
+  render-home.js       Renders index.html's sections from /data
+  render-about.js      Renders about.html from /data
 404.html               Served by GitHub Pages for any path that does not
                         exist; root-relative so it works from any depth
 tools/
@@ -30,8 +32,6 @@ tools/
                         anything in /data
   og.mjs               Regenerates the share card and the app icon
   og-assets/           The two typefaces, embedded into the share card
-  render-home.js       Renders index.html's sections from /data
-  render-about.js      Renders about.html from /data
 data/
   about.js             Chapters + capabilities for about.html
   config.js            Links and domain
@@ -103,20 +103,23 @@ sitemap.xml
 - **Links** → `data/config.js`. Note the LinkedIn and email links are also
   hardcoded in `index.html` so they still work if a script fails to load —
   if you change one, change both.
-- **The About facts table** (study, standing, abroad, languages, focus) and
+- **The About facts table** (study, previously, standing, citizenship,
+  languages, focus) and
   the hero copy live directly in `index.html`.
 
 Commit and you are done — see *Publishing* below. Nothing needs to be built
 or run by hand.
 
-The hero copy is deliberately evergreen — it names the degree and school
-and nothing that expires, so it doesn't need editing every time a role
-changes. Anything time-bound belongs in `data/experience.js`.
+The hero copy names the degree and school, which don't change with each
+role. Its one dated element is the status line under the facts — see
+*Lines with an expiry* below. Anything else time-bound belongs in
+`data/experience.js`.
 
 ## The two pages
 
 `index.html` is the professional record: experience, work, certifications,
-involvement. Everything on it is time-bound and lives in `/data`.
+involvement. The repeating sections live in `/data`; the hero, the About
+paragraphs and the facts table are written directly in `index.html`.
 
 `about.html` is the upbringing behind it — sneakers at fourteen, Sneaker
 Twitter, the subscription business, the detour through medicine, and the
@@ -204,18 +207,31 @@ while everyone else sees the old one. Hence the workflow.
 
 ## What the checks catch
 
-`tools/check.mjs` exists because this site has shipped two real bugs and the
-tests in place at the time passed through both — they counted elements, and
-every element existed, just in the wrong parent. It validates:
+`tools/check.mjs` started with two bugs this site shipped while the tests in
+place passed through both — they counted elements, and every element
+existed, just in the wrong parent. It has picked up a check for each problem
+found since. It validates:
 
 - **Nesting.** The prerender once spliced content at the wrong boundary and
   `</div>` ended up closing `<section>`, which duplicated and overlapped
   content on both pages. Run against that commit, the check reports eight
   mismatches per page and 13 experience roles where there should be 5.
+  Script and style contents are blanked before scanning, so tag-like text
+  inside the inline boot script's comments cannot report a false mismatch.
 - **Freshness and idempotency.** It runs the prerender and fails if the result
   differs from what is committed.
 - **Counts** against the data files, **unique ids**, and **no unexpected
   third-party references** in the shipped HTML.
+- **Real figures in the stats.** The About page's headline figures once
+  shipped as "0+" and "$0K" and relied on the counter to replace them, so
+  anyone without JavaScript read six false numbers. The HTML must carry
+  the real value.
+- **The boot script.** The inline script in `<head>` adds `html.js` and
+  arms a watchdog that takes it off again if the module never reports in.
+  Keep the class and lose the watchdog, and a failed module leaves the
+  page blank — while nothing on a healthy page would show the loss.
+- **Every involvement name.** Collapsing the tail of the list into the
+  "Also" row must not drop one.
 
 If the workflow ever fails, GitHub emails you and the Actions tab says which
 check and why. A failure means a real problem — the ordinary case of stale
@@ -287,7 +303,7 @@ blank), prints the URL after the two document links and the LinkedIn link,
 and **forces every `<details>` open** — on paper there is nothing to click,
 so a collapsed toggle silently deletes every artifact list on the page.
 
-Two things learned getting the length from fifteen pages down to seven:
+Two things learned getting the length from fifteen pages down to five:
 
 - Everything here is sized in `rem`, which roots at `html`, not `body`.
   Shrinking `body` font-size did nothing; scaling `html` scales the whole
@@ -296,7 +312,7 @@ Two things learned getting the length from fifteen pages down to seven:
   `.band`, which is taller than A4, so it could not be honoured and wasted
   the page before each one.
 
-The front page prints to about seven A4 pages and the story page to five.
+The front page prints to five A4 pages and the story page to four.
 That is the complete record with every list expanded, not a resume — there is
 deliberately no resume PDF, so this is the printable artifact, and it comes
 from content that is already maintained.
@@ -313,6 +329,12 @@ and the whole line stops being true when the internship ends — at which
 point it becomes an Experience entry with real dates and artifacts, and
 the status line goes back to saying what he is recruiting for.
 
+The link-preview text carries the same line in short —
+`og:description` and `twitter:description` in `index.html` end
+"Incoming Summer Analyst, Bank of America." — and expires with it. The
+share card's footer (`tools/og.mjs`) names Bank of America as an employer,
+which stays true, so it can wait for the next re-run.
+
 The matching Experience entry in `data/experience.js` carries
 `dates: "Summer 2027"` and no `artifacts`. Give it real month boundaries
 and a `What I built` list once there is something to put in them;
@@ -323,8 +345,8 @@ and a `What I built` list once there is something to put in them;
 Kentucky`. Both honours are Kentucky's, and the row sits under UGA, so the
 attribution is load-bearing — do not shorten it back to bare list names.
 
-**Not dated, but easy to miss:** the degree and college are named in nine
-places — the hero lede, the hero facts line, the About paragraph, the Study
+**Not dated, but easy to miss:** the degree and college are named in all of
+these places — the hero lede, the hero facts line, the About paragraph, the Study
 row, four `<meta>` tags, the JSON-LD `jobTitle`, `description` and
 `affiliation`, `about.html`'s `og:image:alt`, `site.description` in
 `data/config.js`, the Terry chapter in `data/about.js`, and the kicker baked
@@ -367,10 +389,10 @@ python3 -m http.server 8000
 
 ## Analytics
 
-Off by default. Both fields in `config.analytics` (`data/config.js`) are
-empty, and while they are, no script loads and no third-party request is
-made — the site behaves as if analytics were never added. Fill in
-whichever account you have; filling in both just double-counts.
+On, through GoatCounter (below). Two fields in `config.analytics`
+(`data/config.js`) control it: empty both and no script loads and no
+third-party request is made — the site behaves as if analytics were never
+added. Fill in only one; filling in both just double-counts.
 
 Either option is free, cookieless and needs no consent banner, and both
 report the same things: page views, visitors, referrers (so a LinkedIn
@@ -485,9 +507,9 @@ the URLs in `sitemap.xml` and `robots.txt`.
 
 Note on `about.operating`: those four roles and their figures (400+
 subscribers, a team of 15, $100k/month across two people, 6,000+ users,
-$10M+ in annual transactions, 70% ticket reduction) came from a LinkedIn
+$10M+ in annual transactions, 70% of recurring questions removed) came from a LinkedIn
 export taken before those entries were deleted from the profile. The team
-sizes are Matteo's own account of businesses he ran, and take precedence
+sizes are Matteo's own account of businesses he co-founded or worked in, and take precedence
 over the export where the two differ. The website is now the only public
 place any of it appears, so there is no second source to check it
 against.
@@ -498,6 +520,12 @@ site. They should not migrate onto a resume, a job application, or any
 form where an employer would reasonably expect to verify them. Everything
 else on the site can be checked against the resume or the two PDFs in
 `assets/`; these cannot.
+
+Both PDFs carry their own Title and Author (Matteo Salinas) in their
+metadata; the title is what a browser tab shows when one is opened.
+Re-exporting either file from Word, PowerPoint or Preview can reset those,
+so check them in the file's properties after replacing one.
+
 The portrait in the About rail is the only photograph on the site, and the
 design is otherwise entirely type-driven. It sits in the sticky rail beside
 the About copy at `assets/headshot.jpg`, with width and height attributes so
