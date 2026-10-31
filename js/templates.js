@@ -32,10 +32,18 @@ export function experienceHtml(experience) {
           <h3 class="row-role">${job.role}</h3>
           <p class="row-org">${job.org}${job.location ? ` <span class="at">&middot; ${job.location}</span>` : ""}</p>
           <p class="row-summary">${job.summary}</p>
-          <details class="row-more">
+          ${
+            // A role that has not started yet has nothing to disclose. Without
+            // this guard the map() below throws and the prerender dies; with
+            // it, such an entry renders as a plain row and grows the toggle by
+            // itself once there is something to put in it.
+            job.artifacts?.length
+              ? `<details class="row-more">
             <summary class="mono"><span class="plus" aria-hidden="true"></span>${job.artifactsLabel}</summary>
             <ul class="row-notes">${job.artifacts.map((a) => `<li>${a}</li>`).join("")}</ul>
-          </details>
+          </details>`
+              : ""
+          }
         </div>
       </article>`
     )

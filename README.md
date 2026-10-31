@@ -306,8 +306,18 @@ from content that is already maintained.
 Two lines on the site are dated on purpose. Nothing else goes stale on its
 own, so this is the whole list.
 
-**"Recruiting for Summer 2027"**, in the hero and again in Contact. Change
-both in `index.html` when the cycle turns.
+**"Incoming Summer Analyst &middot; Bank of America, Enterprise Credit
+&middot; Charlotte"**, in the hero and again in Contact, both in
+`index.html`. "Incoming" stops being true the day he starts in June 2027,
+and the whole line stops being true when the internship ends — at which
+point it becomes an Experience entry with real dates and artifacts, and
+the status line goes back to saying what he is recruiting for.
+
+The matching Experience entry in `data/experience.js` carries
+`dates: "Summer 2027"` and no `artifacts`. Give it real month boundaries
+and a `What I built` list once there is something to put in them;
+`experienceHtml` grows the disclosure back on its own as soon as
+`artifacts` is non-empty.
 
 **The GPA.** `3.60 GPA · President's List & Dean's List, University of
 Kentucky`. Both honours are Kentucky's, and the row sits under UGA, so the

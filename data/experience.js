@@ -11,6 +11,20 @@
 
 export const experience = [
   {
+    // Nothing to report yet, and the entry says so by being short. It also
+    // carries no `artifacts`, which js/templates.js now handles by omitting
+    // the disclosure rather than rendering an empty one.
+    //
+    // `dates` is the season rather than months: every other entry has real
+    // month boundaries because those internships happened, and inventing
+    // "Jun – Aug" here would be precision nobody has.
+    org: "Bank of America",
+    role: "Incoming Summer Analyst, Enterprise Credit",
+    location: "Charlotte, NC",
+    dates: "Summer 2027",
+    summary: "Enterprise Credit, in Charlotte.",
+  },
+  {
     org: "BNY",
     role: "Global Investments & Wealth Intern",
     location: "Atlanta, GA",

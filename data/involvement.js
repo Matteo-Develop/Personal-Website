@@ -24,6 +24,7 @@ export const involvement = [
     roles: [
       "Associate",
       "Selective year-long research cohort in econometrics and data analysis",
+      "Project: Kalshi Fed odds against high-yield credit spreads",
     ],
     featured: true,
   },
