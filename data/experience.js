@@ -22,7 +22,7 @@ export const experience = [
     role: "Incoming Summer Analyst, Enterprise Credit",
     location: "Charlotte, NC",
     dates: "Summer 2027",
-    summary: "Enterprise Credit, in Charlotte.",
+    summary: "Enterprise Credit, covering Global Markets, Global Corporate &amp; Investment Banking and Leveraged Finance.",
   },
   {
     org: "BNY",
@@ -65,7 +65,7 @@ export const experience = [
       "Four Power BI dashboards built from the ground up over SQL-structured datasets, one per reporting unit. The architecture is in Work below. They remained in use after my internship.",
       "Excel models projecting revenue, operating expense and cash flow across the region, built off drivers so one assumption change moved the whole regional forecast.",
       "Variance analysis against budget and prior forecast, with sales and margin analysis feeding regional strategy.",
-      "Market, competitor and industry research across the four markets.",
+      "Market, competitor and industry research across the four reporting units.",
     ],
   },
   {

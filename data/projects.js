@@ -10,7 +10,7 @@ export const projects = [
     dcf: true,
     featured: true,
     tag: "Equity research",
-    note: "The market prices MPC as a pure refiner and misses the midstream business underneath it. MPLX, 64% owned, generates enough fee-based cash to cover the dividend and all standalone CapEx, which materially reduces MPC&rsquo;s dependence on refining economics and supports a stronger downside case than a pure-refiner valuation implies. Strong Buy &middot; price at publication ~$232, April 2026 &middot; bull case $287 &middot; bear case $142.",
+    note: "The market prices MPC as a pure refiner and misses the midstream business underneath it. MPLX, 64% owned, generates enough fee-based cash to cover the dividend and all standalone CapEx, which materially reduces MPC&rsquo;s dependence on refining economics and supports a stronger downside case than a pure-refiner valuation implies. Price at publication ~$232, April 2026 &middot; bull case $287 &middot; bear case $142.",
     detail: [
       "Built for the University of Kentucky 2026 Stock Pitch Competition.",
       "Scenario spread rather than a single number: $230 mid-cycle DCF base, ~$232 sum-of-the-parts intrinsic, $287 bull, $142 bear.",
@@ -47,9 +47,9 @@ export const projects = [
   {
     title: "Southeast Asia FP&A Reporting System",
     tag: "ZEISS \u00b7 FP&A",
-    note: "Four reporting units on four different shapes of source data, which meant the regional pack was rebuilt by hand every month. I rebuilt the layer underneath it: one modeled dataset per market, the logic written once, the monthly pack falling out of it.",
+    note: "Four reporting units on four different shapes of source data, which meant the regional pack was rebuilt by hand every month. I rebuilt the layer underneath it: one modeled dataset per unit, the logic written once, the monthly pack falling out of it.",
     detail: [
-      "The architecture: source extracts per market, cleaned and conformed in Power Query, modeled into a star schema over SQL-structured datasets, measures written in DAX, surfaced as four Power BI dashboards feeding management reporting.",
+      "The architecture: source extracts per unit, cleaned and conformed in Power Query, modeled into a star schema over SQL-structured datasets, measures written in DAX, surfaced as four Power BI dashboards feeding management reporting.",
       "Writing the logic as DAX measures rather than patching the source is the part that made it survive: the same measure definitions across all four, so a figure means the same thing in every unit's report instead of depending on who built that tab.",
       "Covered four reporting units, including Singapore, Malaysia and Vietnam, against monthly close, rolling forecast and budget variance.",
       "No figures or screenshots here. The work is the architecture, and the architecture is the part that transfers.",
