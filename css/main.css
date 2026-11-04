@@ -672,6 +672,10 @@ html:not(.js) .menu-toggle { display: none; }
   font-size: clamp(1.08rem, 2vw, 1.3rem);
   font-weight: 500;
   letter-spacing: -0.01em;
+  /* Only steps in to stop one word sitting alone on the last line.
+     balance was tried here and moved good breaks to worse places on
+     phones ("Financial Planning & Analysis / Intern, …"). */
+  text-wrap: pretty;
 }
 
 .row-org {
@@ -768,6 +772,9 @@ html:not(.js) .menu-toggle { display: none; }
   font-size: clamp(1.25rem, 2.4vw, 1.7rem);
   line-height: 1.12;
   max-width: 20ch;
+  /* The 20ch cap breaks a long title right before its last word ("Roth
+     Conversion Analysis / Tool"). Balancing evens the lines out instead. */
+  text-wrap: balance;
   transition: color var(--mid) ease;
 }
 
