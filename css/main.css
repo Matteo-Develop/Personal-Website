@@ -365,10 +365,6 @@ html:not(.js) .menu-toggle { display: none; }
   margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
 }
 
-.hero-meta .sep { color: var(--line-strong); }
-
-.hero-meta time { font-variant-numeric: tabular-nums; }
-
 .display {
   font-family: var(--serif);
   font-size: clamp(2.8rem, 7.5vw, 5rem);
@@ -1560,7 +1556,8 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   .about-more a,
   .project-link a,
   .chapter-link,
-  .site-foot a {
+  .site-foot a,
+  .back {
     padding-block: 0.45rem;
   }
 
@@ -1575,7 +1572,7 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 @media (pointer: coarse) and (hover: none) {
   /* The portrait lifts to colour on hover, which a touch device cannot do
      and which a tap would otherwise latch on. Leave it monochrome. */
-  .portrait:hover { filter: grayscale(1) contrast(1.05) brightness(0.9); }
+  .portrait:hover { filter: grayscale(1) contrast(1.02); }
 }
 
 /* ==========================================================================

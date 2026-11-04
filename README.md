@@ -265,7 +265,10 @@ Self-hosted from `assets/fonts`, latin subset: Source Serif 4 at 400 and
 600, IBM Plex Sans at 400 and 500, about 120KB together. Both are under the
 SIL Open Font License; Source Serif's licence sits beside its files. The
 `@font-face` block is at the top of `css/main.css`, and all three pages
-preload the two faces that paint first.
+preload the three faces that paint first: the bold serif for the name,
+the regular serif for the text under it, and the sans 500 for the labels.
+Plex Sans 400 is used only by the desktop nav, so it is left to load on
+its own.
 
 They used to come from `fonts.googleapis.com`. Three reasons they no longer do:
 
