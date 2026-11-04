@@ -165,63 +165,6 @@ function initActiveNav() {
   }
 }
 
-// Greets the visitor against *their* clock, not a server's.
-function initGreeting() {
-  const slot = document.getElementById("hero-greeting");
-  if (!slot) return;
-
-  const hour = new Date().getHours();
-  // Trailing comma: the location line underneath finishes the sentence.
-  const greeting =
-    hour >= 5 && hour < 12
-      ? "Good morning,"
-      : hour >= 12 && hour < 18
-        ? "Good afternoon,"
-        : "Good evening,";
-
-  slot.textContent = greeting;
-}
-
-// Market clocks in the footer. Each <time data-clock="..."> names its own
-// IANA zone, so adding a city is a markup change, not a code change.
-function initClocks() {
-  const faces = document.querySelectorAll("[data-clock]");
-  if (!faces.length) return;
-
-  const formatters = new Map();
-  const formatterFor = (zone) => {
-    if (!formatters.has(zone)) {
-      formatters.set(
-        zone,
-        new Intl.DateTimeFormat("en-GB", {
-          timeZone: zone,
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        })
-      );
-    }
-    return formatters.get(zone);
-  };
-
-  const tick = () => {
-    const now = new Date();
-    faces.forEach((face) => {
-      const zone = face.dataset.clock;
-      try {
-        face.textContent = formatterFor(zone).format(now);
-        face.setAttribute("datetime", now.toISOString());
-      } catch {
-        // An unknown zone shouldn't take the rest of the footer down.
-        face.textContent = "--:--";
-      }
-    });
-  };
-
-  tick();
-  setInterval(tick, 20000);
-}
-
 // Scroll-linked motion: the hero drifts up and dissolves as you leave it,
 // and a hairline across the top tracks progress through the page. One
 // rAF-throttled listener drives both.
@@ -418,10 +361,8 @@ export function initShared(options = {}) {
   initDrawer();
   initAnchors();
   initReveal();
-  initGreeting();
   initHeroEntrance();
   initActiveNav();
-  initClocks();
   initScrollMotion();
   initChapterNav();
   initCounters();

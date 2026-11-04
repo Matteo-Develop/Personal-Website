@@ -27,7 +27,7 @@ export function experienceHtml(experience) {
     .map(
       (job) => `
       <article class="row">
-        <p class="row-when mono">${job.dates}</p>
+        <p class="row-when meta">${job.dates}</p>
         <div class="row-body">
           <h3 class="row-role">${job.role}</h3>
           <p class="row-org">${job.org}${job.location ? ` <span class="at">&middot; ${job.location}</span>` : ""}</p>
@@ -39,7 +39,7 @@ export function experienceHtml(experience) {
             // itself once there is something to put in it.
             job.artifacts?.length
               ? `<details class="row-more">
-            <summary class="mono"><span class="plus" aria-hidden="true"></span>${job.artifactsLabel}</summary>
+            <summary class="meta"><span class="plus" aria-hidden="true"></span>${job.artifactsLabel}</summary>
             <ul class="row-notes">${job.artifacts.map((a) => `<li>${a}</li>`).join("")}</ul>
           </details>`
               : ""
@@ -57,7 +57,7 @@ function projectLink({ href, label }) {
   const external = /^https?:/i.test(href) || /\.pdf$/i.test(href);
   const attrs = external ? ' target="_blank" rel="noopener"' : "";
   const arrow = external ? "&#8599;" : "&rarr;";
-  return `<p class="project-link"><a class="wipe mono" href="${href}"${attrs}>${label} <span aria-hidden="true">${arrow}</span></a></p>`;
+  return `<p class="project-link"><a class="wipe meta" href="${href}"${attrs}>${label} <span aria-hidden="true">${arrow}</span></a></p>`;
 }
 
 export function projectsHtml(projects) {
@@ -65,15 +65,14 @@ export function projectsHtml(projects) {
     .map(
       (project, i) => `
       <article class="project${project.featured ? " project--featured" : ""}">
-        <div class="project-top mono">
+        <div class="project-top meta">
           <span class="project-tag">${project.tag}</span>
-          <span class="faint">${pad(i)}</span>
         </div>
         <h3>${project.title}</h3>
         <p class="project-note">${project.note}</p>
         ${project.featured && project.link ? projectLink(project.link) : ""}
         <details>
-          <summary class="mono"><span class="plus" aria-hidden="true"></span>Detail</summary>
+          <summary class="meta"><span class="plus" aria-hidden="true"></span>Detail</summary>
           <ul class="project-detail">${project.detail.map((d) => `<li>${d}</li>`).join("")}</ul>
           ${project.dcf ? dcfMarkup() : ""}
           ${project.link && !project.featured ? projectLink(project.link) : ""}
@@ -87,7 +86,7 @@ export function skillsHtml(skills) {
   return skills
     .map(
       (skill) =>
-        `<div class="${rowClass(skill.by)}"><dt class="name">${skill.name}</dt><dd class="by mono">${skill.by}</dd></div>`
+        `<div class="${rowClass(skill.by)}"><dt class="name">${skill.name}</dt><dd class="by meta">${skill.by}</dd></div>`
     )
     .join("");
 }
@@ -99,7 +98,7 @@ export function involvementHtml(involvement) {
   const rows = featured
     .map((item) => {
       const roles = item.roles.join(" &middot; ");
-      return `<li class="${rowClass(roles)}"><span class="name">${item.org}</span><span class="by mono">${roles}</span></li>`;
+      return `<li class="${rowClass(roles)}"><span class="name">${item.org}</span><span class="by meta">${roles}</span></li>`;
     })
     .join("");
 
@@ -108,7 +107,7 @@ export function involvementHtml(involvement) {
   // the first five had not; as a single line they are still on the page for
   // anyone who wants them.
   const more = rest.length
-    ? `<li class="list-item list-more"><span class="name mono faint">Also</span><span class="by">${rest
+    ? `<li class="list-item list-more"><span class="name meta faint">Also</span><span class="by">${rest
         .map((item) => item.org)
         .join(" &middot; ")}</span></li>`
     : "";
@@ -122,7 +121,6 @@ export function chaptersHtml(chapters) {
       (chapter, i) => `
       <article class="chapter" id="ch-${pad(i)}">
         <h2 class="chapter-head">
-          <span class="idx mono">${pad(i)}</span>
           <span class="chapter-title">${chapter.label}</span>
         </h2>
         <div class="chapter-body reveal">
@@ -136,8 +134,8 @@ export function chaptersHtml(chapters) {
 export function chapterNavHtml(chapters) {
   return chapters
     .map(
-      (chapter, i) => `<li><a class="chapter-link mono" href="#ch-${pad(i)}" data-chapter="ch-${pad(i)}">
-      <span class="dot" aria-hidden="true"></span><span class="idx">${pad(i)}</span><span>${chapter.label}</span>
+      (chapter, i) => `<li><a class="chapter-link meta" href="#ch-${pad(i)}" data-chapter="ch-${pad(i)}">
+      <span class="dot" aria-hidden="true"></span><span>${chapter.label}</span>
     </a></li>`
     )
     .join("");
@@ -164,7 +162,7 @@ export function statsHtml(stats) {
       (stat) => `
       <div class="stat">
         <dt class="stat-value" data-value="${stat.value}" data-prefix="${stat.prefix || ""}" data-suffix="${stat.suffix || ""}">${statText(stat)}</dt>
-        <dd class="stat-label mono">${stat.label}</dd>
+        <dd class="stat-label meta">${stat.label}</dd>
       </div>`
     )
     .join("");
@@ -175,7 +173,7 @@ export function operatingHtml(operating) {
     .map(
       (item) => `
       <article class="row">
-        <p class="row-when mono">${item.dates}</p>
+        <p class="row-when meta">${item.dates}</p>
         <div class="row-body">
           <h3 class="row-role">${item.org}</h3>
           <p class="row-org">${item.role}</p>
@@ -195,7 +193,7 @@ export function capabilitiesHtml(capabilities) {
     .map(
       (cap) => `
       <details class="cap-group reveal">
-        <summary class="mono">
+        <summary class="meta">
           <span class="plus" aria-hidden="true"></span>${cap.group}
           <span class="cap-count">${cap.items.split("\u00b7").length}</span>
         </summary>

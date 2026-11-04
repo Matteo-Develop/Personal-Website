@@ -10,9 +10,17 @@
 
    font-display: swap so text is readable immediately and reflows once. */
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("../assets/fonts/InstrumentSerif-400.woff2") format("woff2");
+  font-family: "Source Serif 4";
+  src: url("../assets/fonts/SourceSerif4-400.woff2") format("woff2");
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("../assets/fonts/SourceSerif4-600.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -33,45 +41,29 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "IBM Plex Mono";
-  src: url("../assets/fonts/IBMPlexMono-400.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  src: url("../assets/fonts/IBMPlexMono-500.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* ==========================================================================
    Tokens
    ========================================================================== */
 
+/* Set like a research note: dark ink on warm white, one serif for reading
+   and headings, and a plain sans for the small labels around them. The
+   accent is a dark navy used for links and the few things that lead. */
 :root {
-  --navy-900: #070c16;
-  --navy-800: #0b1220;
-  --navy-700: #101a2c;
-  --navy-600: #16223a;
+  --bg: #fbfaf7;
+  --bg-2: #f3f1eb;
 
-  --bone: #e9e7e1;
-  --bone-dim: #a6aebe;
-  --muted: #6f7b8f;
+  --ink: #17191e;
+  --ink-dim: #3e434c;
+  --muted: #6a6f78;
 
-  --accent: #c2a878;
-  --accent-soft: rgba(194, 168, 120, 0.22);
+  --accent: #1f3a5f;
+  --accent-soft: rgba(31, 58, 95, 0.14);
 
-  --line: rgba(233, 231, 225, 0.1);
-  --line-strong: rgba(233, 231, 225, 0.22);
+  --line: rgba(23, 25, 30, 0.1);
+  --line-strong: rgba(23, 25, 30, 0.2);
 
-  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --shell: 1240px;
   --gutter: clamp(1.35rem, 5vw, 4.5rem);
@@ -109,22 +101,21 @@ html {
 
 body {
   margin: 0;
-  background: var(--navy-900);
-  color: var(--bone);
-  font-family: var(--sans);
-  font-size: 1rem;
-  line-height: 1.7;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.65;
   font-weight: 400;
-  -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
   margin: 0;
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 p { margin: 0; }
@@ -143,7 +134,7 @@ button {
 
 ::selection {
   background: var(--accent-soft);
-  color: var(--bone);
+  color: var(--ink);
 }
 
 :focus-visible {
@@ -151,25 +142,15 @@ button {
   outline-offset: 4px;
 }
 
-/* Fine film grain — keeps large flat navy fields from reading as plastic. */
-.grain {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 .skip-link {
   position: fixed;
   left: 1rem;
   top: -4rem;
   z-index: 100;
-  background: var(--bone);
-  color: var(--navy-900);
+  background: var(--ink);
+  color: var(--bg);
   padding: 0.6rem 1rem;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.75rem;
   transition: top var(--fast) var(--ease);
 }
@@ -180,18 +161,18 @@ button {
    Type utilities
    ========================================================================== */
 
-.mono {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+/* Small metadata: dates, tags, labels, link rows. Plain sentence case in
+   the sans, so it reads as a caption rather than as decoration. */
+.meta {
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
 .serif { font-family: var(--serif); }
 
-.dim { color: var(--bone-dim); }
+.dim { color: var(--ink-dim); }
 .faint { color: var(--muted); }
 
 /* ==========================================================================
@@ -217,7 +198,7 @@ button {
 }
 
 .topbar.is-stuck {
-  background: rgba(7, 12, 22, 0.78);
+  background: rgba(251, 250, 247, 0.92);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom-color: var(--line);
@@ -232,11 +213,10 @@ button {
 }
 
 .mark {
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--bone);
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--ink);
 }
 
 .topnav { display: none; }
@@ -250,10 +230,8 @@ button {
   position: relative;
   display: block;
   padding: 0.4rem 0;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 0.9rem;
   color: var(--muted);
   transition: color var(--fast) ease;
 }
@@ -272,7 +250,7 @@ button {
 }
 
 .topnav a:hover,
-.topnav a.is-active { color: var(--bone); }
+.topnav a.is-active { color: var(--ink); }
 
 .topnav a:hover::after,
 .topnav a.is-active::after {
@@ -296,7 +274,7 @@ button {
   top: 17px;
   width: 20px;
   height: 1px;
-  background: var(--bone);
+  background: var(--ink);
   transition: transform var(--mid) var(--ease);
 }
 
@@ -310,7 +288,7 @@ button {
   position: fixed;
   inset: 74px 0 auto 0;
   z-index: 39;
-  background: var(--navy-800);
+  background: var(--bg-2);
   border-bottom: 1px solid var(--line);
   clip-path: inset(0 0 100% 0);
   /* A landscape phone is about 360px tall; seven links plus padding do not
@@ -353,9 +331,7 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 .drawer a span {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-family: var(--sans);
   color: var(--muted);
 }
 
@@ -374,7 +350,7 @@ html:not(.js) .menu-toggle { display: none; }
   display: flex;
   flex-direction: column;
   /* Centred rather than bottom-anchored: on a tall display, anchoring to the
-     bottom left a dead half-screen of navy above the greeting. */
+     bottom left a dead half-screen above the name. */
   justify-content: center;
   padding-block: 6rem clamp(3rem, 8vw, 5rem);
   position: relative;
@@ -395,22 +371,22 @@ html:not(.js) .menu-toggle { display: none; }
 
 .display {
   font-family: var(--serif);
-  font-size: clamp(3.6rem, 14vw, 10rem);
-  line-height: 0.88;
-  letter-spacing: -0.025em;
+  font-size: clamp(2.8rem, 7.5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .mask {
   display: block;
   overflow: hidden;
-  /* Room for descenders: line-height is 0.88, so glyph tails fall outside
-     the line box and would otherwise be clipped by overflow:hidden. */
+  /* Room for descenders: line-height is 1, so glyph tails fall outside the
+     line box and would otherwise be clipped by overflow:hidden. */
   padding-bottom: 0.2em;
 }
 
 .js .mask > span {
   display: block;
-  /* Must exceed (lineHeight + padding) / lineHeight = ~123%, or the text
+  /* Must exceed (lineHeight + padding) / lineHeight = 120%, or the text
      peeks into the padding while it's supposed to be hidden. */
   transform: translateY(128%);
   transition: transform var(--slow) var(--ease);
@@ -423,11 +399,11 @@ html:not(.js) .menu-toggle { display: none; }
 .js .mask.is-visible > span { transform: none; }
 
 .hero-lede {
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  margin-top: clamp(1.1rem, 2.5vw, 1.6rem);
   max-width: 46ch;
-  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
-  line-height: 1.65;
-  color: var(--bone-dim);
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--ink-dim);
 }
 
 .hero-links {
@@ -442,7 +418,7 @@ html:not(.js) .menu-toggle { display: none; }
   position: relative;
   display: inline-block;
   padding-bottom: 3px;
-  color: var(--bone);
+  color: var(--ink);
 }
 
 .wipe::after {
@@ -524,19 +500,15 @@ html:not(.js) .menu-toggle { display: none; }
 
 .rail { color: var(--muted); }
 
-.rail .idx { color: var(--accent); }
-
+/* An <h2> for the document outline, set as the section's label in the
+   rail. The UA sheet would size it at 1.5em in the serif. */
 .rail-label {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-  /* This is an <h2> for the document outline, so it has to be pulled back
-     to the rail's mono metrics: the UA sheet sizes h2 at 1.5em, and the
-     shared h1-h4 rule sets letter-spacing on the element directly, which
-     beats the .mono values it would otherwise inherit from the parent. */
   font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--ink-dim);
+  text-wrap: balance;
 }
 
 @media (min-width: 880px) {
@@ -548,7 +520,6 @@ html:not(.js) .menu-toggle { display: none; }
     top: 130px;
     align-self: start;
   }
-  .rail-label { flex-direction: column; gap: 0.55rem; }
 }
 
 /* ==========================================================================
@@ -560,9 +531,9 @@ html:not(.js) .menu-toggle { display: none; }
    and rhythm of the page are unchanged.
 
    A colour studio photograph would be the only full-colour object on the
-   site and would pull every eye on the page. Desaturating it and letting
-   the navy through folds it into the two colours already here; it lifts to
-   full colour on hover, so the real photograph is one gesture away. */
+   site and would pull every eye on the page. Desaturated, it sits with the
+   ink and paper already here; it lifts to full colour on hover, so the real
+   photograph is one gesture away. */
 .portrait {
   display: block;
   width: 100%;
@@ -571,8 +542,7 @@ html:not(.js) .menu-toggle { display: none; }
   aspect-ratio: 3 / 4;
   object-fit: cover;
   object-position: 50% 8%;
-  filter: grayscale(1) contrast(1.05) brightness(0.9);
-  mix-blend-mode: luminosity;
+  filter: grayscale(1) contrast(1.02);
   transition: filter var(--mid) ease;
 }
 
@@ -597,7 +567,7 @@ html:not(.js) .menu-toggle { display: none; }
   display: grid;
   gap: 1.35rem;
   max-width: 58ch;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
 }
 
 /* No max-width: every hairline on the page aligns to the same right edge. */
@@ -619,7 +589,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .fact:last-child { border-bottom: 1px solid var(--line); }
 
-.fact dd { margin: 0; color: var(--bone-dim); }
+.fact dd { margin: 0; color: var(--ink-dim); }
 
 
 /* ==========================================================================
@@ -669,8 +639,8 @@ html:not(.js) .menu-toggle { display: none; }
 .row:hover .row-when { color: var(--accent); }
 
 .row-role {
-  font-size: clamp(1.08rem, 2vw, 1.3rem);
-  font-weight: 500;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-weight: 600;
   letter-spacing: -0.01em;
   /* Only steps in to stop one word sitting alone on the last line.
      balance was tried here and moved good breaks to worse places on
@@ -680,7 +650,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .row-org {
   margin-top: 0.3rem;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
@@ -691,7 +661,7 @@ html:not(.js) .menu-toggle { display: none; }
   display: grid;
   gap: 0.7rem;
   max-width: 62ch;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
@@ -771,8 +741,8 @@ html:not(.js) .menu-toggle { display: none; }
   font-family: var(--serif);
   font-size: clamp(1.25rem, 2.4vw, 1.7rem);
   line-height: 1.12;
-  max-width: 20ch;
-  /* The 20ch cap breaks a long title right before its last word ("Roth
+  max-width: 26ch;
+  /* The cap breaks a long title right before its last word ("Roth
      Conversion Analysis / Tool"). Balancing evens the lines out instead. */
   text-wrap: balance;
   transition: color var(--mid) ease;
@@ -783,15 +753,15 @@ html:not(.js) .menu-toggle { display: none; }
 .project-note {
   margin-top: 0.9rem;
   max-width: 56ch;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
 }
 
 /* The two write-ups with a document attached are the strongest thing in
    this section, and they used to look identical to a dashboard entry. They
    are marked in the one accent the site already uses rather than with a
-   card or a border, which the rest of the page does not have: the tag goes
-   brass, the title sits a size larger, and the standing hairline above the
-   entry is drawn in accent instead of rule. */
+   card or a border, which the rest of the page does not have: the tag takes
+   the accent, the title sits a size larger, and the standing hairline above
+   the entry is drawn in accent instead of rule. */
 .project--featured .project-tag { color: var(--accent); }
 
 .project--featured h3 {
@@ -802,7 +772,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .project--featured::before { background: var(--accent-soft); }
 
-.project--featured .project-note { color: var(--bone); }
+.project--featured .project-note { color: var(--ink); }
 
 /* Featured links sit outside the collapsed detail, so they need the space
    the detail block would otherwise have given them. */
@@ -810,9 +780,9 @@ html:not(.js) .menu-toggle { display: none; }
 
 .project details { margin-top: 1.35rem; }
 
-/* One line of hard facts above the fold. The hero is a greeting and a
+/* One line of hard facts above the fold. The hero is a name and a
    sentence naming the degree; a reader who never scrolls used to leave
-   knowing nothing they could act on. Same mono register as the links under
+   knowing nothing they could act on. Same label register as the links under
    it, so it reads as metadata rather than as a second headline. */
 .hero-facts {
   margin: 1.4rem 0 0;
@@ -823,9 +793,9 @@ html:not(.js) .menu-toggle { display: none; }
    site, and Contact used to carry only a location.
    It appears twice on purpose: a recruiter who lands in the hero and one who
    scrolls to the foot both get the answer without hunting for it. */
-.contact-status { color: var(--bone-dim); }
+.contact-status { color: var(--ink-dim); }
 
-/* The hero copy of it. Two mono lines of equal weight under the lede read as
+/* The hero copy of it. Two label lines of equal weight under the lede read as
    one block of metadata and neither gets looked at, so the status line sits
    tighter to the facts above it and leads in the accent, with the three
    answers themselves dimmed. */
@@ -844,8 +814,8 @@ html:not(.js) .menu-toggle { display: none; }
    them up — it read as noise. Down here it costs nothing and is found by the
    reader who opened the entry, which is the reader who wants it.
 
-   Hairlines and mono labels like everything else; the only new object is the
-   slider, drawn out of the same two colours. */
+   Hairlines and labels like everything else; the only new object is the
+   slider, drawn in the ink and the accent. */
 .dcf {
   margin-top: 1.6rem;
   padding-top: 1.35rem;
@@ -869,7 +839,7 @@ html:not(.js) .menu-toggle { display: none; }
   font-variant-numeric: tabular-nums;
 }
 
-.dcf-delta { font-size: 0.72rem; letter-spacing: 0.14em; }
+.dcf-delta { font-size: 0.8rem; }
 .dcf-delta.is-up { color: var(--accent); }
 .dcf-delta.is-down { color: var(--muted); }
 
@@ -890,7 +860,7 @@ html:not(.js) .menu-toggle { display: none; }
   color: var(--muted);
 }
 
-.dcf-legend span { color: var(--bone); }
+.dcf-legend span { color: var(--ink); }
 
 /* One track, drawn by hand so it looks the same in every browser. --fill is
    set from JS because no engine exposes the filled portion to CSS. */
@@ -978,7 +948,7 @@ html:not(.js) .menu-toggle { display: none; }
 }
 
 .dcf-cases button:hover {
-  color: var(--bone);
+  color: var(--ink);
   border-color: var(--line-strong);
 }
 
@@ -1008,7 +978,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .project summary:hover,
 .row-more summary:hover,
-.cap-group summary:hover { color: var(--bone); }
+.cap-group summary:hover { color: var(--ink); }
 
 .project summary .plus,
 .row-more summary .plus,
@@ -1058,7 +1028,7 @@ html:not(.js) .menu-toggle { display: none; }
   display: grid;
   gap: 0.7rem;
   max-width: 62ch;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
@@ -1093,13 +1063,11 @@ html:not(.js) .menu-toggle { display: none; }
   .two-up { grid-template-columns: 1fr 1fr; align-items: start; }
 }
 
-/* An <h3> for the document outline, so it needs the same pull-back to mono
-   metrics that .rail-label needs: the shared h1-h4 rule sets letter-spacing
-   on the element, which beats the .mono value it would otherwise inherit. */
+/* An <h3> for the document outline, set as a label like .rail-label. */
 .col-label {
   font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
+  font-weight: 600;
+  letter-spacing: 0;
   margin-bottom: 0.4rem;
 }
 
@@ -1179,7 +1147,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .list-more .by {
   text-align: left;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
@@ -1245,9 +1213,9 @@ html:not(.js) .menu-toggle { display: none; }
   color: var(--muted);
 }
 
-/* Its own line in the footer's flex row, above the copyright and the clocks.
-   Everything else — mono, 0.7rem, the letter-spacing, uppercase, --muted — is
-   inherited from .site-foot .shell, so the line matches its neighbours. */
+/* Its own line in the footer's flex row, above the copyright. Everything
+   else — the label face and size, --muted — is inherited from
+   .site-foot .shell, so the line matches its neighbour. */
 .foot-quote { flex: 0 0 100%; }
 
 .site-foot a { transition: color var(--fast) ease; }
@@ -1338,16 +1306,11 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 }
 
 /* ==========================================================================
-   Hero greeting, scroll progress, market clocks
+   Hero parallax and scroll progress
    ========================================================================== */
 
 /* Parallax layer — transformed on scroll by initScrollMotion(). */
 .hero-inner { will-change: transform, opacity; }
-
-/* A greeting is a longer string than a name, so it sets its own scale. */
-.display-greet {
-  font-size: clamp(2.2rem, 8vw, 6.5rem);
-}
 
 .scroll-progress {
   position: fixed;
@@ -1365,18 +1328,6 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   transform-origin: 0 50%;
 }
 
-.clocks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 1.5rem;
-}
-
-.clocks li {
-  display: inline-flex;
-  gap: 0.5rem;
-}
-
-.clocks time { font-variant-numeric: tabular-nums; }
 
 /* ==========================================================================
    About page, brand glyphs
@@ -1402,7 +1353,7 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   gap: 1.35rem;
   max-width: 58ch;
   font-size: 1.05rem;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
 }
 
 /* Chapters sit closer together than top-level sections — it's one story,
@@ -1423,14 +1374,14 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 .cap-group summary {
   display: flex;
   width: 100%;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
 }
 
 .cap-count { margin-left: auto; color: var(--muted); }
 
 .cap-items {
   margin-top: 0.8rem;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
   max-width: 62ch;
 }
 
@@ -1438,7 +1389,7 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 .row-summary {
   margin-top: 1rem;
   max-width: 60ch;
-  color: var(--bone-dim);
+  color: var(--ink-dim);
 }
 
 /* Each role's artifact list collapses behind its own label, which was
@@ -1458,7 +1409,7 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 .operating-intro {
   max-width: 54ch;
   margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
-  color: var(--bone-dim);
+  color: var(--ink-dim);
 }
 
 /* "How I got here" leaves the page, so it reads differently to the anchors. */
@@ -1468,13 +1419,6 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 .topnav .nav-page::after { background: var(--accent); }
 
 .project-link { margin-top: 1.1rem; }
-
-/* The location is the second half of the greeting sentence, so it sits
-   under it at reduced scale rather than floating above as its own label. */
-.display-greet .from {
-  font-size: 0.46em;
-  color: var(--bone-dim);
-}
 
 /* ==========================================================================
    About page: narrative with a chapter navigator, and counted stats
@@ -1520,10 +1464,7 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 
 .chapter-link {
   position: relative;
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  align-items: baseline;
-  gap: 0 0.55rem;
+  display: block;
   color: var(--muted);
   transition: color var(--fast) ease;
 }
@@ -1540,16 +1481,14 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   transition: background var(--fast) ease, transform var(--fast) var(--ease);
 }
 
-.chapter-link:hover { color: var(--bone-dim); }
+.chapter-link:hover { color: var(--ink-dim); }
 
-.chapter-link.is-active { color: var(--bone); }
+.chapter-link.is-active { color: var(--ink); }
 
 .chapter-link.is-active .dot {
   background: var(--accent);
   transform: translateX(-2px) scale(1.6);
 }
-
-.chapter-link.is-active .idx { color: var(--accent); }
 
 /* Chapter bodies */
 .chapter { padding-block: clamp(1.5rem, 3.5vw, 2.75rem); }
@@ -1561,14 +1500,9 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   margin-bottom: 1.1rem;
 }
 
-.chapter-head .idx { color: var(--accent); }
-
 .chapter-title {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-size: clamp(1.25rem, 2.2vw, 1.45rem);
+  color: var(--ink);
 }
 
 /* Counted figures */
@@ -1649,8 +1583,8 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
    ==========================================================================
    Recruiters print candidate material, or save it to PDF to read later,
    attach to a req, or forward to a hiring manager. Without this the site
-   prints navy pages with invisible hairlines and every <details> shut, which
-   silently drops every artifact list on the page.
+   prints at screen scale with the navigation on every page and every
+   <details> shut, which silently drops every artifact list on the page.
 
    The rule that matters most is `details { display: block }` with
    `::details-content` unhidden: on paper there is nothing to click, so
@@ -1659,12 +1593,12 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 
 @media print {
   :root {
-    --bone: #111;
-    --bone-dim: #333;
+    --ink: #111;
+    --ink-dim: #333;
     --muted: #555;
     --line: rgba(0, 0, 0, 0.22);
     --line-strong: rgba(0, 0, 0, 0.35);
-    --accent: #6b5836;
+    --accent: #1f3a5f;
   }
 
   /* Every size and gap in this stylesheet is in rem, which roots at html and
@@ -1676,9 +1610,9 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   html, body { background: #fff !important; color: #111; }
 
   /* Chrome, the drawer, and everything that only makes sense on a screen. */
-  .topbar, .drawer, .menu-toggle, .grain, .scroll-progress,
-  .hero-scroll, .skip-link, .clocks, .dcf-controls, .dcf-cases,
-  .chapter-nav, .portrait { display: none !important; }
+  .topbar, .drawer, .menu-toggle, .scroll-progress, .hero-scroll,
+  .skip-link, .dcf-controls, .dcf-cases, .chapter-nav,
+  .portrait { display: none !important; }
 
   /* Nothing may be hidden behind a toggle on paper. */
   details { display: block; }
@@ -1722,22 +1656,16 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
      viewport-relative padding and display-sized type, both of which are
      wrong on paper. */
 
-  /* The hero is a full viewport on screen and a title block on paper. The
-     greeting is atmosphere; the lede carries the name, so it leads. */
+  /* The hero is a full viewport on screen and a title block on paper. */
   .hero { min-height: 0 !important; padding: 0 0 0.6rem !important; display: block; }
-  .display-greet { display: none !important; }
+  .display { font-size: 22pt; }
   .hero-inner {
     /* initScrollMotion writes transform and opacity inline, so a page
        printed after scrolling would otherwise come out blank or displaced. */
     transform: none !important;
     opacity: 1 !important;
   }
-  .hero-lede {
-    font-family: var(--serif);
-    font-size: 17pt;
-    line-height: 1.25;
-    max-width: none;
-  }
+  .hero-lede { font-size: 12pt; line-height: 1.35; max-width: none; margin-top: 0.3rem; }
   .hero-facts { margin-top: 0.5rem; }
   .hero-status { margin-top: 0.25rem; }
   .hero-links { margin-top: 0.5rem; }
@@ -1746,7 +1674,6 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   .band { padding: 0.9rem 0 !important; }
   .band-grid { display: block !important; gap: 0 !important; }
   .rail { position: static !important; margin-bottom: 0.35rem; }
-  .rail-label { flex-direction: row !important; }
 
   .about-lede { font-size: 13pt; max-width: none; margin-bottom: 0.5rem; }
   .about-body, .about-body p { max-width: none; }

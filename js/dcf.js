@@ -28,33 +28,33 @@ export function dcfMarkup() {
   const x = m.exitRange;
   return `
     <div class="dcf" data-dcf>
-      <p class="dcf-kicker mono faint">The model from the deck, live</p>
+      <p class="dcf-kicker meta faint">The model from the deck, live</p>
 
       <p class="dcf-readout">
         <span class="dcf-value" data-dcf-value>${money(valuePerShare(wacc, exit))}</span>
-        <span class="dcf-delta mono" data-dcf-delta></span>
+        <span class="dcf-delta meta" data-dcf-delta></span>
       </p>
-      <p class="dcf-against mono faint">
+      <p class="dcf-against meta faint">
         implied value per share &middot; MPC traded at $${m.marketPrice}, ${m.asOf}
       </p>
 
       <div class="dcf-controls">
         <label class="dcf-control">
-          <span class="dcf-legend mono">WACC <span data-dcf-wacc-out>${pct(wacc)}</span></span>
+          <span class="dcf-legend meta">WACC <span data-dcf-wacc-out>${pct(wacc)}</span></span>
           <input type="range" data-dcf-wacc
                  min="${w.min}" max="${w.max}" step="${w.step}" value="${wacc}"
                  aria-label="Weighted average cost of capital" />
         </label>
 
         <label class="dcf-control">
-          <span class="dcf-legend mono">Exit EBITDA multiple <span data-dcf-exit-out>${exit.toFixed(1)}x</span></span>
+          <span class="dcf-legend meta">Exit EBITDA multiple <span data-dcf-exit-out>${exit.toFixed(1)}x</span></span>
           <input type="range" data-dcf-exit
                  min="${x.min}" max="${x.max}" step="${x.step}" value="${exit}"
                  aria-label="Exit EBITDA multiple" />
         </label>
       </div>
 
-      <div class="dcf-cases mono">
+      <div class="dcf-cases meta">
         ${m.cases
           .map(
             (c) =>

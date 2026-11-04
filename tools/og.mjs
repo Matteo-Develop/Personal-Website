@@ -7,9 +7,9 @@
 //
 //   node tools/og.mjs
 //
-// Fonts are embedded from tools/og-assets rather than fetched at render
-// time, so the output is identical on any machine and does not depend on
-// the network.
+// Fonts are embedded from the site's own assets/fonts rather than fetched
+// at render time, so the output is identical on any machine, does not
+// depend on the network, and uses exactly the faces the site does.
 
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
@@ -31,32 +31,35 @@ const token = (name) => {
   return m[1].trim();
 };
 
-const navy = token("navy-900");
-const bone = token("bone");
+const bg = token("bg");
+const ink = token("ink");
+const inkDim = token("ink-dim");
 const muted = token("muted");
 const accent = token("accent");
 
 const b64 = async (f) =>
-  (await readFile(join(root, "tools/og-assets", f))).toString("base64");
-const serif = await b64("InstrumentSerif.ttf");
-const mono = await b64("IBMPlexMono.ttf");
+  (await readFile(join(root, "assets/fonts", f))).toString("base64");
+const serif400 = await b64("SourceSerif4-400.woff2");
+const serif600 = await b64("SourceSerif4-600.woff2");
+const sans500 = await b64("IBMPlexSans-500.woff2");
 
 const html = `<!doctype html><meta charset="utf-8"><style>
-  @font-face { font-family: "Instrument Serif"; src: url(data:font/ttf;base64,${serif}) format("truetype"); }
-  @font-face { font-family: "IBM Plex Mono"; src: url(data:font/ttf;base64,${mono}) format("truetype"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 400; src: url(data:font/woff2;base64,${serif400}) format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 600; src: url(data:font/woff2;base64,${serif600}) format("woff2"); }
+  @font-face { font-family: "IBM Plex Sans"; font-weight: 500; src: url(data:font/woff2;base64,${sans500}) format("woff2"); }
   * { margin: 0; box-sizing: border-box; }
   body {
-    width: 1200px; height: 630px; background: ${navy}; color: ${bone};
+    width: 1200px; height: 630px; background: ${bg}; color: ${ink};
     display: flex; flex-direction: column; justify-content: space-between;
-    padding: 72px 80px; -webkit-font-smoothing: antialiased;
+    padding: 72px 80px;
   }
   .kicker, .foot {
-    font-family: "IBM Plex Mono", monospace; font-size: 19px;
-    letter-spacing: 0.16em; text-transform: uppercase; color: ${muted};
+    font-family: "IBM Plex Sans", sans-serif; font-weight: 500; font-size: 24px;
+    color: ${muted};
   }
-  h1 { font-family: "Instrument Serif", Georgia, serif; font-size: 128px; line-height: 0.95; letter-spacing: -0.02em; }
-  .sub { font-family: "Instrument Serif", Georgia, serif; font-size: 44px; line-height: 1.2; color: ${bone}; opacity: 0.72; margin-top: 18px; max-width: 24ch; }
-  .rule { height: 1px; background: ${accent}; width: 148px; margin: 40px 0 0; }
+  h1 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; font-size: 112px; line-height: 1; letter-spacing: -0.02em; }
+  .sub { font-family: "Source Serif 4", Georgia, serif; font-weight: 400; font-size: 42px; line-height: 1.25; color: ${inkDim}; margin-top: 22px; max-width: 26ch; }
+  .rule { height: 2px; background: ${accent}; width: 120px; margin: 40px 0 0; }
   .foot { display: flex; justify-content: space-between; align-items: baseline; }
   .foot .dom { color: ${accent}; }
 </style>
