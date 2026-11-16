@@ -353,9 +353,8 @@ from content that is already maintained.
 Two lines on the site are dated on purpose. Nothing else goes stale on its
 own, so this is the whole list.
 
-**"Incoming Summer Analyst &middot; Bank of America, Enterprise Credit
-&middot; Charlotte"**, in the hero and again in Contact, both in
-`index.html`. "Incoming" stops being true the day he starts in June 2027,
+**"Incoming Summer Analyst &middot; Bank of America"**, in the hero and
+again in Contact, both in `index.html`. "Incoming" stops being true the day he starts in June 2027,
 and the whole line stops being true when the internship ends — at which
 point it becomes an Experience entry with real dates and artifacts, and
 the status line goes back to saying what he is recruiting for.
