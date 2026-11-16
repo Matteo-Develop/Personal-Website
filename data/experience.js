@@ -69,19 +69,6 @@ export const experience = [
     ],
   },
   {
-    org: "Vantage Financial Alliance",
-    role: "Private Wealth Management Intern",
-    location: "Alpharetta, GA",
-    dates: "May 2025 – Aug 2025",
-    summary:
-      "The value of this internship was proximity. I accompanied the firm's Chairman into executive-level client meetings and strategic planning conversations, getting an early look at how wealth-management relationships are built, maintained and expanded.",
-    artifactsLabel: "What I took from it",
-    artifacts: [
-      "How tax strategy, estate planning, portfolio construction and business development come together inside a single client conversation, and how much of the judgment depends on understanding the person across the table.",
-      "Direct mentorship from the Chairman, and training in the sales side of it: how a relationship gets opened, and what keeps it.",
-    ],
-  },
-  {
     org: "MAAD Investments",
     role: "Founder",
     location: "Atlanta, GA",

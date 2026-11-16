@@ -29,8 +29,8 @@ export function experienceHtml(experience) {
       <article class="row">
         <p class="row-when meta">${job.dates}</p>
         <div class="row-body">
-          <h3 class="row-role">${job.role}</h3>
-          <p class="row-org">${job.org}${job.location ? ` <span class="at">&middot; ${job.location}</span>` : ""}</p>
+          <h3 class="row-title">${job.org}</h3>
+          <p class="row-sub">${job.role}${job.location ? ` <span class="at">&middot; ${job.location}</span>` : ""}</p>
           <p class="row-summary">${job.summary}</p>
           ${
             // A role that has not started yet has nothing to disclose. Without
@@ -175,8 +175,8 @@ export function operatingHtml(operating) {
       <article class="row">
         <p class="row-when meta">${item.dates}</p>
         <div class="row-body">
-          <h3 class="row-role">${item.org}</h3>
-          <p class="row-org">${item.role}</p>
+          <h3 class="row-title">${item.org}</h3>
+          <p class="row-sub">${item.role}</p>
           <p class="row-summary">${item.note}</p>
           <ul class="row-notes">${item.metrics.map((m) => `<li>${m}</li>`).join("")}</ul>
         </div>

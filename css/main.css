@@ -356,15 +356,6 @@ html:not(.js) .menu-toggle { display: none; }
   position: relative;
 }
 
-.hero-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.9rem;
-  color: var(--muted);
-  margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
-}
-
 .display {
   font-family: var(--serif);
   font-size: clamp(2.8rem, 7.5vw, 5rem);
@@ -496,14 +487,19 @@ html:not(.js) .menu-toggle { display: none; }
 
 .rail { color: var(--muted); }
 
-/* An <h2> for the document outline, set as the section's label in the
-   rail. The UA sheet would size it at 1.5em in the serif. */
+/* The section's <h2>. It was a 15px grey label, smaller than every item
+   title inside the section, which inverted the hierarchy: a reader scanning
+   the page could not see where one section ended and the next began. It is
+   now a real headline. On a phone it sits above the content at full width,
+   so it gets more size; on a desktop it sits in the 190px sticky rail,
+   where "Certifications" is the longest word it has to fit. */
 .rail-label {
-  font: inherit;
-  font-size: 0.95rem;
+  font-family: var(--serif);
+  font-size: 1.75rem;
   font-weight: 600;
-  letter-spacing: 0;
-  color: var(--ink-dim);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
   text-wrap: balance;
 }
 
@@ -516,6 +512,7 @@ html:not(.js) .menu-toggle { display: none; }
     top: 130px;
     align-self: start;
   }
+  .rail-label { font-size: 1.5rem; }
 }
 
 /* ==========================================================================
@@ -552,7 +549,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .about-lede {
   font-family: var(--serif);
-  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
   line-height: 1.22;
   letter-spacing: -0.015em;
   max-width: 22ch;
@@ -627,30 +624,24 @@ html:not(.js) .menu-toggle { display: none; }
   background: var(--line);
 }
 
-.row-when {
-  color: var(--muted);
-  transition: color var(--mid) ease;
-}
+.row-when { color: var(--muted); }
 
-.row:hover .row-when { color: var(--accent); }
-
-.row-role {
+.row-title {
   font-size: clamp(1.1rem, 2vw, 1.3rem);
   font-weight: 600;
   letter-spacing: -0.01em;
-  /* Only steps in to stop one word sitting alone on the last line.
-     balance was tried here and moved good breaks to worse places on
-     phones ("Financial Planning & Analysis / Intern, …"). */
+  /* The employer's name. Only steps in to stop one word sitting alone on
+     the last line; balance moved good breaks to worse places on phones. */
   text-wrap: pretty;
 }
 
-.row-org {
+.row-sub {
   margin-top: 0.3rem;
   color: var(--ink-dim);
   font-size: 0.95rem;
 }
 
-.row-org .at { color: var(--muted); }
+.row-sub .at { color: var(--muted); }
 
 .row-notes {
   margin-top: 1.15rem;
@@ -735,16 +726,13 @@ html:not(.js) .menu-toggle { display: none; }
 .project h3 {
   margin-top: 0.75rem;
   font-family: var(--serif);
-  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
-  line-height: 1.12;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.15;
   max-width: 26ch;
   /* The cap breaks a long title right before its last word ("Roth
      Conversion Analysis / Tool"). Balancing evens the lines out instead. */
   text-wrap: balance;
-  transition: color var(--mid) ease;
 }
-
-.project:hover h3 { color: var(--accent); }
 
 .project-note {
   margin-top: 0.9rem;
@@ -762,7 +750,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .project--featured h3 {
   margin-top: 0.9rem;
-  font-size: clamp(1.75rem, 4vw, 2.7rem);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
   max-width: 22ch;
 }
 
@@ -955,7 +943,11 @@ html:not(.js) .menu-toggle { display: none; }
   max-width: 46ch;
 }
 
-/* One disclosure control, shared by Work, Experience and Capabilities. */
+/* One disclosure control, shared by Work, Experience and Capabilities.
+   These toggles hide every artifact list on the site, and they used to be
+   set exactly like the dates beside them: small grey text. They are drawn
+   in the link colour, with an underline on hover, because they are links
+   in every sense a reader cares about. */
 .project summary,
 .row-more summary,
 .cap-group summary {
@@ -964,8 +956,8 @@ html:not(.js) .menu-toggle { display: none; }
   gap: 0.6rem;
   cursor: pointer;
   list-style: none;
-  color: var(--muted);
-  transition: color var(--fast) ease;
+  color: var(--accent);
+  text-underline-offset: 3px;
 }
 
 .project summary::-webkit-details-marker,
@@ -974,7 +966,7 @@ html:not(.js) .menu-toggle { display: none; }
 
 .project summary:hover,
 .row-more summary:hover,
-.cap-group summary:hover { color: var(--ink); }
+.cap-group summary:hover { text-decoration: underline; }
 
 .project summary .plus,
 .row-more summary .plus,
@@ -1059,11 +1051,14 @@ html:not(.js) .menu-toggle { display: none; }
   .two-up { grid-template-columns: 1fr 1fr; align-items: start; }
 }
 
-/* An <h3> for the document outline, set as a label like .rail-label. */
+/* "Certifications" and "Involvement": sub-headings under the section's
+   <h2>, so they read as headings in ink, a step below it in size. */
 .col-label {
-  font: inherit;
+  font-family: var(--serif);
+  font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: 0;
+  color: var(--ink);
   margin-bottom: 0.4rem;
 }
 
@@ -1338,8 +1333,6 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   margin-right: 0.15em;
 }
 
-.hero-links .lead-link { color: var(--accent); }
-
 .about-more {
   margin-top: clamp(2rem, 4vw, 2.75rem);
 }
@@ -1370,7 +1363,6 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 .cap-group summary {
   display: flex;
   width: 100%;
-  color: var(--ink-dim);
 }
 
 .cap-count { margin-left: auto; color: var(--muted); }
@@ -1671,6 +1663,7 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
   .band { padding: 0.9rem 0 !important; }
   .band-grid { display: block !important; gap: 0 !important; }
   .rail { position: static !important; margin-bottom: 0.35rem; }
+  .rail-label { font-size: 14pt; }
 
   .about-lede { font-size: 13pt; max-width: none; margin-bottom: 0.5rem; }
   .about-body, .about-body p { max-width: none; }
@@ -1682,7 +1675,7 @@ html:not(.js) .list-item::before { transform: scaleX(1); }
 
   .row, .project { padding: 0.55rem 0 !important; }
   .row { display: grid !important; grid-template-columns: 7.5rem 1fr; gap: 0 1rem; }
-  .row-role, .project h3, .project--featured h3 {
+  .row-title, .project h3, .project--featured h3 {
     font-size: 12pt !important;
     max-width: none;
     margin-top: 0.15rem;

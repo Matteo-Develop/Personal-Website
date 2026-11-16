@@ -7,7 +7,7 @@ means touching layout or animation code.
 ## Structure
 
 ```
-index.html             Main site: hero, about, experience, work,
+index.html             Main site: hero, experience, work, about,
                         certifications, involvement, contact
 about.html             Where it came from — the upbringing behind the
                         professional record, told in numbered chapters with
@@ -70,11 +70,22 @@ read as one. All of them are gone.
   IBM Plex Sans for the small labels around it: dates, tags, nav, link
   rows. Labels are plain sentence case, in the `.meta` class. Dates use
   tabular figures so columns line up.
-- **Structure** — each section is a sticky left rail (its label) beside a
+- **Structure** — each section is a sticky left rail (its heading) beside a
   content column. Everything is separated by hairlines rather than cards,
   and every hairline aligns to the same right edge. Nothing is numbered.
+  The record comes first: Experience and Work, then About, then
+  Certifications & Involvement, then Contact. The nav follows page order.
+- **Hierarchy** — a section heading is the largest type in its section
+  (28px on a phone, 24px in the desktop rail). Content type stays below it:
+  employer 21px, project titles 23px, the two featured write-ups 34px.
+  The Experience rows lead with the employer, not the job title, because
+  the employer is what a scanning reader is looking for.
+- **What's clickable** — links are underlined; the "+ What I built" /
+  "+ Detail" toggles are in the link colour and underline on hover.
+  Nothing that is not clickable changes colour on hover.
 - **Hero** — the name, one sentence, the facts line and the status line.
-  No greeting.
+  No greeting. Its links (LinkedIn, Email, How I got here) are all one
+  style; none of them is set up as the place to begin.
 - **Motion** — the name rises out of a mask on load; hairlines draw
   themselves left-to-right as you reach them, with content fading in just
   behind. Scrolling away from the hero drifts it upward and dissolves it,
@@ -83,6 +94,21 @@ read as one. All of them are gone.
   read, and the headline figures count up the first time they scroll into
   view. Links underline with a wipe. All of it is off under
   `prefers-reduced-motion` — the figures just appear at their final value.
+
+## Who it's for
+
+Written down so later changes can be checked against it.
+
+- **Someone at Bank of America, or a contact from LinkedIn**, on a phone,
+  checking who he is. Needs: name, school, status, employers, in that
+  order, in the first screen or two.
+- **An analyst or hiring manager reading closely.** Needs: the work —
+  the Marathon deck, the HCA report, the live DCF — one tap from Work.
+- **An alum or networking contact.** Needs: the story (How I got here)
+  and a way to get in touch.
+
+GoatCounter shows which of these actually turn up: referrers, phone versus
+desktop, and how often the PDFs are opened.
 
 ## Editing content
 
